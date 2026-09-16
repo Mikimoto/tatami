@@ -10,9 +10,20 @@ macOS 的視窗管理工具：**每個 space 各有一份版面**，切過去自
 
 ## 安裝
 
-<!-- 階段 B 把這一節換成 tap 與 cask 那兩行。 -->
+```sh
+brew tap mikimoto/tatami
+brew trust mikimoto/tatami
+brew install --cask tatami
+```
 
-目前只能從原始碼建：
+**中間那行不能省。** Homebrew 7 起，第三方 tap 的 cask 預設不給裝，少了它會停在
+`Refusing to load cask ... from untrusted tap`。
+
+需要 macOS 14（Sonoma）以上。裝完會有 `/Applications/Tatami.app` 與一個在 PATH 上的
+`tatami`——兩者是**同一個執行檔**，所以 CLI 與選單列 app 不可能版本不一致。
+
+<details>
+<summary>從原始碼建</summary>
 
 ```sh
 git clone https://github.com/Mikimoto/tatami "${HOME}/Developer/tatami"
@@ -20,6 +31,11 @@ cd "${HOME}/Developer/tatami"
 mise run install   # 建 tatami 並接到 ~/.local/bin
 mise run app       # 建、簽、裝 ~/Applications/Tatami.app
 ```
+
+這樣裝的是 ad-hoc 簽章的版本，**每次重建都要重新給一次「輔助使用」權限**——
+那個授權釘在簽章上，而 ad-hoc 簽章的身分就是執行檔的雜湊。用 cask 裝的那份是
+Developer ID 簽的，更新撐得過去。
+</details>
 
 然後到「系統設定 → 隱私權與安全性 → 輔助使用」把 Tatami 打開，**再重開一次 app**
 （TCC 不會套用到已經在跑的行程）。

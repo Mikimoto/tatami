@@ -136,7 +136,17 @@
 <h2 id="install">安裝</h2>
 
 <pre><code>brew tap mikimoto/tatami
+brew trust mikimoto/tatami
 brew install --cask tatami</code></pre>
+
+<div class="note">
+  <p><strong>中間那行不能省。</strong></p>
+  <p>
+    Homebrew 7 起，第三方 tap 的 cask 預設不給裝。少了 <code>brew trust</code> 會停在
+    <code>Refusing to load cask … from untrusted tap</code>，而錯誤訊息本身就會告訴你
+    要跑哪一行。
+  </p>
+</div>
 
 <p>
   這會裝好 <code>/Applications/Tatami.app</code>，並在 PATH 上放一個 <code>tatami</code>。
