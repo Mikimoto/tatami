@@ -32,12 +32,14 @@ depends = ["build"]
 run = "bash tests/golden_swift.sh"
 
 [tasks."test:checks"]
-description = "The three checks that need jq and the live layout.json"
+description = "The three checks that need jq and examples/layout.json"
 depends = ["build"]
 run = "bash tests/swift_checks.sh"
 
-# lint 刻意不在這裡：test 必須綠才有意義，而 lint 目前是紅的（還有 293 個未修的
-# violation）。混在一起就分不出「行為壞了」與「還沒重構完」。
+# lint 刻意不在這裡，而理由**不再是**「lint 現在是紅的」——那句話寫於重構途中，
+# 當時還有 293 個未修的 violation，早就清完了（2026-09-16 實測 rc=0、兩支都 clean）。
+# 留著分開是因為兩者回答不同的問題：test 問「行為對不對」，lint 問「寫法合不合
+# 規矩」。一個 trailing comma 不該讓人看不到測試是綠的。
 [tasks.test]
 description = "All offline tests (unit + golden + checks)"
 depends = ["test:unit", "test:golden", "test:checks"]
