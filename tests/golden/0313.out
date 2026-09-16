@@ -1,0 +1,1 @@
+{"axis":"horizontal","children":[{"axis":"vertical","children":[{"window":"W1","ratio":0.45},{"window":"W2","ratio":0.55}]},{"axis":"horizontal","children":[{"window":"W3","ratio":0.18},{"axis":"vertical","children":[{"axis":"horizontal","children":[{"window":"W4","ratio":0.11},{"window":"W5","ratio":0.89}]},{"window":"W6","ratio":0.66}]}]}]}

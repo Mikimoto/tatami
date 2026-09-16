@@ -1,0 +1,4 @@
+# workmode 狀態檔，由 --switch 寫入。手改也可以，一行一個 key=value。
+location=home
+profile.home=影音
+unknown.key=保留

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+#MISE description="Build Tatami.icns from assets/icon-1024.png"
+#
+# 只用系統內建的 `sips` 與 `iconutil`——**不用 PIL 也不用 ImageMagick**。
+# 那兩個是 Homebrew 的東西，而這一步要讓任何人 clone 下來就跑得動。
+# 原圖 `assets/icon-1024.png` 是 commit 進 repo 的產物（用 PIL 畫了一次），
+# 要換圖示就換那一個檔再跑這支，不必動腳本。
+#
+# 十個尺寸是 Apple 的 `.iconset` 規格：16/32/128/256/512 各一份 1x 與 2x。
+# 少給幾個不會失敗，只是 Finder 在某些縮放下拿不到剛好的那張、自己去縮。
+set -euo pipefail
+
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)
+SRC="${ROOT}/assets/icon-1024.png"
+SET=$(mktemp -d)/Tatami.iconset
+OUT="${ROOT}/assets/Tatami.icns"
+
+if [ ! -f "${SRC}" ]; then
+  printf '! 找不到原圖 %s\n' "${SRC}" >&2
+  exit 1
+fi
+
+mkdir -p "${SET}"
+for spec in "16 icon_16x16" "32 icon_16x16@2x" \
+            "32 icon_32x32"  "64 icon_32x32@2x" \
+            "128 icon_128x128" "256 icon_128x128@2x" \
+            "256 icon_256x256" "512 icon_256x256@2x" \
+            "512 icon_512x512" "1024 icon_512x512@2x"; do
+  size=${spec%% *}
+  name=${spec#* }
+  sips -z "${size}" "${size}" "${SRC}" --out "${SET}/${name}.png" >/dev/null
+done
+
+iconutil -c icns "${SET}" -o "${OUT}"
+rm -rf "$(dirname "${SET}")"
+
+printf '%s\n' "${OUT}"
+sips -g pixelWidth "${OUT}" 2>/dev/null | sed 's/^/  /' || true

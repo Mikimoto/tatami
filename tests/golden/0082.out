@@ -1,0 +1,13 @@
+{
+  "axis": "vertical",
+  "children": [
+    {
+      "ratio": 0.75,
+      "window": "A",
+      "zz": 1
+    },
+    {
+      "window": "B"
+    }
+  ]
+}

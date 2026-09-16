@@ -1,0 +1,2 @@
+! layout.json 有問題：
+    home：trees 不能放在地點層，要搬進 profiles.<名稱>.trees

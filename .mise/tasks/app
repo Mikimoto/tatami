@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+#MISE description="Build, sign and install Tatami.app (the resident menu bar app)"
+#MISE depends=["build"]
+#
+# 為什麼要一個 .app 而不是繼續用 `~/.local/bin/tatami`：
+#
+# AX（輔助使用）的授權掛在 **responsible process** 上，而那個行程的身分由**簽章**決定。
+# `~/.local/bin/tatami` 是指向 `.build/debug/tatami` 的 symlink，而 `swift build` 每次
+# 原地覆寫那個檔——ad-hoc 簽章的身分就是 cdhash，一重建就換一個，授權留不住。
+# 那是「常駐與開機動作只能掛 yabairc／skhd」那條限制的成因（見 CLAUDE.md）。
+#
+# 用 **Developer ID** 簽一個有固定 bundle id 的 .app，TCC 記的是 designated requirement
+# （bundle id ＋ team id）而不是 cdhash，所以重建之後授權還在——那讓 tatami 可以自己
+# 當 login item 起來，不必寄生在 yabai 身上。
+#
+# **是複製不是 symlink**：codesign 要把實體檔案封進 seal，指到 bundle 外面的 symlink
+# 封不起來。代價是**改完程式碼要重跑這個 task**，`mise run install` 那條 symlink
+# 不會自動更新 .app 裡的那份。
+set -uo pipefail
+
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)
+BIN="${ROOT}/app/.build/debug/tatami"
+APP="${HOME}/Applications/Tatami.app"
+IDENTITY="${TATAMI_SIGN_IDENTITY:-Developer ID Application: DeepThought Co., Ltd. (JA387Z4D7Q)}"
+
+# 版本號。`mise run app` 是開發用的，所以預設是一個**看得出是開發版**的值——
+# 發版走 `Scripts/release.sh`（階段 B），它會傳真的版本號進來。
+#
+# `CFBundleShortVersionString` 是給人看的語意版號；`CFBundleVersion` 是單調遞增的
+# 建置編號，用 UTC 時戳。兩者分開是 Apple 的規定：同一個語意版號可以有多次建置，
+# 而 LaunchServices 比的是後者。
+VERSION="${TATAMI_VERSION:-0.0.0-dev}"
+BUILD="${TATAMI_BUILD:-$(date -u +%Y.%m%d.%H%M)}"
+
+if [ ! -x "${BIN}" ]; then
+  printf '! 找不到執行檔 %s，先跑 mise run build\n' "${BIN}" >&2
+  exit 1
+fi
+
+if ! security find-identity -v -p codesigning | grep -qF "${IDENTITY}"; then
+  printf '! 鑰匙圈裡沒有這個簽章身分：%s\n' "${IDENTITY}" >&2
+  printf '  有的身分：\n' >&2
+  security find-identity -v -p codesigning | sed 's/^/    /' >&2
+  printf '  用 TATAMI_SIGN_IDENTITY=<名稱> 指定別的\n' >&2
+  exit 1
+fi
+
+rm -rf "${APP}"
+mkdir -p "${APP}/Contents/MacOS"
+
+# `LSUIElement` 讓它沒有 Dock 圖示也不進 ⌘Tab，與 `menu` 那條路的
+# `.accessory` 一致——少了它，login item 起來時會有一個沒有視窗的 Dock 圖示。
+#
+# **定界符刻意不加引號**（`<<PLIST` 而不是 `<<'PLIST'`），兩個版本號才展開得了。
+# 代價是這一段裡的 `$`、反引號與 `\` 從此都會被 shell 處理——加內容進來之前先數
+# 一次（`sed -n '<起>,<訖>p' .mise/tasks/app | /usr/bin/grep -c '\$'`）。這個失效是
+# 靜默的：一個被意外展開成空字串的值產生的是**結構合法而內容錯**的 plist，
+# `plutil -lint` 照樣回 OK，只有 `plutil -extract` 那兩條驗得到。
+cat >| "${APP}/Contents/Info.plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.deepthought.tatami</string>
+    <key>CFBundleName</key>
+    <string>Tatami</string>
+    <key>CFBundleExecutable</key>
+    <string>Tatami</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>${VERSION}</string>
+    <key>CFBundleVersion</key>
+    <string>${BUILD}</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>CFBundleIconFile</key>
+    <string>Tatami</string>
+    <key>LSUIElement</key>
+    <true/>
+</dict>
+PLIST
+printf '</plist>\n' >> "${APP}/Contents/Info.plist"
+
+cp "${BIN}" "${APP}/Contents/MacOS/Tatami"
+
+# 圖示。`CFBundleIconFile` 指的是 `Contents/Resources/` 底下那個檔（副檔名可省），
+# 所以那個目錄必須存在——在這之前整個 bundle 連 `Contents/Resources` 都沒有，
+# Finder 與 dmg 裡看到的是系統的預設應用程式圖示。
+mkdir -p "${APP}/Contents/Resources"
+if [ ! -f "${ROOT}/assets/Tatami.icns" ]; then
+  printf '! 找不到 %s，先跑 mise run icon\n' "${ROOT}/assets/Tatami.icns" >&2
+  exit 1
+fi
+cp "${ROOT}/assets/Tatami.icns" "${APP}/Contents/Resources/Tatami.icns"
+
+# `--options runtime`（hardened runtime）：Developer ID 簽的東西沒有它，
+# macOS 對它的信任度較低；而 AX 那條路徑要的是穩定的 designated requirement，
+# 兩者都由這一步一起給。
+#
+# **`--timestamp` 是 notarize 的硬性要求**（2026-09-15 補）。沒有安全時戳的簽章
+# `notarytool submit` 直接拒收，而症狀出現在送審那一刻——也就是最晚、最貴的地方。
+#
+# 補這個旗標**不是因為之前沒有時戳**（實測 2026-09-15：沒有它簽出來的 bundle
+# 照樣帶 `Timestamp=`）。是因為沒有它就**沒有保證**——`man codesign` 對不給這個
+# 旗標的情況寫的是「a system-specific default behavior is invoked. This may result
+# in some but not all code signatures being timestamped.」明寫之後行為變成契約：
+# 連不上 Apple 的時戳伺服器時**簽章直接失敗**，而不是靜默降級成一個送審才會被
+# 退件的 bundle。所以離線時這一步會失敗，那是對的。
+if ! codesign --force --options runtime --timestamp --sign "${IDENTITY}" "${APP}" 2>&1; then
+  printf '! codesign 失敗（--timestamp 要連 Apple 的時戳伺服器，先確認網路）\n' >&2
+  exit 1
+fi
+
+printf '%s\n' "${APP}"
+codesign -dvv "${APP}" 2>&1 | grep -E '^(Identifier|TeamIdentifier|Timestamp|Authority=Developer)' | sed 's/^/  /'
+printf '  designated requirement：\n'
+codesign -d -r- "${APP}" 2>&1 | grep '^designated' | sed 's/^/    /'

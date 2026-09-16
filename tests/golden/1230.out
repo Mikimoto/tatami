@@ -1,0 +1,125 @@
+{
+  "windows": [
+    {
+      "label": "工作瀏覽",
+      "match": [
+        "url-exact",
+        "https://github.com/example-org"
+      ]
+    },
+    {
+      "label": "Ghostty",
+      "match": [
+        "app",
+        "Ghostty"
+      ]
+    },
+    {
+      "label": "Zed",
+      "match": [
+        "app",
+        "Zed"
+      ]
+    },
+    {
+      "label": "Chat",
+      "match": [
+        "url-contains",
+        "chat.google.com"
+      ],
+      "fallback": [
+        "title-regex",
+        "專案乙組 - Chat|專案甲 - Chat"
+      ]
+    }
+  ],
+  "office": {
+    "desc": "BenQ MA320U + B287K",
+    "displays": {
+      "main": "11111111-1111-4111-8111-111111111111",
+      "second": "22222222-2222-4222-8222-222222222222"
+    },
+    "exile": [
+      "main"
+    ],
+    "windows": [
+      {
+        "label": "郵件",
+        "match": [
+          "app",
+          "郵件"
+        ]
+      },
+      {
+        "label": "__新的",
+        "match": [
+          "app",
+          "ZZ"
+        ]
+      }
+    ],
+    "default": "開發",
+    "profiles": {
+      "開發": {
+        "trees": {
+          "main": {
+            "window": "Ghostty"
+          },
+          "second": {
+            "window": "郵件"
+          }
+        }
+      },
+      "休閒": {
+        "trees": {
+          "main": {
+            "window": "__新的"
+          },
+          "second": {
+            "window": "郵件"
+          }
+        }
+      }
+    }
+  },
+  "home": {
+    "desc": "ML-34C50Q + DELL U2515H",
+    "displays": {
+      "main": "44444444-4444-4444-8444-444444444444",
+      "second": "33333333-3333-4333-8333-333333333333"
+    },
+    "exile": [
+      "main"
+    ],
+    "windows": [
+      {
+        "label": "Safari",
+        "match": [
+          "url-exact",
+          "https://claude.ai/code/artifact/00000000-0000-4000-8000-000000000001?via=auto_preview"
+        ]
+      }
+    ],
+    "default": "開發",
+    "profiles": {
+      "開發": {
+        "trees": {
+          "main": {
+            "axis": "vertical",
+            "children": [
+              {
+                "window": "Zed"
+              },
+              {
+                "window": "Ghostty"
+              }
+            ]
+          },
+          "second": {
+            "window": "Safari"
+          }
+        }
+      }
+    }
+  }
+}

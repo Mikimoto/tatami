@@ -1,0 +1,146 @@
+{
+  "windows": [
+    {
+      "label": "Terminal",
+      "match": [
+        "app",
+        "Terminal"
+      ]
+    },
+    {
+      "label": "Editor",
+      "match": [
+        "app",
+        "TextEdit"
+      ]
+    },
+    {
+      "label": "Browser",
+      "match": [
+        "app",
+        "Safari"
+      ]
+    },
+    {
+      "label": "Notes",
+      "match": [
+        "app",
+        "Notes"
+      ]
+    },
+    {
+      "label": "Mail",
+      "match": [
+        "app",
+        "Mail"
+      ]
+    },
+    {
+      "label": "Chat",
+      "match": [
+        "url-contains",
+        "chat.example.com"
+      ],
+      "launch": "Safari"
+    },
+    {
+      "label": "Docs",
+      "match": [
+        "title-regex",
+        "^Docs — "
+      ],
+      "fallback": [
+        "app",
+        "Safari"
+      ],
+      "launch": "Safari"
+    }
+  ],
+  "office": {
+    "desc": "公司：外接螢幕 ＋ 筆電",
+    "displays": {
+      "main": "11111111-2222-3333-4444-555555555555",
+      "builtin": "66666666-7777-8888-9999-AAAAAAAAAAAA"
+    },
+    "default": "開發",
+    "profiles": {
+      "開發": {
+        "trees": {},
+        "spaceTrees": {
+          "main": {
+            "AAAAAAAA-0001-0000-0000-000000000001": {
+              "axis": "vertical",
+              "children": [
+                {
+                  "window": "Editor",
+                  "ratio": 0.620
+                },
+                {
+                  "window": "Terminal"
+                }
+              ]
+            },
+            "AAAAAAAA-0001-0000-0000-000000000002": {
+              "window": "Browser"
+            }
+          },
+          "builtin": {
+            "BBBBBBBB-0001-0000-0000-000000000001": {
+              "window": "Chat"
+            }
+          }
+        }
+      },
+      "會議": {
+        "trees": {},
+        "spaceTrees": {
+          "main": {
+            "AAAAAAAA-0001-0000-0000-000000000001": {
+              "axis": "horizontal",
+              "children": [
+                {
+                  "window": "Docs",
+                  "ratio": 0.750
+                },
+                {
+                  "window": "Notes"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "home": {
+    "desc": "家裡：只有筆電",
+    "displays": {
+      "main": "66666666-7777-8888-9999-AAAAAAAAAAAA"
+    },
+    "default": "開發",
+    "profiles": {
+      "開發": {
+        "trees": {},
+        "spaceTrees": {
+          "main": {
+            "BBBBBBBB-0001-0000-0000-000000000002": {
+              "axis": "vertical",
+              "children": [
+                {
+                  "window": "Editor"
+                },
+                {
+                  "window": "Browser",
+                  "ratio": 0.400
+                }
+              ]
+            },
+            "BBBBBBBB-0001-0000-0000-000000000003": {
+              "window": "Mail"
+            }
+          }
+        }
+      }
+    }
+  }
+}

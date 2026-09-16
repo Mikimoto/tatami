@@ -1,0 +1,4 @@
+A	app	AA	-	-
+B	app	BB	-	-
+C	url-contains	cc.example.com	title-regex	甲|乙
+M	app	MM	-	-

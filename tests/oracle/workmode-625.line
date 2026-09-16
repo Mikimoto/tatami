@@ -1,0 +1,1 @@
+  open -a "$app" 2>/dev/null || { printf '  ! 開不起來：%s\n' "$app"; return 1; }

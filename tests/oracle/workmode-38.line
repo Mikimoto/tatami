@@ -1,0 +1,1 @@
+    printf '! layout.json 不是合法 JSON：%s\n' "$err" >&2

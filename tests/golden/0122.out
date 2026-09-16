@@ -1,0 +1,11 @@
+{
+  "axis": "vertical",
+  "children": [
+    {
+      "window": "Zed"
+    },
+    {
+      "window": "Ghostty"
+    }
+  ]
+}

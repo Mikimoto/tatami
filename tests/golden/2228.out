@@ -1,0 +1,6 @@
+# workmode 狀態檔，由 --switch 寫入。手改也可以，一行一個 key=value。
+100=d
+10=a
+2=c
+9=b
+k=v

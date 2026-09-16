@@ -1,0 +1,6 @@
+# workmode 狀態檔，由 --switch 寫入。手改也可以，一行一個 key=value。
+Banana=4
+Zebra=1
+apple=2
+k=v
+中文=3

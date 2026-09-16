@@ -1,0 +1,1 @@
+    printf '! 找不到設定檔：%s\n' "$LAYOUT_FILE" >&2

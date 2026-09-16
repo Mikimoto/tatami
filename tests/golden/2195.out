@@ -1,0 +1,1 @@
+{"label":"標籤","match":["title-regex","^中文 — 視窗\\.txt$"],"fallback":["app","應用"]}

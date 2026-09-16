@@ -1,0 +1,17 @@
+{
+  "h": {
+    "desc": "x",
+    "windows": [
+      {
+        "label": "Z"
+      }
+    ],
+    "profiles": {
+      "P": {
+        "trees": {
+          "m": {}
+        }
+      }
+    }
+  }
+}

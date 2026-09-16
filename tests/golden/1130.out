@@ -1,0 +1,5 @@
+工作瀏覽	url-exact	https://github.com/example-org	-	-
+Ghostty	app	Ghostty	-	-
+Zed	app	Zed	-	-
+Chat	url-contains	chat.google.com	title-regex	專案乙組 - Chat|專案甲 - Chat
+郵件	app	郵件	-	-

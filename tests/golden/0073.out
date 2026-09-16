@@ -1,0 +1,19 @@
+{
+  "axis": "vertical",
+  "children": [
+    {
+      "window": "A"
+    },
+    {
+      "axis": "horizontal",
+      "children": [
+        {
+          "window": "B"
+        },
+        {
+          "window": "C"
+        }
+      ]
+    }
+  ]
+}

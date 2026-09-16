@@ -1,0 +1,1 @@
+    app_running "$app" && { printf '  %s 已啟動（等了 %ss）\n' "$app" "$i"; return 0; }

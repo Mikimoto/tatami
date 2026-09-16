@@ -1,0 +1,1 @@
+  printf '  ! 等了 %ss，%s 仍未啟動\n' "$APP_WAIT_SECONDS" "$app"

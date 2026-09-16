@@ -1,0 +1,95 @@
+{
+  "home": {
+    "desc": "C+D",
+    "displays": {
+      "main": "BBBB-MAIN",
+      "second": "BBBB-CHAT"
+    },
+    "exile": [
+      "main"
+    ],
+    "windows": [
+      {
+        "label": "A",
+        "match": [
+          "app",
+          "AA"
+        ]
+      },
+      {
+        "label": "B",
+        "match": [
+          "app",
+          "BB"
+        ]
+      },
+      {
+        "label": "C",
+        "match": [
+          "url-contains",
+          "cc.example.com"
+        ],
+        "fallback": [
+          "title-regex",
+          "甲|乙"
+        ]
+      },
+      {
+        "label": "M",
+        "match": [
+          "app",
+          "MM"
+        ]
+      },
+      {
+        "label": "Z",
+        "match": [
+          "app",
+          "ZZ"
+        ]
+      }
+    ],
+    "default": "開發",
+    "profiles": {
+      "開發": {
+        "trees": {
+          "main": {
+            "axis": "vertical",
+            "children": [
+              {
+                "window": "A"
+              },
+              {
+                "window": "B"
+              }
+            ]
+          },
+          "second": {
+            "window": "C",
+            "ratio": 0.75
+          }
+        }
+      },
+      "會議": {
+        "exile": [
+          "main",
+          "second"
+        ],
+        "windows": [
+          {
+            "label": "M",
+            "match": [
+              "app",
+              "MM"
+            ]
+          }
+        ],
+        "trees": {
+          "main": {
+            "window": "M"
+          }
+        }
+      }
+    }
+  }
+}

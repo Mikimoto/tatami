@@ -1,0 +1,11 @@
+{
+  "axis": "v",
+  "children": [
+    {
+      "window": "A"
+    },
+    {
+      "window": "B"
+    }
+  ]
+}

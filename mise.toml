@@ -1,0 +1,79 @@
+# 這個 repo 的 mise 環境。task 命名與隔壁 DCF repo 一致（build/test/clean）。
+#
+# [tools] 刻意空著，三個外部相依都不交給 mise 管：
+#
+#   swift  來自 Xcode（本機是 27.0.0 Beta 5）。mise 的 core:swift 給的是 swift.org
+#          的 toolchain，那是另一個東西，而且釘不到 Beta。
+#   jq     tests/swift_checks.sh 拿 `jq .` 當 JSONWriter 的對照組，用的是 Homebrew
+#          那份。交給 mise 會讓「驗的那個 jq」與「實際跑的那個 jq」變成兩份——
+#          那條合約就失去意義了。
+#          （2026-09-08 之前這裡寫「skhd 叫的六支小工具」，那些腳本隨 skhdrc
+#          一起退役了；`scripts/` 底下現在只剩 taggleShowHideDesktop.sh 與
+#          windowFocusOnDestroy.sh，兩支都不用 jq。）
+#   fzf    同上，--switch 的選單用的是 Homebrew 那份。
+#
+# 所以改成 `mise run doctor` 斷言版本，漂了大聲講。
+[tools]
+
+[tasks.build]
+description = "Build the tatami binary (debug)"
+run = "swift build --package-path app"
+
+[tasks."test:unit"]
+description = "Swift unit tests"
+run = "swift test --package-path app"
+
+# golden 與 checks 各自 depends=["build"]，不靠 test:unit 的副作用排序。
+# swift test 確實會順便產出執行檔（實測過），但 mise 的 depends 不保證順序——
+# 靠副作用排序就是「今天會過、哪天平行度變了就紅」。
+[tasks."test:golden"]
+description = "Replay the 2257 frozen bash input/output pairs"
+depends = ["build"]
+run = "bash tests/golden_swift.sh"
+
+[tasks."test:checks"]
+description = "The three checks that need jq and the live layout.json"
+depends = ["build"]
+run = "bash tests/swift_checks.sh"
+
+# lint 刻意不在這裡：test 必須綠才有意義，而 lint 目前是紅的（還有 293 個未修的
+# violation）。混在一起就分不出「行為壞了」與「還沒重構完」。
+[tasks.test]
+description = "All offline tests (unit + golden + checks)"
+depends = ["test:unit", "test:golden", "test:checks"]
+
+# smoke 碰真的系統（AX、osascript、檔案系統），所以不放進 test——否則在別台機器上
+# 測試就是紅的。
+#
+# **`__smoke yabai` 與 `__smoke settings` 那天整個拆掉了**（2026-09-14）：yabai 與
+# skhd 從這台機器徹底移除（服務卸載、brew 移除、symlink 刪掉），兩支的第一步都是
+# 找 yabai 執行檔，所以它們永遠跑不起來。先從這份清單拿掉（`yabai` 排第一，它紅了
+# 後面那些跑得動的就再也跑不到），同日連子命令一起刪——留一個必死的入口只會讓
+# 下一個人以為那裡有東西在驗。
+#
+# **`ws` 同日補進來。** 拿掉 yabai 那項之後才看清楚：`ports` 那六項一個 AX 都沒碰
+# （`WorkmodePaths`／`AppLauncher`／`Picker`／`Terminal`／`Clock`／`FileStore`），
+# 而 AX 加 SkyLight 那條引擎——`--space`、格線、拖曳、選單列現在全部走它——
+# **沒有任何 task 在驗**。`ws` 是唯讀的（`frame`／`move` 要 `--apply` 才動），
+# 實測 1 秒七項全過，而且 yabai 不在時它自己退化成「沒得比」而不是紅。
+[tasks.smoke]
+description = "Adapters against the real AX / osascript / filesystem"
+depends = ["build"]
+run = [
+  "app/.build/debug/tatami __smoke ports",
+  "app/.build/debug/tatami __smoke ws",
+]
+
+# fmt 一次跑兩支：它們修的東西不重疊（swiftformat 排版、swiftlint 收 trailing
+# comma 那類），分成兩個 task 只會讓人忘記跑其中一個。掃描範圍由 .swiftformat 與
+# .swiftlint.yml 決定，不在這裡再寫一次。
+[tasks.fmt]
+description = "swiftformat + swiftlint --fix"
+run = [
+  "swiftformat app/Sources app/Tests",
+  "swiftlint --fix --quiet",
+]
+
+[tasks.clean]
+description = "Wipe the build directory (this breaks the installed symlink; run install again)"
+run = "swift package --package-path app clean"

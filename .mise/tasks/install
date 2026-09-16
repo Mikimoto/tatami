@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#MISE description="Symlink the built binary to ~/.local/bin/tatami"
+#MISE depends=["build"]
+#
+# 指向 .build/debug/ 而不是複製一份：swift build 原地覆寫那個檔，所以重建之後
+# symlink 自動就是新的，不必記得重裝。代價是 `mise run clean` 會讓它變成斷鏈，
+# 那是預期行為，doctor 會講。
+#
+# 指 debug 不是 release：實測（2026-08-16）兩者跑 --probe 的差距落在雜訊裡
+# （debug 2550–2629ms、release 2557–2606ms；時間由 osascript 列舉 Safari 分頁
+# 主導，不是 Swift 的計算）。所以只留一條路徑，與測試共用同一個產物。
+#
+# repo 根從腳本自己的路徑算，不用 cwd——理由與 doctor 那支相同，而且這裡更要緊：
+# 目標路徑是寫進 symlink 的，算錯會建出一條「看起來成功」的死鏈（ln -s 不檢查
+# 目標存不存在）。
+set -uo pipefail
+
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)
+BIN="${ROOT}/app/.build/debug/tatami"
+LINK_DIR="${HOME}/.local/bin"
+LINK="${LINK_DIR}/tatami"
+
+if [ ! -x "${BIN}" ]; then
+  printf '! 找不到執行檔 %s\n' "${BIN}" >&2
+  printf '  depends=["build"] 應該先建好才對，先跑 mise run build 看它為什麼失敗\n' >&2
+  exit 1
+fi
+
+mkdir -p "${LINK_DIR}"
+
+# 已經是普通檔案就拒絕：那可能是別的東西，蓋掉沒有還原的機會。
+# 是 symlink 就直接覆寫（-sfn），那是我們自己建的，所以重跑是安全的。
+if [ -e "${LINK}" ] && [ ! -L "${LINK}" ]; then
+  printf '! %s 已存在，而且不是 symlink，不覆蓋\n' "${LINK}" >&2
+  printf '  它是：%s\n' "$(file -b "${LINK}")" >&2
+  printf '  確定要換掉就先自己移走\n' >&2
+  exit 1
+fi
+
+ln -sfn "${BIN}" "${LINK}"
+printf '%s → %s\n' "${LINK}" "${BIN}"
+
+case ":${PATH}:" in
+  *":${LINK_DIR}:"*) ;;
+  *) printf '! 注意：%s 不在 PATH 上，直接打 tatami 會找不到\n' "${LINK_DIR}" >&2 ;;
+esac

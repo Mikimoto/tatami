@@ -1,0 +1,2257 @@
+0001	stdout	0	display_index_for_uuid BBB [   {"uuid":"AAA","index":1,"spaces":[1,2]},   {"uuid":"BBB","index":2,"spaces":[3,4]},   {"u
+0002	stdout	0	display_index_for_uuid AAA [   {"uuid":"AAA","index":1,"spaces":[1,2]},   {"uuid":"BBB","index":2,"spaces":[3,4]},   {"u
+0003	stdout	0	display_index_for_uuid ZZZ [   {"uuid":"AAA","index":1,"spaces":[1,2]},   {"uuid":"BBB","index":2,"spaces":[3,4]},   {"u
+0004	stdout	0	display_index_for_uuid  [   {"uuid":"AAA","index":1,"spaces":[1,2]},   {"uuid":"BBB","index":2,"spaces":[3,4]},   {"uuid
+0005	stdout	0	display_index_for_uuid AAA [{"uuid":"AAA","index":1},{"uuid":"AAA","index":9}]
+0006	stdout	5	display_index_for_uuid AAA {"uuid":"AAA"}
+0007	stdout	5	display_index_for_uuid AAA not json at all
+0008	stdout	0	display_index_for_uuid AAA []
+0009	stderr	1	validate AUTO_LOC
+0010	stderr	1	validate AUTO_PROF
+0011	stderr	1	validate BAD_AXIS
+0012	stderr	1	validate BAD_CHILDREN
+0013	stderr	1	validate BAD_DEFAULT
+0014	stderr	1	validate BAD_LABEL
+0015	stderr	1	validate BAD_PLUS_MORE
+0016	stderr	1	validate DUP_IN_LOCAL
+0017	stderr	1	validate DUP_IN_PROFILE
+0018	stderr	1	validate DUP_IN_SHARED
+0019	stderr	1	validate DUP_SHARED_LOCAL
+0020	stderr	1	validate EMPTY_DESC
+0021	stderr	1	validate EMPTY_NODE
+0022	stderr	0	validate GOOD_JSON
+0023	stderr	0	validate L2_JSON
+0024	stderr	0	validate NO_DEFAULT_JSON
+0025	stderr	1	validate NO_DESC_JSON
+0026	stderr	0	validate NO_LOCAL_JSON
+0027	stderr	1	validate NO_MAIN_JSON
+0028	stderr	1	validate NO_PROFILES
+0029	stderr	1	validate NO_TREES
+0030	stderr	1	validate NO_WINDOWS
+0031	stderr	1	validate NON_OBJ_NODE
+0032	stderr	1	validate OLD_SHAPE
+0033	stderr	1	validate OVERRIDE_LABEL
+0034	stderr	0	validate RESERVED_ONLY
+0035	stderr	1	validate SHARED_BUT_BROKEN
+0036	stderr	0	validate SHARED_JSON
+0037	stderr	1	validate SPACED_LOC
+0038	stderr	1	validate SPACED_PROF
+0039	stderr	0	validate（真實的 scripts/layout.json）
+0040	stdout	0	tree_root {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window":
+0041	stdout	0	tree_root {"axis":"vertical","children":[   {"axis":"horizontal","children":[{"window":"A"},{"window":"D"}]},   {"axis":
+0042	stdout	0	tree_root {"window":"A","ratio":0.75}
+0043	stdout	0	tree_root {"axis":"vertical","children":[{"window":"","ratio":0.25},{"window":"Chat","ratio":0.75}]}
+0044	stdout	0	tree_root {"axis":"vertical","children":[{"window":"A"}]}
+0045	stdout	0	tree_root {"window":5}
+0046	stdout	0	tree_root {"window":null}
+0047	stdout	0	tree_root {"window":{"k":1,"j":[2,3]}}
+0048	stdout	5	tree_root []
+0049	stdout	5	tree_root nope
+0050	stdout	0	tree_seq {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window":"
+0051	stdout	0	tree_seq {"axis":"vertical","children":[   {"axis":"horizontal","children":[{"window":"A"},{"window":"D"}]},   {"axis":"
+0052	stdout	0	tree_seq {"window":"A","ratio":0.75}
+0053	stdout	0	tree_seq {"axis":"vertical","children":[{"window":"","ratio":0.25},{"window":"Chat","ratio":0.75}]}
+0054	stdout	0	tree_seq {"axis":"v","children":[{"window":"a\tb\nc\rd\\efg\"h"},{"window":"B"}]}
+0055	stdout	0	tree_seq {"axis":"v","children":[{"window":"A"},{"window":"B"},{"window":"C"}]}
+0056	stdout	0	tree_seq {"children":[{"window":"A"},{"window":"B"}]}
+0057	stdout	0	tree_seq {"axis":7,"children":[{"window":"A"},{"window":"B"}]}
+0058	stdout	5	tree_seq {"axis":{"k":1},"children":[{"window":"A"},{"window":"B"}]}
+0059	stdout	5	tree_seq {"axis":"v","children":[{"window":"A"},{"axis":"h","children":[{"window":"B"},{"axis":"x","children":"bad"}]}]}
+0060	stdout	5	tree_seq []
+0061	stdout	0	tree_ratios {"window":"A","ratio":0.75}
+0062	stdout	0	tree_ratios {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window
+0063	stdout	0	tree_ratios {"axis":"vertical","children":[{"window":"","ratio":0.25},{"window":"Chat","ratio":0.75}]}
+0064	stdout	0	tree_ratios {"axis":"vertical","children":[{"window":"Chat","ratio":0.25},{"window":"","ratio":0.75}]}
+0065	stdout	0	tree_ratios {"window":"A","ratio":0}
+0066	stdout	0	tree_ratios {"window":"A","ratio":false}
+0067	stdout	0	tree_ratios {"window":"A","ratio":null}
+0068	stdout	0	tree_ratios {"window":"A","ratio":2.50}
+0069	stdout	0	tree_ratios {"window":"A","ratio":"0.75"}
+0070	stdout	0	tree_ratios {"window":"A","ratio":{"k":1,"j":[2,3]}}
+0071	stdout	0	tree_ratios {"axis":"vertical","ratio":0.5,"children":[{"window":"A"},{"window":"B"}]}
+0072	stdout	5	tree_ratios []
+0073	stdout	0	prune_tree {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window"
+0074	stdout	0	prune_tree {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window"
+0075	stdout	0	prune_tree {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window"
+0076	stdout	0	prune_tree {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window"
+0077	stdout	0	prune_tree {"axis":"vertical","children":[   {"window":"A"},   {"axis":"horizontal","children":[{"window":"B"},{"window"
+0078	stdout	0	prune_tree {"window":"A","ratio":0.75} []
+0079	stdout	0	prune_tree {"axis":"vertical","children":[   {"axis":"horizontal","children":[{"window":"A"},{"window":"D"}]},   {"axis"
+0080	stdout	0	prune_tree {"axis":"vertical","children":[{"window":"","ratio":0.25},{"window":"Chat","ratio":0.75}]} ["Chat"]
+0081	stdout	0	prune_tree {"axis":"vertical","children":[{"window":"Chat","ratio":0.25},{"window":"","ratio":0.75}]} ["Chat"]
+0082	stdout	0	prune_tree {"children":[{"ratio":0.75,"window":"A","zz":1},{"window":"B"}],"axis":"vertical","extra":9} ["A","B"]
+0083	stdout	0	prune_tree {"children":[{"ratio":0.75,"window":"A","zz":1},{"window":"B"}],"axis":"vertical","extra":9} ["A"]
+0084	stdout	0	prune_tree {"axis":"v","children":[{"window":"A"},{"window":"B"},{"window":"C"}]} ["A","B","C"]
+0085	stdout	0	prune_tree {"window":5} [5.0]
+0086	stdout	0	prune_tree {"window":"A"} {"k":"A"}
+0087	stdout	5	prune_tree {"window":"A"} "A"
+0088	stdout	2	prune_tree {"window":"A"} nope
+0089	stdout	5	prune_tree nope ["A"]
+0090	stdout	0	referenced_labels {   "main":{"axis":"vertical","children":[     {"window":"A"},     {"axis":"horizontal","children":[{"
+0091	stdout	0	referenced_labels {"main":{"window":"A"}}
+0092	stdout	0	referenced_labels {}
+0093	stdout	0	referenced_labels []
+0094	stdout	0	referenced_labels [{"window":"b"},{"window":"B"},{"window":"a"},{"window":"A"},{"window":"中"},{"window":"_"},{"window":"
+0095	stdout	0	referenced_labels [{"window":"s"},{"window":5},{"window":true},{"window":null},{"window":false},{"window":5.0}]
+0096	stdout	0	referenced_labels [{"window":{"k":1}},{"window":"A"}]
+0097	stdout	0	referenced_labels [{"axis":"v","children":[{"window":"A"},{"window":"B"},{"window":"C"}]}]
+0098	stdout	5	referenced_labels {"a":{"window":"A"},"b":{"axis":"h","children":"bad"}}
+0099	stdout	5	referenced_labels 5
+0100	stdout	0	referenced_labels {"main":{"window":"Ghostty"},"second":{"window":"郵件"}}
+0101	stdout	0	referenced_labels {"main":{"window":"Ghostty"},"second":{"window":"郵件"}}
+0102	stdout	0	referenced_labels {"main":{"axis":"vertical","children":[{"window":"Zed"},{"window":"Ghostty"}]},"second":{"window":"Saf
+0103	stdout	0	tree_root {"window":"Ghostty"}
+0104	stdout	0	tree_seq {"window":"Ghostty"}
+0105	stdout	0	tree_ratios {"window":"Ghostty"}
+0106	stdout	0	prune_tree {"window":"Ghostty"} ["Ghostty"]
+0107	stdout	0	tree_root {"window":"郵件"}
+0108	stdout	0	tree_seq {"window":"郵件"}
+0109	stdout	0	tree_ratios {"window":"郵件"}
+0110	stdout	0	prune_tree {"window":"郵件"} ["郵件"]
+0111	stdout	0	tree_root {"window":"Ghostty"}
+0112	stdout	0	tree_seq {"window":"Ghostty"}
+0113	stdout	0	tree_ratios {"window":"Ghostty"}
+0114	stdout	0	prune_tree {"window":"Ghostty"} ["Ghostty"]
+0115	stdout	0	tree_root {"window":"郵件"}
+0116	stdout	0	tree_seq {"window":"郵件"}
+0117	stdout	0	tree_ratios {"window":"郵件"}
+0118	stdout	0	prune_tree {"window":"郵件"} ["郵件"]
+0119	stdout	0	tree_root {"axis":"vertical","children":[{"window":"Zed"},{"window":"Ghostty"}]}
+0120	stdout	0	tree_seq {"axis":"vertical","children":[{"window":"Zed"},{"window":"Ghostty"}]}
+0121	stdout	0	tree_ratios {"axis":"vertical","children":[{"window":"Zed"},{"window":"Ghostty"}]}
+0122	stdout	0	prune_tree {"axis":"vertical","children":[{"window":"Zed"},{"window":"Ghostty"}]} ["Zed","Ghostty"]
+0123	stdout	0	tree_root {"window":"Safari"}
+0124	stdout	0	tree_seq {"window":"Safari"}
+0125	stdout	0	tree_ratios {"window":"Safari"}
+0126	stdout	0	prune_tree {"window":"Safari"} ["Safari"]
+0127	stdout	0	rects_to_tree R_LR
+0128	stdout	0	rects_to_tree R_TB
+0129	stdout	0	rects_to_tree R_THREE
+0130	stdout	0	rects_to_tree R_QUAD
+0131	stdout	0	rects_to_tree R_ONE
+0132	stdout	0	rects_to_tree R_OVERLAP
+0133	stdout	0	rects_to_tree R_NEG
+0134	stdout	0	rects_to_tree R_CHAT
+0135	stdout	0	rects_to_tree R_CHAT_INV
+0136	stdout	0	rects_to_tree 空陣列
+0137	stdout	0	rects_to_tree null
+0138	stdout	0	rects_to_tree 空物件
+0139	stdout	0	rects_to_tree 數字 0
+0140	stdout	0	rects_to_tree 空字串值
+0141	stdout	5	rects_to_tree true
+0142	stdout	5	rects_to_tree 2.5
+0143	stdout	5	rects_to_tree -3
+0144	stdout	5	rects_to_tree "ab"
+0145	stdout	5	rects_to_tree "a"
+0146	stdout	5	rects_to_tree 1
+0147	stdout	5	rects_to_tree 單鍵物件
+0148	stdout	5	rects_to_tree [5]
+0149	stdout	0	rects_to_tree [null]
+0150	stdout	0	rects_to_tree [null,null]
+0151	stdout	5	rects_to_tree 壞 JSON
+0152	stdout	0	rects_to_tree 沒有 label 鍵
+0153	stdout	0	rects_to_tree label 是 null
+0154	stdout	0	rects_to_tree 沒有座標
+0155	stdout	0	rects_to_tree 物件形狀的矩形集合
+0156	stdout	5	rects_to_tree 字串座標
+0157	stdout	0	rects_to_tree 一個包住另一個
+0158	stdout	0	rects_to_tree L 型
+0159	stdout	0	rects_to_tree 一排五個
+0160	stdout	0	rects_to_tree 小數座標
+0161	stdout	0	rects_to_tree span 溢位成 inf
+0162	stdout	0	rects_to_tree 只有總和溢位
+0163	stdout	0	trim_ratios 0.75
+0164	stdout	0	trim_ratios 0.25
+0165	stdout	0	trim_ratios 0.5
+0166	stdout	0	trim_ratios 0.52
+0167	stdout	0	trim_ratios 0.54
+0168	stdout	0	trim_ratios 沒有 ratio
+0169	stdout	0	trim_ratios null
+0170	stdout	0	trim_ratios 大邊是子樹
+0171	stdout	0	trim_ratios 沒有 children
+0172	stdout	0	trim_ratios 只有一個 child
+0173	stdout	0	trim_ratios 三個 child
+0174	stdout	5	trim_ratios children 是字串
+0175	stdout	5	trim_ratios children 是物件
+0176	stdout	0	trim_ratios ratio 是 0
+0177	stdout	0	trim_ratios ratio 是 null
+0178	stdout	0	trim_ratios ratio 是 false
+0179	stdout	0	trim_ratios ratio 是 true
+0180	stdout	0	trim_ratios ratio 是空字串
+0181	stdout	0	trim_ratios ratio 是字串
+0182	stdout	0	trim_ratios ratio 是陣列
+0183	stdout	0	trim_ratios ratio 是物件
+0184	stdout	0	trim_ratios 門檻本身
+0185	stdout	0	trim_ratios 剛好超過門檻
+0186	stdout	0	trim_ratios 刪掉 ratio 不動鍵序
+0187	stdout	0	trim_ratios 留下 ratio 不動鍵序
+0188	stdout	0	trim_ratios 內部節點的其他鍵
+0189	stdout	0	trim_ratios 陣列原樣通過
+0190	stdout	0	trim_ratios 數字原樣通過
+0191	stdout	0	trim_ratios 字串原樣通過
+0192	stdout	0	trim_ratios true 原樣通過
+0193	stdout	5	trim_ratios 壞 JSON
+0194	stdout	0	trim_ratios LEAF
+0195	stdout	0	trim_ratios LTREE
+0196	stdout	0	trim_ratios QTREE
+0197	stdout	0	trim_ratios CHAT_TREE
+0198	stdout	0	trim_ratios CHAT_TREE_INV
+0199	stdout	0	trim_ratios layout.json 的樹 #1
+0200	stdout	0	trim_ratios layout.json 的樹 #2
+0201	stdout	0	trim_ratios layout.json 的樹 #3
+0202	stdout	0	trim_ratios layout.json 的樹 #4
+0203	stdout	0	trim_ratios layout.json 的樹 #5
+0204	stdout	0	trim_ratios layout.json 的樹 #6
+0205	stdout	0	rects_to_tree 隨機 bsp-1 #1
+0206	stdout	0	trim_ratios 隨機 bsp-1 #1
+0207	stdout	0	rects_to_tree 隨機 bsp-1 #2
+0208	stdout	0	trim_ratios 隨機 bsp-1 #2
+0209	stdout	0	rects_to_tree 隨機 bsp-1 #3
+0210	stdout	0	trim_ratios 隨機 bsp-1 #3
+0211	stdout	0	rects_to_tree 隨機 bsp-1 #4
+0212	stdout	0	trim_ratios 隨機 bsp-1 #4
+0213	stdout	0	rects_to_tree 隨機 bsp-1 #5
+0214	stdout	0	trim_ratios 隨機 bsp-1 #5
+0215	stdout	0	rects_to_tree 隨機 bsp-1 #6
+0216	stdout	0	trim_ratios 隨機 bsp-1 #6
+0217	stdout	0	rects_to_tree 隨機 bsp-1 #7
+0218	stdout	0	trim_ratios 隨機 bsp-1 #7
+0219	stdout	0	rects_to_tree 隨機 bsp-1 #8
+0220	stdout	0	trim_ratios 隨機 bsp-1 #8
+0221	stdout	0	rects_to_tree 隨機 bsp-1 #9
+0222	stdout	0	trim_ratios 隨機 bsp-1 #9
+0223	stdout	0	rects_to_tree 隨機 bsp-1 #10
+0224	stdout	0	trim_ratios 隨機 bsp-1 #10
+0225	stdout	0	rects_to_tree 隨機 bsp-1 #11
+0226	stdout	0	trim_ratios 隨機 bsp-1 #11
+0227	stdout	0	rects_to_tree 隨機 bsp-1 #12
+0228	stdout	0	trim_ratios 隨機 bsp-1 #12
+0229	stdout	0	rects_to_tree 隨機 bsp-1 #13
+0230	stdout	0	trim_ratios 隨機 bsp-1 #13
+0231	stdout	0	rects_to_tree 隨機 bsp-1 #14
+0232	stdout	0	trim_ratios 隨機 bsp-1 #14
+0233	stdout	0	rects_to_tree 隨機 bsp-1 #15
+0234	stdout	0	trim_ratios 隨機 bsp-1 #15
+0235	stdout	0	rects_to_tree 隨機 bsp-1 #16
+0236	stdout	0	trim_ratios 隨機 bsp-1 #16
+0237	stdout	0	rects_to_tree 隨機 bsp-1 #17
+0238	stdout	0	trim_ratios 隨機 bsp-1 #17
+0239	stdout	0	rects_to_tree 隨機 bsp-1 #18
+0240	stdout	0	trim_ratios 隨機 bsp-1 #18
+0241	stdout	0	rects_to_tree 隨機 bsp-1 #19
+0242	stdout	0	trim_ratios 隨機 bsp-1 #19
+0243	stdout	0	rects_to_tree 隨機 bsp-1 #20
+0244	stdout	0	trim_ratios 隨機 bsp-1 #20
+0245	stdout	0	rects_to_tree 隨機 bsp-1 #21
+0246	stdout	0	trim_ratios 隨機 bsp-1 #21
+0247	stdout	0	rects_to_tree 隨機 bsp-1 #22
+0248	stdout	0	trim_ratios 隨機 bsp-1 #22
+0249	stdout	0	rects_to_tree 隨機 bsp-1 #23
+0250	stdout	0	trim_ratios 隨機 bsp-1 #23
+0251	stdout	0	rects_to_tree 隨機 bsp-1 #24
+0252	stdout	0	trim_ratios 隨機 bsp-1 #24
+0253	stdout	0	rects_to_tree 隨機 bsp-1 #25
+0254	stdout	0	trim_ratios 隨機 bsp-1 #25
+0255	stdout	0	rects_to_tree 隨機 bsp-1 #26
+0256	stdout	0	trim_ratios 隨機 bsp-1 #26
+0257	stdout	0	rects_to_tree 隨機 bsp-1 #27
+0258	stdout	0	trim_ratios 隨機 bsp-1 #27
+0259	stdout	0	rects_to_tree 隨機 bsp-1 #28
+0260	stdout	0	trim_ratios 隨機 bsp-1 #28
+0261	stdout	0	rects_to_tree 隨機 bsp-1 #29
+0262	stdout	0	trim_ratios 隨機 bsp-1 #29
+0263	stdout	0	rects_to_tree 隨機 bsp-1 #30
+0264	stdout	0	trim_ratios 隨機 bsp-1 #30
+0265	stdout	0	rects_to_tree 隨機 bsp-1 #31
+0266	stdout	0	trim_ratios 隨機 bsp-1 #31
+0267	stdout	0	rects_to_tree 隨機 bsp-1 #32
+0268	stdout	0	trim_ratios 隨機 bsp-1 #32
+0269	stdout	0	rects_to_tree 隨機 bsp-1 #33
+0270	stdout	0	trim_ratios 隨機 bsp-1 #33
+0271	stdout	0	rects_to_tree 隨機 bsp-1 #34
+0272	stdout	0	trim_ratios 隨機 bsp-1 #34
+0273	stdout	0	rects_to_tree 隨機 bsp-1 #35
+0274	stdout	0	trim_ratios 隨機 bsp-1 #35
+0275	stdout	0	rects_to_tree 隨機 bsp-1 #36
+0276	stdout	0	trim_ratios 隨機 bsp-1 #36
+0277	stdout	0	rects_to_tree 隨機 bsp-1 #37
+0278	stdout	0	trim_ratios 隨機 bsp-1 #37
+0279	stdout	0	rects_to_tree 隨機 bsp-1 #38
+0280	stdout	0	trim_ratios 隨機 bsp-1 #38
+0281	stdout	0	rects_to_tree 隨機 bsp-1 #39
+0282	stdout	0	trim_ratios 隨機 bsp-1 #39
+0283	stdout	0	rects_to_tree 隨機 bsp-1 #40
+0284	stdout	0	trim_ratios 隨機 bsp-1 #40
+0285	stdout	0	rects_to_tree 隨機 bsp-1 #41
+0286	stdout	0	trim_ratios 隨機 bsp-1 #41
+0287	stdout	0	rects_to_tree 隨機 bsp-1 #42
+0288	stdout	0	trim_ratios 隨機 bsp-1 #42
+0289	stdout	0	rects_to_tree 隨機 bsp-1 #43
+0290	stdout	0	trim_ratios 隨機 bsp-1 #43
+0291	stdout	0	rects_to_tree 隨機 bsp-1 #44
+0292	stdout	0	trim_ratios 隨機 bsp-1 #44
+0293	stdout	0	rects_to_tree 隨機 bsp-1 #45
+0294	stdout	0	trim_ratios 隨機 bsp-1 #45
+0295	stdout	0	rects_to_tree 隨機 bsp-1 #46
+0296	stdout	0	trim_ratios 隨機 bsp-1 #46
+0297	stdout	0	rects_to_tree 隨機 bsp-1 #47
+0298	stdout	0	trim_ratios 隨機 bsp-1 #47
+0299	stdout	0	rects_to_tree 隨機 bsp-1 #48
+0300	stdout	0	trim_ratios 隨機 bsp-1 #48
+0301	stdout	0	rects_to_tree 隨機 bsp-1 #49
+0302	stdout	0	trim_ratios 隨機 bsp-1 #49
+0303	stdout	0	rects_to_tree 隨機 bsp-1 #50
+0304	stdout	0	trim_ratios 隨機 bsp-1 #50
+0305	stdout	0	rects_to_tree 隨機 bsp-1 #51
+0306	stdout	0	trim_ratios 隨機 bsp-1 #51
+0307	stdout	0	rects_to_tree 隨機 bsp-1 #52
+0308	stdout	0	trim_ratios 隨機 bsp-1 #52
+0309	stdout	0	rects_to_tree 隨機 bsp-1 #53
+0310	stdout	0	trim_ratios 隨機 bsp-1 #53
+0311	stdout	0	rects_to_tree 隨機 bsp-1 #54
+0312	stdout	0	trim_ratios 隨機 bsp-1 #54
+0313	stdout	0	rects_to_tree 隨機 bsp-1 #55
+0314	stdout	0	trim_ratios 隨機 bsp-1 #55
+0315	stdout	0	rects_to_tree 隨機 bsp-1 #56
+0316	stdout	0	trim_ratios 隨機 bsp-1 #56
+0317	stdout	0	rects_to_tree 隨機 bsp-1 #57
+0318	stdout	0	trim_ratios 隨機 bsp-1 #57
+0319	stdout	0	rects_to_tree 隨機 bsp-1 #58
+0320	stdout	0	trim_ratios 隨機 bsp-1 #58
+0321	stdout	0	rects_to_tree 隨機 bsp-1 #59
+0322	stdout	0	trim_ratios 隨機 bsp-1 #59
+0323	stdout	0	rects_to_tree 隨機 bsp-1 #60
+0324	stdout	0	trim_ratios 隨機 bsp-1 #60
+0325	stdout	0	rects_to_tree 隨機 bsp-1 #61
+0326	stdout	0	trim_ratios 隨機 bsp-1 #61
+0327	stdout	0	rects_to_tree 隨機 bsp-1 #62
+0328	stdout	0	trim_ratios 隨機 bsp-1 #62
+0329	stdout	0	rects_to_tree 隨機 bsp-1 #63
+0330	stdout	0	trim_ratios 隨機 bsp-1 #63
+0331	stdout	0	rects_to_tree 隨機 bsp-1 #64
+0332	stdout	0	trim_ratios 隨機 bsp-1 #64
+0333	stdout	0	rects_to_tree 隨機 bsp-1 #65
+0334	stdout	0	trim_ratios 隨機 bsp-1 #65
+0335	stdout	0	rects_to_tree 隨機 bsp-1 #66
+0336	stdout	0	trim_ratios 隨機 bsp-1 #66
+0337	stdout	0	rects_to_tree 隨機 bsp-1 #67
+0338	stdout	0	trim_ratios 隨機 bsp-1 #67
+0339	stdout	0	rects_to_tree 隨機 bsp-1 #68
+0340	stdout	0	trim_ratios 隨機 bsp-1 #68
+0341	stdout	0	rects_to_tree 隨機 bsp-1 #69
+0342	stdout	0	trim_ratios 隨機 bsp-1 #69
+0343	stdout	0	rects_to_tree 隨機 bsp-1 #70
+0344	stdout	0	trim_ratios 隨機 bsp-1 #70
+0345	stdout	0	rects_to_tree 隨機 bsp-1 #71
+0346	stdout	0	trim_ratios 隨機 bsp-1 #71
+0347	stdout	0	rects_to_tree 隨機 bsp-1 #72
+0348	stdout	0	trim_ratios 隨機 bsp-1 #72
+0349	stdout	0	rects_to_tree 隨機 bsp-1 #73
+0350	stdout	0	trim_ratios 隨機 bsp-1 #73
+0351	stdout	0	rects_to_tree 隨機 bsp-1 #74
+0352	stdout	0	trim_ratios 隨機 bsp-1 #74
+0353	stdout	0	rects_to_tree 隨機 bsp-1 #75
+0354	stdout	0	trim_ratios 隨機 bsp-1 #75
+0355	stdout	0	rects_to_tree 隨機 bsp-1 #76
+0356	stdout	0	trim_ratios 隨機 bsp-1 #76
+0357	stdout	0	rects_to_tree 隨機 bsp-1 #77
+0358	stdout	0	trim_ratios 隨機 bsp-1 #77
+0359	stdout	0	rects_to_tree 隨機 bsp-1 #78
+0360	stdout	0	trim_ratios 隨機 bsp-1 #78
+0361	stdout	0	rects_to_tree 隨機 bsp-1 #79
+0362	stdout	0	trim_ratios 隨機 bsp-1 #79
+0363	stdout	0	rects_to_tree 隨機 bsp-1 #80
+0364	stdout	0	trim_ratios 隨機 bsp-1 #80
+0365	stdout	0	rects_to_tree 隨機 bsp-1 #81
+0366	stdout	0	trim_ratios 隨機 bsp-1 #81
+0367	stdout	0	rects_to_tree 隨機 bsp-1 #82
+0368	stdout	0	trim_ratios 隨機 bsp-1 #82
+0369	stdout	0	rects_to_tree 隨機 bsp-1 #83
+0370	stdout	0	trim_ratios 隨機 bsp-1 #83
+0371	stdout	0	rects_to_tree 隨機 bsp-1 #84
+0372	stdout	0	trim_ratios 隨機 bsp-1 #84
+0373	stdout	0	rects_to_tree 隨機 bsp-1 #85
+0374	stdout	0	trim_ratios 隨機 bsp-1 #85
+0375	stdout	0	rects_to_tree 隨機 bsp-1 #86
+0376	stdout	0	trim_ratios 隨機 bsp-1 #86
+0377	stdout	0	rects_to_tree 隨機 bsp-1 #87
+0378	stdout	0	trim_ratios 隨機 bsp-1 #87
+0379	stdout	0	rects_to_tree 隨機 bsp-1 #88
+0380	stdout	0	trim_ratios 隨機 bsp-1 #88
+0381	stdout	0	rects_to_tree 隨機 bsp-1 #89
+0382	stdout	0	trim_ratios 隨機 bsp-1 #89
+0383	stdout	0	rects_to_tree 隨機 bsp-1 #90
+0384	stdout	0	trim_ratios 隨機 bsp-1 #90
+0385	stdout	0	rects_to_tree 隨機 bsp-1 #91
+0386	stdout	0	trim_ratios 隨機 bsp-1 #91
+0387	stdout	0	rects_to_tree 隨機 bsp-1 #92
+0388	stdout	0	trim_ratios 隨機 bsp-1 #92
+0389	stdout	0	rects_to_tree 隨機 bsp-1 #93
+0390	stdout	0	trim_ratios 隨機 bsp-1 #93
+0391	stdout	0	rects_to_tree 隨機 bsp-1 #94
+0392	stdout	0	trim_ratios 隨機 bsp-1 #94
+0393	stdout	0	rects_to_tree 隨機 bsp-1 #95
+0394	stdout	0	trim_ratios 隨機 bsp-1 #95
+0395	stdout	0	rects_to_tree 隨機 bsp-1 #96
+0396	stdout	0	trim_ratios 隨機 bsp-1 #96
+0397	stdout	0	rects_to_tree 隨機 bsp-1 #97
+0398	stdout	0	trim_ratios 隨機 bsp-1 #97
+0399	stdout	0	rects_to_tree 隨機 bsp-1 #98
+0400	stdout	0	trim_ratios 隨機 bsp-1 #98
+0401	stdout	0	rects_to_tree 隨機 bsp-1 #99
+0402	stdout	0	trim_ratios 隨機 bsp-1 #99
+0403	stdout	0	rects_to_tree 隨機 bsp-1 #100
+0404	stdout	0	trim_ratios 隨機 bsp-1 #100
+0405	stdout	0	rects_to_tree 隨機 bsp-1 #101
+0406	stdout	0	trim_ratios 隨機 bsp-1 #101
+0407	stdout	0	rects_to_tree 隨機 bsp-1 #102
+0408	stdout	0	trim_ratios 隨機 bsp-1 #102
+0409	stdout	0	rects_to_tree 隨機 bsp-1 #103
+0410	stdout	0	trim_ratios 隨機 bsp-1 #103
+0411	stdout	0	rects_to_tree 隨機 bsp-1 #104
+0412	stdout	0	trim_ratios 隨機 bsp-1 #104
+0413	stdout	0	rects_to_tree 隨機 bsp-1 #105
+0414	stdout	0	trim_ratios 隨機 bsp-1 #105
+0415	stdout	0	rects_to_tree 隨機 bsp-1 #106
+0416	stdout	0	trim_ratios 隨機 bsp-1 #106
+0417	stdout	0	rects_to_tree 隨機 bsp-1 #107
+0418	stdout	0	trim_ratios 隨機 bsp-1 #107
+0419	stdout	0	rects_to_tree 隨機 bsp-1 #108
+0420	stdout	0	trim_ratios 隨機 bsp-1 #108
+0421	stdout	0	rects_to_tree 隨機 bsp-1 #109
+0422	stdout	0	trim_ratios 隨機 bsp-1 #109
+0423	stdout	0	rects_to_tree 隨機 bsp-1 #110
+0424	stdout	0	trim_ratios 隨機 bsp-1 #110
+0425	stdout	0	rects_to_tree 隨機 bsp-1 #111
+0426	stdout	0	trim_ratios 隨機 bsp-1 #111
+0427	stdout	0	rects_to_tree 隨機 bsp-1 #112
+0428	stdout	0	trim_ratios 隨機 bsp-1 #112
+0429	stdout	0	rects_to_tree 隨機 bsp-1 #113
+0430	stdout	0	trim_ratios 隨機 bsp-1 #113
+0431	stdout	0	rects_to_tree 隨機 bsp-1 #114
+0432	stdout	0	trim_ratios 隨機 bsp-1 #114
+0433	stdout	0	rects_to_tree 隨機 bsp-1 #115
+0434	stdout	0	trim_ratios 隨機 bsp-1 #115
+0435	stdout	0	rects_to_tree 隨機 bsp-1 #116
+0436	stdout	0	trim_ratios 隨機 bsp-1 #116
+0437	stdout	0	rects_to_tree 隨機 bsp-1 #117
+0438	stdout	0	trim_ratios 隨機 bsp-1 #117
+0439	stdout	0	rects_to_tree 隨機 bsp-1 #118
+0440	stdout	0	trim_ratios 隨機 bsp-1 #118
+0441	stdout	0	rects_to_tree 隨機 bsp-1 #119
+0442	stdout	0	trim_ratios 隨機 bsp-1 #119
+0443	stdout	0	rects_to_tree 隨機 bsp-1 #120
+0444	stdout	0	trim_ratios 隨機 bsp-1 #120
+0445	stdout	0	rects_to_tree 隨機 bsp-1 #121
+0446	stdout	0	trim_ratios 隨機 bsp-1 #121
+0447	stdout	0	rects_to_tree 隨機 bsp-1 #122
+0448	stdout	0	trim_ratios 隨機 bsp-1 #122
+0449	stdout	0	rects_to_tree 隨機 bsp-1 #123
+0450	stdout	0	trim_ratios 隨機 bsp-1 #123
+0451	stdout	0	rects_to_tree 隨機 bsp-1 #124
+0452	stdout	0	trim_ratios 隨機 bsp-1 #124
+0453	stdout	0	rects_to_tree 隨機 bsp-1 #125
+0454	stdout	0	trim_ratios 隨機 bsp-1 #125
+0455	stdout	0	rects_to_tree 隨機 bsp-1 #126
+0456	stdout	0	trim_ratios 隨機 bsp-1 #126
+0457	stdout	0	rects_to_tree 隨機 bsp-1 #127
+0458	stdout	0	trim_ratios 隨機 bsp-1 #127
+0459	stdout	0	rects_to_tree 隨機 bsp-1 #128
+0460	stdout	0	trim_ratios 隨機 bsp-1 #128
+0461	stdout	0	rects_to_tree 隨機 bsp-1 #129
+0462	stdout	0	trim_ratios 隨機 bsp-1 #129
+0463	stdout	0	rects_to_tree 隨機 bsp-1 #130
+0464	stdout	0	trim_ratios 隨機 bsp-1 #130
+0465	stdout	0	rects_to_tree 隨機 bsp-1 #131
+0466	stdout	0	trim_ratios 隨機 bsp-1 #131
+0467	stdout	0	rects_to_tree 隨機 bsp-1 #132
+0468	stdout	0	trim_ratios 隨機 bsp-1 #132
+0469	stdout	0	rects_to_tree 隨機 bsp-1 #133
+0470	stdout	0	trim_ratios 隨機 bsp-1 #133
+0471	stdout	0	rects_to_tree 隨機 bsp-1 #134
+0472	stdout	0	trim_ratios 隨機 bsp-1 #134
+0473	stdout	0	rects_to_tree 隨機 bsp-1 #135
+0474	stdout	0	trim_ratios 隨機 bsp-1 #135
+0475	stdout	0	rects_to_tree 隨機 bsp-1 #136
+0476	stdout	0	trim_ratios 隨機 bsp-1 #136
+0477	stdout	0	rects_to_tree 隨機 bsp-1 #137
+0478	stdout	0	trim_ratios 隨機 bsp-1 #137
+0479	stdout	0	rects_to_tree 隨機 bsp-1 #138
+0480	stdout	0	trim_ratios 隨機 bsp-1 #138
+0481	stdout	0	rects_to_tree 隨機 bsp-1 #139
+0482	stdout	0	trim_ratios 隨機 bsp-1 #139
+0483	stdout	0	rects_to_tree 隨機 bsp-1 #140
+0484	stdout	0	trim_ratios 隨機 bsp-1 #140
+0485	stdout	0	rects_to_tree 隨機 bsp-1 #141
+0486	stdout	0	trim_ratios 隨機 bsp-1 #141
+0487	stdout	0	rects_to_tree 隨機 bsp-1 #142
+0488	stdout	0	trim_ratios 隨機 bsp-1 #142
+0489	stdout	0	rects_to_tree 隨機 bsp-1 #143
+0490	stdout	0	trim_ratios 隨機 bsp-1 #143
+0491	stdout	0	rects_to_tree 隨機 bsp-1 #144
+0492	stdout	0	trim_ratios 隨機 bsp-1 #144
+0493	stdout	0	rects_to_tree 隨機 bsp-1 #145
+0494	stdout	0	trim_ratios 隨機 bsp-1 #145
+0495	stdout	0	rects_to_tree 隨機 bsp-1 #146
+0496	stdout	0	trim_ratios 隨機 bsp-1 #146
+0497	stdout	0	rects_to_tree 隨機 bsp-1 #147
+0498	stdout	0	trim_ratios 隨機 bsp-1 #147
+0499	stdout	0	rects_to_tree 隨機 bsp-1 #148
+0500	stdout	0	trim_ratios 隨機 bsp-1 #148
+0501	stdout	0	rects_to_tree 隨機 bsp-1 #149
+0502	stdout	0	trim_ratios 隨機 bsp-1 #149
+0503	stdout	0	rects_to_tree 隨機 bsp-1 #150
+0504	stdout	0	trim_ratios 隨機 bsp-1 #150
+0505	stdout	0	rects_to_tree 隨機 bsp-1 #151
+0506	stdout	0	trim_ratios 隨機 bsp-1 #151
+0507	stdout	0	rects_to_tree 隨機 bsp-1 #152
+0508	stdout	0	trim_ratios 隨機 bsp-1 #152
+0509	stdout	0	rects_to_tree 隨機 bsp-1 #153
+0510	stdout	0	trim_ratios 隨機 bsp-1 #153
+0511	stdout	0	rects_to_tree 隨機 bsp-1 #154
+0512	stdout	0	trim_ratios 隨機 bsp-1 #154
+0513	stdout	0	rects_to_tree 隨機 bsp-1 #155
+0514	stdout	0	trim_ratios 隨機 bsp-1 #155
+0515	stdout	0	rects_to_tree 隨機 bsp-1 #156
+0516	stdout	0	trim_ratios 隨機 bsp-1 #156
+0517	stdout	0	rects_to_tree 隨機 bsp-1 #157
+0518	stdout	0	trim_ratios 隨機 bsp-1 #157
+0519	stdout	0	rects_to_tree 隨機 bsp-1 #158
+0520	stdout	0	trim_ratios 隨機 bsp-1 #158
+0521	stdout	0	rects_to_tree 隨機 bsp-1 #159
+0522	stdout	0	trim_ratios 隨機 bsp-1 #159
+0523	stdout	0	rects_to_tree 隨機 bsp-1 #160
+0524	stdout	0	trim_ratios 隨機 bsp-1 #160
+0525	stdout	0	rects_to_tree 隨機 bsp-1 #161
+0526	stdout	0	trim_ratios 隨機 bsp-1 #161
+0527	stdout	0	rects_to_tree 隨機 bsp-1 #162
+0528	stdout	0	trim_ratios 隨機 bsp-1 #162
+0529	stdout	0	rects_to_tree 隨機 bsp-1 #163
+0530	stdout	0	trim_ratios 隨機 bsp-1 #163
+0531	stdout	0	rects_to_tree 隨機 bsp-1 #164
+0532	stdout	0	trim_ratios 隨機 bsp-1 #164
+0533	stdout	0	rects_to_tree 隨機 bsp-1 #165
+0534	stdout	0	trim_ratios 隨機 bsp-1 #165
+0535	stdout	0	rects_to_tree 隨機 bsp-1 #166
+0536	stdout	0	trim_ratios 隨機 bsp-1 #166
+0537	stdout	0	rects_to_tree 隨機 bsp-1 #167
+0538	stdout	0	trim_ratios 隨機 bsp-1 #167
+0539	stdout	0	rects_to_tree 隨機 bsp-1 #168
+0540	stdout	0	trim_ratios 隨機 bsp-1 #168
+0541	stdout	0	rects_to_tree 隨機 bsp-1 #169
+0542	stdout	0	trim_ratios 隨機 bsp-1 #169
+0543	stdout	0	rects_to_tree 隨機 bsp-1 #170
+0544	stdout	0	trim_ratios 隨機 bsp-1 #170
+0545	stdout	0	rects_to_tree 隨機 bsp-1 #171
+0546	stdout	0	trim_ratios 隨機 bsp-1 #171
+0547	stdout	0	rects_to_tree 隨機 bsp-1 #172
+0548	stdout	0	trim_ratios 隨機 bsp-1 #172
+0549	stdout	0	rects_to_tree 隨機 bsp-1 #173
+0550	stdout	0	trim_ratios 隨機 bsp-1 #173
+0551	stdout	0	rects_to_tree 隨機 bsp-1 #174
+0552	stdout	0	trim_ratios 隨機 bsp-1 #174
+0553	stdout	0	rects_to_tree 隨機 bsp-1 #175
+0554	stdout	0	trim_ratios 隨機 bsp-1 #175
+0555	stdout	0	rects_to_tree 隨機 bsp-1 #176
+0556	stdout	0	trim_ratios 隨機 bsp-1 #176
+0557	stdout	0	rects_to_tree 隨機 bsp-1 #177
+0558	stdout	0	trim_ratios 隨機 bsp-1 #177
+0559	stdout	0	rects_to_tree 隨機 bsp-1 #178
+0560	stdout	0	trim_ratios 隨機 bsp-1 #178
+0561	stdout	0	rects_to_tree 隨機 bsp-1 #179
+0562	stdout	0	trim_ratios 隨機 bsp-1 #179
+0563	stdout	0	rects_to_tree 隨機 bsp-1 #180
+0564	stdout	0	trim_ratios 隨機 bsp-1 #180
+0565	stdout	0	rects_to_tree 隨機 bsp-1 #181
+0566	stdout	0	trim_ratios 隨機 bsp-1 #181
+0567	stdout	0	rects_to_tree 隨機 bsp-1 #182
+0568	stdout	0	trim_ratios 隨機 bsp-1 #182
+0569	stdout	0	rects_to_tree 隨機 bsp-1 #183
+0570	stdout	0	trim_ratios 隨機 bsp-1 #183
+0571	stdout	0	rects_to_tree 隨機 bsp-1 #184
+0572	stdout	0	trim_ratios 隨機 bsp-1 #184
+0573	stdout	0	rects_to_tree 隨機 bsp-1 #185
+0574	stdout	0	trim_ratios 隨機 bsp-1 #185
+0575	stdout	0	rects_to_tree 隨機 bsp-1 #186
+0576	stdout	0	trim_ratios 隨機 bsp-1 #186
+0577	stdout	0	rects_to_tree 隨機 bsp-1 #187
+0578	stdout	0	trim_ratios 隨機 bsp-1 #187
+0579	stdout	0	rects_to_tree 隨機 bsp-1 #188
+0580	stdout	0	trim_ratios 隨機 bsp-1 #188
+0581	stdout	0	rects_to_tree 隨機 bsp-1 #189
+0582	stdout	0	trim_ratios 隨機 bsp-1 #189
+0583	stdout	0	rects_to_tree 隨機 bsp-1 #190
+0584	stdout	0	trim_ratios 隨機 bsp-1 #190
+0585	stdout	0	rects_to_tree 隨機 bsp-1 #191
+0586	stdout	0	trim_ratios 隨機 bsp-1 #191
+0587	stdout	0	rects_to_tree 隨機 bsp-1 #192
+0588	stdout	0	trim_ratios 隨機 bsp-1 #192
+0589	stdout	0	rects_to_tree 隨機 bsp-1 #193
+0590	stdout	0	trim_ratios 隨機 bsp-1 #193
+0591	stdout	0	rects_to_tree 隨機 bsp-1 #194
+0592	stdout	0	trim_ratios 隨機 bsp-1 #194
+0593	stdout	0	rects_to_tree 隨機 bsp-1 #195
+0594	stdout	0	trim_ratios 隨機 bsp-1 #195
+0595	stdout	0	rects_to_tree 隨機 bsp-1 #196
+0596	stdout	0	trim_ratios 隨機 bsp-1 #196
+0597	stdout	0	rects_to_tree 隨機 bsp-1 #197
+0598	stdout	0	trim_ratios 隨機 bsp-1 #197
+0599	stdout	0	rects_to_tree 隨機 bsp-1 #198
+0600	stdout	0	trim_ratios 隨機 bsp-1 #198
+0601	stdout	0	rects_to_tree 隨機 bsp-1 #199
+0602	stdout	0	trim_ratios 隨機 bsp-1 #199
+0603	stdout	0	rects_to_tree 隨機 bsp-1 #200
+0604	stdout	0	trim_ratios 隨機 bsp-1 #200
+0605	stdout	0	rects_to_tree 隨機 bsp-0 #201
+0606	stdout	0	trim_ratios 隨機 bsp-0 #201
+0607	stdout	0	rects_to_tree 隨機 bsp-0 #202
+0608	stdout	0	trim_ratios 隨機 bsp-0 #202
+0609	stdout	0	rects_to_tree 隨機 bsp-0 #203
+0610	stdout	0	trim_ratios 隨機 bsp-0 #203
+0611	stdout	0	rects_to_tree 隨機 bsp-0 #204
+0612	stdout	0	trim_ratios 隨機 bsp-0 #204
+0613	stdout	0	rects_to_tree 隨機 bsp-0 #205
+0614	stdout	0	trim_ratios 隨機 bsp-0 #205
+0615	stdout	0	rects_to_tree 隨機 bsp-0 #206
+0616	stdout	0	trim_ratios 隨機 bsp-0 #206
+0617	stdout	0	rects_to_tree 隨機 bsp-0 #207
+0618	stdout	0	trim_ratios 隨機 bsp-0 #207
+0619	stdout	0	rects_to_tree 隨機 bsp-0 #208
+0620	stdout	0	trim_ratios 隨機 bsp-0 #208
+0621	stdout	0	rects_to_tree 隨機 bsp-0 #209
+0622	stdout	0	trim_ratios 隨機 bsp-0 #209
+0623	stdout	0	rects_to_tree 隨機 bsp-0 #210
+0624	stdout	0	trim_ratios 隨機 bsp-0 #210
+0625	stdout	0	rects_to_tree 隨機 bsp-0 #211
+0626	stdout	0	trim_ratios 隨機 bsp-0 #211
+0627	stdout	0	rects_to_tree 隨機 bsp-0 #212
+0628	stdout	0	trim_ratios 隨機 bsp-0 #212
+0629	stdout	0	rects_to_tree 隨機 bsp-0 #213
+0630	stdout	0	trim_ratios 隨機 bsp-0 #213
+0631	stdout	0	rects_to_tree 隨機 bsp-0 #214
+0632	stdout	0	trim_ratios 隨機 bsp-0 #214
+0633	stdout	0	rects_to_tree 隨機 bsp-0 #215
+0634	stdout	0	trim_ratios 隨機 bsp-0 #215
+0635	stdout	0	rects_to_tree 隨機 bsp-0 #216
+0636	stdout	0	trim_ratios 隨機 bsp-0 #216
+0637	stdout	0	rects_to_tree 隨機 bsp-0 #217
+0638	stdout	0	trim_ratios 隨機 bsp-0 #217
+0639	stdout	0	rects_to_tree 隨機 bsp-0 #218
+0640	stdout	0	trim_ratios 隨機 bsp-0 #218
+0641	stdout	0	rects_to_tree 隨機 bsp-0 #219
+0642	stdout	0	trim_ratios 隨機 bsp-0 #219
+0643	stdout	0	rects_to_tree 隨機 bsp-0 #220
+0644	stdout	0	trim_ratios 隨機 bsp-0 #220
+0645	stdout	0	rects_to_tree 隨機 bsp-0 #221
+0646	stdout	0	trim_ratios 隨機 bsp-0 #221
+0647	stdout	0	rects_to_tree 隨機 bsp-0 #222
+0648	stdout	0	trim_ratios 隨機 bsp-0 #222
+0649	stdout	0	rects_to_tree 隨機 bsp-0 #223
+0650	stdout	0	trim_ratios 隨機 bsp-0 #223
+0651	stdout	0	rects_to_tree 隨機 bsp-0 #224
+0652	stdout	0	trim_ratios 隨機 bsp-0 #224
+0653	stdout	0	rects_to_tree 隨機 bsp-0 #225
+0654	stdout	0	trim_ratios 隨機 bsp-0 #225
+0655	stdout	0	rects_to_tree 隨機 bsp-0 #226
+0656	stdout	0	trim_ratios 隨機 bsp-0 #226
+0657	stdout	0	rects_to_tree 隨機 bsp-0 #227
+0658	stdout	0	trim_ratios 隨機 bsp-0 #227
+0659	stdout	0	rects_to_tree 隨機 bsp-0 #228
+0660	stdout	0	trim_ratios 隨機 bsp-0 #228
+0661	stdout	0	rects_to_tree 隨機 bsp-0 #229
+0662	stdout	0	trim_ratios 隨機 bsp-0 #229
+0663	stdout	0	rects_to_tree 隨機 bsp-0 #230
+0664	stdout	0	trim_ratios 隨機 bsp-0 #230
+0665	stdout	0	rects_to_tree 隨機 bsp-0 #231
+0666	stdout	0	trim_ratios 隨機 bsp-0 #231
+0667	stdout	0	rects_to_tree 隨機 bsp-0 #232
+0668	stdout	0	trim_ratios 隨機 bsp-0 #232
+0669	stdout	0	rects_to_tree 隨機 bsp-0 #233
+0670	stdout	0	trim_ratios 隨機 bsp-0 #233
+0671	stdout	0	rects_to_tree 隨機 bsp-0 #234
+0672	stdout	0	trim_ratios 隨機 bsp-0 #234
+0673	stdout	0	rects_to_tree 隨機 bsp-0 #235
+0674	stdout	0	trim_ratios 隨機 bsp-0 #235
+0675	stdout	0	rects_to_tree 隨機 bsp-0 #236
+0676	stdout	0	trim_ratios 隨機 bsp-0 #236
+0677	stdout	0	rects_to_tree 隨機 bsp-0 #237
+0678	stdout	0	trim_ratios 隨機 bsp-0 #237
+0679	stdout	0	rects_to_tree 隨機 bsp-0 #238
+0680	stdout	0	trim_ratios 隨機 bsp-0 #238
+0681	stdout	0	rects_to_tree 隨機 bsp-0 #239
+0682	stdout	0	trim_ratios 隨機 bsp-0 #239
+0683	stdout	0	rects_to_tree 隨機 bsp-0 #240
+0684	stdout	0	trim_ratios 隨機 bsp-0 #240
+0685	stdout	0	rects_to_tree 隨機 bsp-0 #241
+0686	stdout	0	trim_ratios 隨機 bsp-0 #241
+0687	stdout	0	rects_to_tree 隨機 bsp-0 #242
+0688	stdout	0	trim_ratios 隨機 bsp-0 #242
+0689	stdout	0	rects_to_tree 隨機 bsp-0 #243
+0690	stdout	0	trim_ratios 隨機 bsp-0 #243
+0691	stdout	0	rects_to_tree 隨機 bsp-0 #244
+0692	stdout	0	trim_ratios 隨機 bsp-0 #244
+0693	stdout	0	rects_to_tree 隨機 bsp-0 #245
+0694	stdout	0	trim_ratios 隨機 bsp-0 #245
+0695	stdout	0	rects_to_tree 隨機 bsp-0 #246
+0696	stdout	0	trim_ratios 隨機 bsp-0 #246
+0697	stdout	0	rects_to_tree 隨機 bsp-0 #247
+0698	stdout	0	trim_ratios 隨機 bsp-0 #247
+0699	stdout	0	rects_to_tree 隨機 bsp-0 #248
+0700	stdout	0	trim_ratios 隨機 bsp-0 #248
+0701	stdout	0	rects_to_tree 隨機 bsp-0 #249
+0702	stdout	0	trim_ratios 隨機 bsp-0 #249
+0703	stdout	0	rects_to_tree 隨機 bsp-0 #250
+0704	stdout	0	trim_ratios 隨機 bsp-0 #250
+0705	stdout	0	rects_to_tree 隨機 bsp-0 #251
+0706	stdout	0	trim_ratios 隨機 bsp-0 #251
+0707	stdout	0	rects_to_tree 隨機 bsp-0 #252
+0708	stdout	0	trim_ratios 隨機 bsp-0 #252
+0709	stdout	0	rects_to_tree 隨機 bsp-0 #253
+0710	stdout	0	trim_ratios 隨機 bsp-0 #253
+0711	stdout	0	rects_to_tree 隨機 bsp-0 #254
+0712	stdout	0	trim_ratios 隨機 bsp-0 #254
+0713	stdout	0	rects_to_tree 隨機 bsp-0 #255
+0714	stdout	0	trim_ratios 隨機 bsp-0 #255
+0715	stdout	0	rects_to_tree 隨機 bsp-0 #256
+0716	stdout	0	trim_ratios 隨機 bsp-0 #256
+0717	stdout	0	rects_to_tree 隨機 bsp-0 #257
+0718	stdout	0	trim_ratios 隨機 bsp-0 #257
+0719	stdout	0	rects_to_tree 隨機 bsp-0 #258
+0720	stdout	0	trim_ratios 隨機 bsp-0 #258
+0721	stdout	0	rects_to_tree 隨機 bsp-0 #259
+0722	stdout	0	trim_ratios 隨機 bsp-0 #259
+0723	stdout	0	rects_to_tree 隨機 bsp-0 #260
+0724	stdout	0	trim_ratios 隨機 bsp-0 #260
+0725	stdout	0	rects_to_tree 隨機 bsp-0 #261
+0726	stdout	0	trim_ratios 隨機 bsp-0 #261
+0727	stdout	0	rects_to_tree 隨機 bsp-0 #262
+0728	stdout	0	trim_ratios 隨機 bsp-0 #262
+0729	stdout	0	rects_to_tree 隨機 bsp-0 #263
+0730	stdout	0	trim_ratios 隨機 bsp-0 #263
+0731	stdout	0	rects_to_tree 隨機 bsp-0 #264
+0732	stdout	0	trim_ratios 隨機 bsp-0 #264
+0733	stdout	0	rects_to_tree 隨機 bsp-0 #265
+0734	stdout	0	trim_ratios 隨機 bsp-0 #265
+0735	stdout	0	rects_to_tree 隨機 bsp-0 #266
+0736	stdout	0	trim_ratios 隨機 bsp-0 #266
+0737	stdout	0	rects_to_tree 隨機 bsp-0 #267
+0738	stdout	0	trim_ratios 隨機 bsp-0 #267
+0739	stdout	0	rects_to_tree 隨機 bsp-0 #268
+0740	stdout	0	trim_ratios 隨機 bsp-0 #268
+0741	stdout	0	rects_to_tree 隨機 bsp-0 #269
+0742	stdout	0	trim_ratios 隨機 bsp-0 #269
+0743	stdout	0	rects_to_tree 隨機 bsp-0 #270
+0744	stdout	0	trim_ratios 隨機 bsp-0 #270
+0745	stdout	0	rects_to_tree 隨機 bsp-0 #271
+0746	stdout	0	trim_ratios 隨機 bsp-0 #271
+0747	stdout	0	rects_to_tree 隨機 bsp-0 #272
+0748	stdout	0	trim_ratios 隨機 bsp-0 #272
+0749	stdout	0	rects_to_tree 隨機 bsp-0 #273
+0750	stdout	0	trim_ratios 隨機 bsp-0 #273
+0751	stdout	0	rects_to_tree 隨機 bsp-0 #274
+0752	stdout	0	trim_ratios 隨機 bsp-0 #274
+0753	stdout	0	rects_to_tree 隨機 bsp-0 #275
+0754	stdout	0	trim_ratios 隨機 bsp-0 #275
+0755	stdout	0	rects_to_tree 隨機 bsp-0 #276
+0756	stdout	0	trim_ratios 隨機 bsp-0 #276
+0757	stdout	0	rects_to_tree 隨機 bsp-0 #277
+0758	stdout	0	trim_ratios 隨機 bsp-0 #277
+0759	stdout	0	rects_to_tree 隨機 bsp-0 #278
+0760	stdout	0	trim_ratios 隨機 bsp-0 #278
+0761	stdout	0	rects_to_tree 隨機 bsp-0 #279
+0762	stdout	0	trim_ratios 隨機 bsp-0 #279
+0763	stdout	0	rects_to_tree 隨機 bsp-0 #280
+0764	stdout	0	trim_ratios 隨機 bsp-0 #280
+0765	stdout	0	rects_to_tree 隨機 bsp-0 #281
+0766	stdout	0	trim_ratios 隨機 bsp-0 #281
+0767	stdout	0	rects_to_tree 隨機 bsp-0 #282
+0768	stdout	0	trim_ratios 隨機 bsp-0 #282
+0769	stdout	0	rects_to_tree 隨機 bsp-0 #283
+0770	stdout	0	trim_ratios 隨機 bsp-0 #283
+0771	stdout	0	rects_to_tree 隨機 bsp-0 #284
+0772	stdout	0	trim_ratios 隨機 bsp-0 #284
+0773	stdout	0	rects_to_tree 隨機 bsp-0 #285
+0774	stdout	0	trim_ratios 隨機 bsp-0 #285
+0775	stdout	0	rects_to_tree 隨機 bsp-0 #286
+0776	stdout	0	trim_ratios 隨機 bsp-0 #286
+0777	stdout	0	rects_to_tree 隨機 bsp-0 #287
+0778	stdout	0	trim_ratios 隨機 bsp-0 #287
+0779	stdout	0	rects_to_tree 隨機 bsp-0 #288
+0780	stdout	0	trim_ratios 隨機 bsp-0 #288
+0781	stdout	0	rects_to_tree 隨機 bsp-0 #289
+0782	stdout	0	trim_ratios 隨機 bsp-0 #289
+0783	stdout	0	rects_to_tree 隨機 bsp-0 #290
+0784	stdout	0	trim_ratios 隨機 bsp-0 #290
+0785	stdout	0	rects_to_tree 隨機 bsp-0 #291
+0786	stdout	0	trim_ratios 隨機 bsp-0 #291
+0787	stdout	0	rects_to_tree 隨機 bsp-0 #292
+0788	stdout	0	trim_ratios 隨機 bsp-0 #292
+0789	stdout	0	rects_to_tree 隨機 bsp-0 #293
+0790	stdout	0	trim_ratios 隨機 bsp-0 #293
+0791	stdout	0	rects_to_tree 隨機 bsp-0 #294
+0792	stdout	0	trim_ratios 隨機 bsp-0 #294
+0793	stdout	0	rects_to_tree 隨機 bsp-0 #295
+0794	stdout	0	trim_ratios 隨機 bsp-0 #295
+0795	stdout	0	rects_to_tree 隨機 bsp-0 #296
+0796	stdout	0	trim_ratios 隨機 bsp-0 #296
+0797	stdout	0	rects_to_tree 隨機 bsp-0 #297
+0798	stdout	0	trim_ratios 隨機 bsp-0 #297
+0799	stdout	0	rects_to_tree 隨機 bsp-0 #298
+0800	stdout	0	trim_ratios 隨機 bsp-0 #298
+0801	stdout	0	rects_to_tree 隨機 bsp-0 #299
+0802	stdout	0	trim_ratios 隨機 bsp-0 #299
+0803	stdout	0	rects_to_tree 隨機 bsp-0 #300
+0804	stdout	0	trim_ratios 隨機 bsp-0 #300
+0805	stdout	0	rects_to_tree 隨機 free-1 #301
+0806	stdout	0	trim_ratios 隨機 free-1 #301
+0807	stdout	0	rects_to_tree 隨機 free-1 #302
+0808	stdout	0	trim_ratios 隨機 free-1 #302
+0809	stdout	0	rects_to_tree 隨機 free-1 #303
+0810	stdout	0	trim_ratios 隨機 free-1 #303
+0811	stdout	0	rects_to_tree 隨機 free-1 #304
+0812	stdout	0	trim_ratios 隨機 free-1 #304
+0813	stdout	0	rects_to_tree 隨機 free-1 #305
+0814	stdout	0	trim_ratios 隨機 free-1 #305
+0815	stdout	0	rects_to_tree 隨機 free-1 #306
+0816	stdout	0	trim_ratios 隨機 free-1 #306
+0817	stdout	0	rects_to_tree 隨機 free-1 #307
+0818	stdout	0	trim_ratios 隨機 free-1 #307
+0819	stdout	0	rects_to_tree 隨機 free-1 #308
+0820	stdout	0	trim_ratios 隨機 free-1 #308
+0821	stdout	0	rects_to_tree 隨機 free-1 #309
+0822	stdout	0	trim_ratios 隨機 free-1 #309
+0823	stdout	0	rects_to_tree 隨機 free-1 #310
+0824	stdout	0	trim_ratios 隨機 free-1 #310
+0825	stdout	0	rects_to_tree 隨機 free-1 #311
+0826	stdout	0	trim_ratios 隨機 free-1 #311
+0827	stdout	0	rects_to_tree 隨機 free-1 #312
+0828	stdout	0	trim_ratios 隨機 free-1 #312
+0829	stdout	0	rects_to_tree 隨機 free-1 #313
+0830	stdout	0	trim_ratios 隨機 free-1 #313
+0831	stdout	0	rects_to_tree 隨機 free-1 #314
+0832	stdout	0	trim_ratios 隨機 free-1 #314
+0833	stdout	0	rects_to_tree 隨機 free-1 #315
+0834	stdout	0	trim_ratios 隨機 free-1 #315
+0835	stdout	0	rects_to_tree 隨機 free-1 #316
+0836	stdout	0	trim_ratios 隨機 free-1 #316
+0837	stdout	0	rects_to_tree 隨機 free-1 #317
+0838	stdout	0	trim_ratios 隨機 free-1 #317
+0839	stdout	0	rects_to_tree 隨機 free-1 #318
+0840	stdout	0	trim_ratios 隨機 free-1 #318
+0841	stdout	0	rects_to_tree 隨機 free-1 #319
+0842	stdout	0	trim_ratios 隨機 free-1 #319
+0843	stdout	0	rects_to_tree 隨機 free-1 #320
+0844	stdout	0	trim_ratios 隨機 free-1 #320
+0845	stdout	0	rects_to_tree 隨機 free-1 #321
+0846	stdout	0	trim_ratios 隨機 free-1 #321
+0847	stdout	0	rects_to_tree 隨機 free-1 #322
+0848	stdout	0	trim_ratios 隨機 free-1 #322
+0849	stdout	0	rects_to_tree 隨機 free-1 #323
+0850	stdout	0	trim_ratios 隨機 free-1 #323
+0851	stdout	0	rects_to_tree 隨機 free-1 #324
+0852	stdout	0	trim_ratios 隨機 free-1 #324
+0853	stdout	0	rects_to_tree 隨機 free-1 #325
+0854	stdout	0	trim_ratios 隨機 free-1 #325
+0855	stdout	0	rects_to_tree 隨機 free-1 #326
+0856	stdout	0	trim_ratios 隨機 free-1 #326
+0857	stdout	0	rects_to_tree 隨機 free-1 #327
+0858	stdout	0	trim_ratios 隨機 free-1 #327
+0859	stdout	0	rects_to_tree 隨機 free-1 #328
+0860	stdout	0	trim_ratios 隨機 free-1 #328
+0861	stdout	0	rects_to_tree 隨機 free-1 #329
+0862	stdout	0	trim_ratios 隨機 free-1 #329
+0863	stdout	0	rects_to_tree 隨機 free-1 #330
+0864	stdout	0	trim_ratios 隨機 free-1 #330
+0865	stdout	0	rects_to_tree 隨機 free-1 #331
+0866	stdout	0	trim_ratios 隨機 free-1 #331
+0867	stdout	0	rects_to_tree 隨機 free-1 #332
+0868	stdout	0	trim_ratios 隨機 free-1 #332
+0869	stdout	0	rects_to_tree 隨機 free-1 #333
+0870	stdout	0	trim_ratios 隨機 free-1 #333
+0871	stdout	0	rects_to_tree 隨機 free-1 #334
+0872	stdout	0	trim_ratios 隨機 free-1 #334
+0873	stdout	0	rects_to_tree 隨機 free-1 #335
+0874	stdout	0	trim_ratios 隨機 free-1 #335
+0875	stdout	0	rects_to_tree 隨機 free-1 #336
+0876	stdout	0	trim_ratios 隨機 free-1 #336
+0877	stdout	0	rects_to_tree 隨機 free-1 #337
+0878	stdout	0	trim_ratios 隨機 free-1 #337
+0879	stdout	0	rects_to_tree 隨機 free-1 #338
+0880	stdout	0	trim_ratios 隨機 free-1 #338
+0881	stdout	0	rects_to_tree 隨機 free-1 #339
+0882	stdout	0	trim_ratios 隨機 free-1 #339
+0883	stdout	0	rects_to_tree 隨機 free-1 #340
+0884	stdout	0	trim_ratios 隨機 free-1 #340
+0885	stdout	0	rects_to_tree 隨機 free-1 #341
+0886	stdout	0	trim_ratios 隨機 free-1 #341
+0887	stdout	0	rects_to_tree 隨機 free-1 #342
+0888	stdout	0	trim_ratios 隨機 free-1 #342
+0889	stdout	0	rects_to_tree 隨機 free-1 #343
+0890	stdout	0	trim_ratios 隨機 free-1 #343
+0891	stdout	0	rects_to_tree 隨機 free-1 #344
+0892	stdout	0	trim_ratios 隨機 free-1 #344
+0893	stdout	0	rects_to_tree 隨機 free-1 #345
+0894	stdout	0	trim_ratios 隨機 free-1 #345
+0895	stdout	0	rects_to_tree 隨機 free-1 #346
+0896	stdout	0	trim_ratios 隨機 free-1 #346
+0897	stdout	0	rects_to_tree 隨機 free-1 #347
+0898	stdout	0	trim_ratios 隨機 free-1 #347
+0899	stdout	0	rects_to_tree 隨機 free-1 #348
+0900	stdout	0	trim_ratios 隨機 free-1 #348
+0901	stdout	0	rects_to_tree 隨機 free-1 #349
+0902	stdout	0	trim_ratios 隨機 free-1 #349
+0903	stdout	0	rects_to_tree 隨機 free-1 #350
+0904	stdout	0	trim_ratios 隨機 free-1 #350
+0905	stdout	0	rects_to_tree 隨機 free-1 #351
+0906	stdout	0	trim_ratios 隨機 free-1 #351
+0907	stdout	0	rects_to_tree 隨機 free-1 #352
+0908	stdout	0	trim_ratios 隨機 free-1 #352
+0909	stdout	0	rects_to_tree 隨機 free-1 #353
+0910	stdout	0	trim_ratios 隨機 free-1 #353
+0911	stdout	0	rects_to_tree 隨機 free-1 #354
+0912	stdout	0	trim_ratios 隨機 free-1 #354
+0913	stdout	0	rects_to_tree 隨機 free-1 #355
+0914	stdout	0	trim_ratios 隨機 free-1 #355
+0915	stdout	0	rects_to_tree 隨機 free-1 #356
+0916	stdout	0	trim_ratios 隨機 free-1 #356
+0917	stdout	0	rects_to_tree 隨機 free-1 #357
+0918	stdout	0	trim_ratios 隨機 free-1 #357
+0919	stdout	0	rects_to_tree 隨機 free-1 #358
+0920	stdout	0	trim_ratios 隨機 free-1 #358
+0921	stdout	0	rects_to_tree 隨機 free-1 #359
+0922	stdout	0	trim_ratios 隨機 free-1 #359
+0923	stdout	0	rects_to_tree 隨機 free-1 #360
+0924	stdout	0	trim_ratios 隨機 free-1 #360
+0925	stdout	0	rects_to_tree 隨機 free-1 #361
+0926	stdout	0	trim_ratios 隨機 free-1 #361
+0927	stdout	0	rects_to_tree 隨機 free-1 #362
+0928	stdout	0	trim_ratios 隨機 free-1 #362
+0929	stdout	0	rects_to_tree 隨機 free-1 #363
+0930	stdout	0	trim_ratios 隨機 free-1 #363
+0931	stdout	0	rects_to_tree 隨機 free-1 #364
+0932	stdout	0	trim_ratios 隨機 free-1 #364
+0933	stdout	0	rects_to_tree 隨機 free-1 #365
+0934	stdout	0	trim_ratios 隨機 free-1 #365
+0935	stdout	0	rects_to_tree 隨機 free-1 #366
+0936	stdout	0	trim_ratios 隨機 free-1 #366
+0937	stdout	0	rects_to_tree 隨機 free-1 #367
+0938	stdout	0	trim_ratios 隨機 free-1 #367
+0939	stdout	0	rects_to_tree 隨機 free-1 #368
+0940	stdout	0	trim_ratios 隨機 free-1 #368
+0941	stdout	0	rects_to_tree 隨機 free-1 #369
+0942	stdout	0	trim_ratios 隨機 free-1 #369
+0943	stdout	0	rects_to_tree 隨機 free-1 #370
+0944	stdout	0	trim_ratios 隨機 free-1 #370
+0945	stdout	0	rects_to_tree 隨機 free-1 #371
+0946	stdout	0	trim_ratios 隨機 free-1 #371
+0947	stdout	0	rects_to_tree 隨機 free-1 #372
+0948	stdout	0	trim_ratios 隨機 free-1 #372
+0949	stdout	0	rects_to_tree 隨機 free-1 #373
+0950	stdout	0	trim_ratios 隨機 free-1 #373
+0951	stdout	0	rects_to_tree 隨機 free-1 #374
+0952	stdout	0	trim_ratios 隨機 free-1 #374
+0953	stdout	0	rects_to_tree 隨機 free-1 #375
+0954	stdout	0	trim_ratios 隨機 free-1 #375
+0955	stdout	0	rects_to_tree 隨機 free-1 #376
+0956	stdout	0	trim_ratios 隨機 free-1 #376
+0957	stdout	0	rects_to_tree 隨機 free-1 #377
+0958	stdout	0	trim_ratios 隨機 free-1 #377
+0959	stdout	0	rects_to_tree 隨機 free-1 #378
+0960	stdout	0	trim_ratios 隨機 free-1 #378
+0961	stdout	0	rects_to_tree 隨機 free-1 #379
+0962	stdout	0	trim_ratios 隨機 free-1 #379
+0963	stdout	0	rects_to_tree 隨機 free-1 #380
+0964	stdout	0	trim_ratios 隨機 free-1 #380
+0965	stdout	0	rects_to_tree 隨機 free-1 #381
+0966	stdout	0	trim_ratios 隨機 free-1 #381
+0967	stdout	0	rects_to_tree 隨機 free-1 #382
+0968	stdout	0	trim_ratios 隨機 free-1 #382
+0969	stdout	0	rects_to_tree 隨機 free-1 #383
+0970	stdout	0	trim_ratios 隨機 free-1 #383
+0971	stdout	0	rects_to_tree 隨機 free-1 #384
+0972	stdout	0	trim_ratios 隨機 free-1 #384
+0973	stdout	0	rects_to_tree 隨機 free-1 #385
+0974	stdout	0	trim_ratios 隨機 free-1 #385
+0975	stdout	0	rects_to_tree 隨機 free-1 #386
+0976	stdout	0	trim_ratios 隨機 free-1 #386
+0977	stdout	0	rects_to_tree 隨機 free-1 #387
+0978	stdout	0	trim_ratios 隨機 free-1 #387
+0979	stdout	0	rects_to_tree 隨機 free-1 #388
+0980	stdout	0	trim_ratios 隨機 free-1 #388
+0981	stdout	0	rects_to_tree 隨機 free-1 #389
+0982	stdout	0	trim_ratios 隨機 free-1 #389
+0983	stdout	0	rects_to_tree 隨機 free-1 #390
+0984	stdout	0	trim_ratios 隨機 free-1 #390
+0985	stdout	0	rects_to_tree 隨機 free-1 #391
+0986	stdout	0	trim_ratios 隨機 free-1 #391
+0987	stdout	0	rects_to_tree 隨機 free-1 #392
+0988	stdout	0	trim_ratios 隨機 free-1 #392
+0989	stdout	0	rects_to_tree 隨機 free-1 #393
+0990	stdout	0	trim_ratios 隨機 free-1 #393
+0991	stdout	0	rects_to_tree 隨機 free-1 #394
+0992	stdout	0	trim_ratios 隨機 free-1 #394
+0993	stdout	0	rects_to_tree 隨機 free-1 #395
+0994	stdout	0	trim_ratios 隨機 free-1 #395
+0995	stdout	0	rects_to_tree 隨機 free-1 #396
+0996	stdout	0	trim_ratios 隨機 free-1 #396
+0997	stdout	0	rects_to_tree 隨機 free-1 #397
+0998	stdout	0	trim_ratios 隨機 free-1 #397
+0999	stdout	0	rects_to_tree 隨機 free-1 #398
+1000	stdout	0	trim_ratios 隨機 free-1 #398
+1001	stdout	0	rects_to_tree 隨機 free-1 #399
+1002	stdout	0	trim_ratios 隨機 free-1 #399
+1003	stdout	0	rects_to_tree 隨機 free-1 #400
+1004	stdout	0	trim_ratios 隨機 free-1 #400
+1005	stdout	0	location_desc office GOOD_JSON
+1006	stdout	0	location_desc home GOOD_JSON
+1007	stdout	0	location_desc nosuch GOOD_JSON
+1008	stdout	0	location_desc home L2_JSON
+1009	stdout	0	location_desc home SHARED_JSON
+1010	stdout	0	location_desc home NO_DESC_JSON
+1011	stdout	5	location_desc windows SHARED_JSON
+1012	stdout	0	location_desc EMPTY_DESC
+1013	stdout	0	location_desc 空字串（印一個空行）
+1014	stdout	0	location_desc 缺欄位（零位元組）
+1015	stdout	0	location_desc false
+1016	stdout	0	location_desc 0（真值）
+1017	stdout	0	location_desc 2.50（字面值）
+1018	stdout	0	location_desc 物件（縮排格式）
+1019	stdout	0	location_desc 陣列（縮排格式）
+1020	stdout	5	location_desc 地點是數字
+1021	stdout	0	location_desc 根是 null
+1022	stdout	5	location_desc 根是陣列
+1023	stdout	5	location_desc 根是字串
+1024	stdout	5	location_desc 不是合法 JSON
+1025	stdout	0	location_display office main
+1026	stdout	0	location_display office second
+1027	stdout	0	location_display office third
+1028	stdout	0	location_display home main L2
+1029	stdout	0	location_display NO_MAIN main
+1030	stdout	0	location_display NO_MAIN second
+1031	stdout	0	location_display nosuch 地點
+1032	stdout	0	location_display displays 不存在
+1033	stdout	5	location_display displays 是 false
+1034	stdout	5	location_display displays 是陣列
+1035	stdout	0	location_display 值是 false
+1036	stdout	0	location_display 值是空字串
+1037	stdout	0	location_display 值是數字
+1038	stdout	0	location_names_from GOOD_JSON
+1039	stdout	0	location_names_from L2_JSON
+1040	stdout	0	location_names_from SHARED_JSON
+1041	stdout	0	location_names_from NO_LOCAL
+1042	stdout	0	location_names_from RESERVED_ONLY
+1043	stdout	0	location_names_from SPACED_LOC
+1044	stdout	0	location_names_from AUTO_LOC
+1045	stdout	0	location_names_from 空物件
+1046	stdout	0	location_names_from 只有 windows
+1047	stdout	0	location_names_from windows 在中間
+1048	stdout	0	location_names_from 陣列（回索引）
+1049	stdout	5	location_names_from 字串
+1050	stdout	5	location_names_from null
+1051	stdout	5	location_names_from 數字
+1052	stdout	5	location_names_from 不是合法 JSON
+1053	stdout	0	profile_names_in home L2_JSON
+1054	stdout	0	profile_names_in nosuch L2_JSON
+1055	stdout	0	profile_names_in home SHARED
+1056	stdout	0	profile_names_in office GOOD
+1057	stdout	0	profile_names_in NO_PROFILES
+1058	stdout	0	profile_names_in AUTO_PROF
+1059	stdout	0	profile_names_in SPACED_PROF
+1060	stdout	0	profile_names_in profiles 不存在
+1061	stdout	0	profile_names_in profiles false
+1062	stdout	0	profile_names_in profiles 空物件
+1063	stdout	0	profile_names_in profiles 陣列
+1064	stdout	5	profile_names_in profiles 字串
+1065	stdout	5	profile_names_in profiles 數字
+1066	stdout	5	profile_names_in 地點是數字
+1067	stdout	0	profile_names_in 根是 null
+1068	stdout	0	exile_for home 開發 L2
+1069	stdout	0	exile_for home 會議 L2
+1070	stdout	0	exile_for home nosuch L2
+1071	stdout	0	exile_for nosuch 開發 L2
+1072	stdout	0	exile_for home 開發 SHARED
+1073	stdout	0	exile_for home 會議 SHARED
+1074	stdout	0	exile_for office 開發 GOOD
+1075	stdout	0	exile_for 兩層都沒有
+1076	stdout	0	exile_for profile 空陣列（取代）
+1077	stdout	0	exile_for profile false（退讓）
+1078	stdout	0	exile_for 地點層 false
+1079	stdout	0	exile_for join 含 null 與布林
+1080	stdout	0	exile_for join 保留數字字面值
+1081	stdout	0	exile_for 物件（join 它的值）
+1082	stdout	0	exile_for 元素含 tab
+1083	stdout	5	exile_for 巢狀陣列（報錯）
+1084	stdout	5	exile_for 是字串（報錯）
+1085	stdout	5	exile_for 是數字（報錯）
+1086	stdout	5	exile_for profiles 是陣列（左邊先炸）
+1087	stdout	0	exile_for 根是 null
+1088	stdout	0	windows_for home 開發 L2
+1089	stdout	0	windows_for home 會議 L2
+1090	stdout	0	windows_for home nosuch L2
+1091	stdout	0	windows_for nosuch 開發 L2
+1092	stdout	0	windows_for home 開發 SHARED
+1093	stdout	0	windows_for home 會議 SHARED
+1094	stdout	0	windows_for home 開發 NO_LOCAL
+1095	stdout	0	windows_for office 開發 GOOD
+1096	stdout	0	windows_for OVERRIDE_LABEL
+1097	stdout	0	windows_for NO_WINDOWS
+1098	stdout	0	windows_for profile 空陣列（零行）
+1099	stdout	0	windows_for profile false（退讓）
+1100	stdout	0	windows_for 共用層 false
+1101	stdout	0	windows_for 地點層 false
+1102	stdout	0	windows_for 缺 label
+1103	stdout	0	windows_for 缺 match
+1104	stdout	0	windows_for fallback 空字串（不補 -）
+1105	stdout	0	windows_for fallback false（補 -）
+1106	stdout	0	windows_for fallback 0（不補 -）
+1107	stdout	0	windows_for fallback 只有一個
+1108	stdout	0	windows_for match 含數字與布林
+1109	stdout	0	windows_for label 含 @tsv 要轉義的字元
+1110	stdout	0	windows_for 元素是 null（照樣一行）
+1111	stdout	5	windows_for 元素是純量（報錯）
+1112	stdout	5	windows_for label 是物件（前面的行留著）
+1113	stdout	5	windows_for match 是字串（報錯）
+1114	stdout	5	windows_for fallback 是物件（報錯）
+1115	stdout	0	windows_for windows 是物件（走它的值）
+1116	stdout	0	windows_for 兩層都是物件（合併）
+1117	stdout	0	windows_for 兩層物件同名鍵（右邊贏）
+1118	stdout	5	windows_for 陣列加物件（報錯）
+1119	stdout	5	windows_for 兩層都是字串（報錯）
+1120	stdout	5	windows_for profiles 是陣列（報錯）
+1121	stdout	0	windows_for 根是 null
+1122	stdout	5	windows_for 不是合法 JSON
+1123	stdout	0	location_names_from（真實的 layout.json）
+1124	stdout	0	location_desc office（layout.json）
+1125	stdout	0	profile_names_in office（layout.json）
+1126	stdout	0	location_display office nosuch（layout.json）
+1127	stdout	0	location_display office main（layout.json）
+1128	stdout	0	location_display office second（layout.json）
+1129	stdout	0	exile_for office 開發（layout.json）
+1130	stdout	0	windows_for office 開發（layout.json）
+1131	stdout	0	exile_for office 休閒（layout.json）
+1132	stdout	0	windows_for office 休閒（layout.json）
+1133	stdout	0	location_desc home（layout.json）
+1134	stdout	0	profile_names_in home（layout.json）
+1135	stdout	0	location_display home nosuch（layout.json）
+1136	stdout	0	location_display home main（layout.json）
+1137	stdout	0	location_display home second（layout.json）
+1138	stdout	0	exile_for home 開發（layout.json）
+1139	stdout	0	windows_for home 開發（layout.json）
+1140	stdout	0	resolve arg L2
+1141	stdout	0	resolve memory L2
+1142	stdout	0	resolve default L2
+1143	stdout	0	resolve stale L2
+1144	stdout	0	resolve first NO_DEFAULT
+1145	stdout	2	resolve 打錯字（rc=2）
+1146	stdout	0	resolve GOOD_JSON office
+1147	stdout	0	resolve SHARED_JSON
+1148	stdout	0	resolve NO_PROFILES
+1149	stdout	0	resolve AUTO_PROF
+1150	stdout	0	resolve SPACED_PROF
+1151	stdout	0	resolve SPACED_PROF 指名全名
+1152	stdout	0	resolve SPACED_PROF 指名半個
+1153	stdout	0	resolve BAD_DEFAULT
+1154	stdout	0	resolve default 空字串（退到 first）
+1155	stdout	0	resolve default 只有換行（退到 first）
+1156	stdout	0	resolve default 尾端多個換行
+1157	stdout	0	resolve default 含 CR
+1158	stdout	0	resolve default false
+1159	stdout	0	resolve default null
+1160	stdout	0	resolve default 0（真值）
+1161	stdout	0	resolve default true
+1162	stdout	0	resolve default 2.50 字面值
+1163	stdout	0	resolve default 物件（縮排）
+1164	stdout	0	resolve default 陣列（縮排）
+1165	stdout	0	resolve default 含 tab
+1166	stdout	0	resolve default 指向不存在
+1167	stdout	0	resolve profiles 是字串
+1168	stdout	0	resolve profiles 是數字
+1169	stdout	0	resolve profiles 是陣列（回索引）
+1170	stdout	0	resolve profiles 空物件
+1171	stdout	0	resolve 地點是數字
+1172	stdout	0	resolve 根是 null
+1173	stdout	0	resolve 根是陣列
+1174	stdout	0	resolve 不是合法 JSON
+1175	stdout	0	resolve 名稱含換行（多行輸出）
+1176	stdout	0	resolve 名稱含 tab
+1177	stdout	0	resolve 名稱是空字串
+1178	stdout	2	resolve want=*（不是 glob）
+1179	stdout	2	resolve want=?（不是 glob）
+1180	stdout	2	resolve want=[AB]（不是 glob）
+1181	stdout	0	resolve state 同 key 兩筆
+1182	stdout	0	resolve state 空值蓋掉前一筆
+1183	stdout	0	resolve state 註解與空行
+1184	stdout	0	resolve state 沒有等號
+1185	stdout	0	resolve state 值含等號
+1186	stdout	0	resolve state 是空的
+1187	stdout	0	resolve state 記憶含 glob
+1188	stdout	0	merge 開發（地點層）
+1189	stdout	0	merge 會議（profile 層）
+1190	stdout	0	merge 影音（新建）
+1191	stdout	0	merge GOOD_JSON
+1192	stdout	0	merge SHARED_JSON
+1193	stdout	2	merge trees 壞（rc=2）
+1194	stdout	2	merge rules 壞（rc=2）
+1195	stdout	2	merge 兩個都壞（rc=2）
+1196	stdout	2	merge argjson 與 stdin 都壞（仍是 2）
+1197	stdout	5	merge stdin 壞（rc=5）
+1198	stdout	0	merge 地點不存在（整條建出來）
+1199	stdout	0	merge 根是 null
+1200	stdout	0	merge 既有鍵原地、新鍵接尾端
+1201	stdout	0	merge profile windows 空陣列（仍算有）
+1202	stdout	0	merge profile windows 是物件（走地點層）
+1203	stdout	0	merge profile windows 是 true
+1204	stdout	0	merge 地點層 windows 是 null
+1205	stdout	0	merge $r=null（單位元素）
+1206	stdout	0	merge trees=false（// {}）
+1207	stdout	5	merge trees 是陣列（rc=5）
+1208	stdout	0	merge trees 同名角色（右邊贏）
+1209	stdout	0	merge 字串 + 字串（接起來）
+1210	stdout	5	merge $r=true（rc=5）
+1211	stdout	5	merge $t=陣列（rc=5）
+1212	stdout	5	merge $r=物件（rc=5）
+1213	stdout	5	merge 地點層 windows 是物件（rc=5）
+1214	stdout	5	merge 地點是數字（rc=5）
+1215	stdout	5	merge profiles 是陣列（rc=5）
+1216	stdout	5	merge 根是陣列（rc=5）
+1217	stdout	0	merge 鍵序保留（非 ASCII 鍵）
+1218	stderr	2	resolve 打錯字的訊息
+1219	stderr	2	resolve 打錯字（清單是空的）
+1220	stdout	0	resolve office 無參數（layout.json）
+1221	stdout	0	resolve office 記憶失效（layout.json）
+1222	stdout	2	resolve office 打錯字（layout.json）
+1223	stdout	0	resolve office 指名 開發（layout.json）
+1224	stdout	0	resolve office 記憶 開發（layout.json）
+1225	stdout	0	merge office/開發 原樣（layout.json）
+1226	stdout	0	merge office/開發 加規則（layout.json）
+1227	stdout	0	resolve office 指名 休閒（layout.json）
+1228	stdout	0	resolve office 記憶 休閒（layout.json）
+1229	stdout	0	merge office/休閒 原樣（layout.json）
+1230	stdout	0	merge office/休閒 加規則（layout.json）
+1231	stdout	0	resolve home 無參數（layout.json）
+1232	stdout	0	resolve home 記憶失效（layout.json）
+1233	stdout	2	resolve home 打錯字（layout.json）
+1234	stdout	0	resolve home 指名 開發（layout.json）
+1235	stdout	0	resolve home 記憶 開發（layout.json）
+1236	stdout	0	merge home/開發 原樣（layout.json）
+1237	stdout	0	merge home/開發 加規則（layout.json）
+1238	stdout	0	visible_space_on 1 SPACES
+1239	stdout	0	visible_space_on 2 SPACES
+1240	stdout	0	visible_space_on 3 SPACES
+1241	stdout	0	visible_space_on 4 SPACES
+1242	stdout	0	visible_space_on 9 SPACES
+1243	stdout	0	visible_space_on 1.0 SPACES
+1244	stdout	0	visible_space_on "1" SPACES
+1245	stdout	0	visible_space_on null SPACES
+1246	stdout	2	visible_space_on 壞 argjson
+1247	stdout	5	visible_space_on 壞 spaces
+1248	stdout	0	visible_space_on 兩個都可見
+1249	stdout	0	visible_space_on index=null
+1250	stdout	0	visible_space_on index=false
+1251	stdout	0	visible_space_on index=0
+1252	stdout	0	visible_space_on index 是字串
+1253	stdout	0	visible_space_on index 是物件
+1254	stdout	0	visible_space_on is-visible 是字串
+1255	stdout	0	visible_space_on 缺 is-visible
+1256	stdout	0	visible_space_on 命中後有壞元素
+1257	stdout	5	visible_space_on 命中前有壞元素
+1258	stdout	5	visible_space_on 根是物件
+1259	stdout	0	visible_space_on 空陣列
+1260	stdout	0	other_space_on 1 SPACES 2
+1261	stdout	0	other_space_on 2 SPACES 4
+1262	stdout	0	other_space_on 4 SPACES 6
+1263	stdout	0	other_space_on 1 SPACES 99
+1264	stdout	0	other_space_on skip=1.0
+1265	stdout	0	other_space_on skip="1"
+1266	stdout	0	other_space_on skip=null
+1267	stdout	2	other_space_on 兩個 argjson 都壞
+1268	stdout	2	other_space_on skip 壞
+1269	stdout	5	other_space_on spaces 壞
+1270	stdout	0	other_space_on index=null
+1271	stdout	0	other_space_on index=0
+1272	stdout	0	other_space_on 命中後有壞元素
+1273	stdout	5	other_space_on 命中前有壞元素
+1274	stdout	0	other_space_on 空陣列
+1275	stdout	0	match_location office GOOD_JSON
+1276	stdout	0	match_location home GOOD_JSON
+1277	stdout	1	match_location 只有內建 GOOD_JSON
+1278	stdout	1	match_location 空 connected GOOD_JSON
+1279	stdout	1	match_location 只有 Chat GOOD_JSON
+1280	stdout	0	match_location 只有主螢幕 GOOD_JSON
+1281	stdout	0	match_location SHARED_JSON（最外層有 windows）
+1282	stdout	1	match_location 子字串不算命中
+1283	stdout	1	match_location 子字串（後綴）不算命中
+1284	stdout	1	match_location glob 字元是字面值
+1285	stdout	0	match_location glob 字元自己相符
+1286	stdout	0	match_location main 缺 + connected 空
+1287	stdout	0	match_location main 空字串 + connected 空
+1288	stdout	0	match_location main 缺 + 兩個相連空白
+1289	stdout	1	match_location main 缺 + 一般清單
+1290	stdout	0	match_location 兩個地點同一個 main
+1291	stdout	0	match_location 中止前命中
+1292	stdout	1	match_location 中止後失去
+1293	stdout	1	match_location main 是容器
+1294	stdout	0	match_location main 是數字
+1295	stdout	0	match_location main 是 true
+1296	stdout	0	match_location 名字是空字串
+1297	stdout	0	match_location 根是陣列
+1298	stdout	1	match_location 根是純量
+1299	stdout	1	match_location 壞 JSON
+1300	stdout	1	match_location 空輸入
+1301	stdout	0	match_location TAB 轉義後才相符
+1302	stdout	1	match_location 真 TAB 配不上
+1303	stdout	0	space_rects SR_WINS 帶 label
+1304	stdout	0	space_rects SR_WINS 無 label
+1305	stdout	0	space_rects 空陣列
+1306	stdout	0	space_rects idmap 是 null
+1307	stdout	0	space_rects idmap 是陣列
+1308	stdout	0	space_rects idmap 值是容器
+1309	stdout	0	space_rects 壞 wins
+1310	stdout	0	space_rects 壞 idmap
+1311	stdout	0	space_rects 根是物件
+1312	stdout	0	space_rects 元素是純量
+1313	stdout	0	space_rects 缺 frame
+1314	stdout	0	space_rects frame 是字串
+1315	stdout	0	space_rects 缺 is-floating
+1316	stdout	0	space_rects title 是 null
+1317	stdout	0	space_rects id 是浮點（查表用字面值）
+1318	stdout	0	space_rects id 是字串
+1319	stdout	0	space_rects 小數 frame 要 floor
+1320	stdout	0	space_rects 負零與指數 frame
+1321	stdout	0	space_rects 兩組 stack
+1322	stdout	0	space_rects 同 xy 不同 wh
+1323	stderr	0	space_rects stderr SR_WINS
+1324	stderr	0	space_rects stderr 兩組 stack
+1325	stderr	0	space_rects stderr 沒有 stack
+1326	stderr	0	space_rects stderr app 是 null
+1327	stderr	0	space_rects stderr app 是容器
+1328	stdout	0	match_location 11111111-1111-4111-8111-111111111111（layout.json）
+1329	stdout	0	match_location 44444444-4444-4444-8444-444444444444（layout.json）
+1330	stdout	1	match_location 只有 22222222-2222-4222-8222-222222222222（layout.json）
+1331	stdout	1	match_location 只有 33333333-3333-4333-8333-333333333333（layout.json）
+1332	stdout	0	match_location 全部 uuid（layout.json）
+1333	stdout	1	match_location 都沒接（layout.json）
+1334	stdout	0	find_windows url-exact org DUMP
+1335	stdout	0	find_windows url-contains chat DUMP
+1336	stdout	0	find_windows title-regex 保護組 DUMP
+1337	stdout	0	find_windows url-contains org DUMP（三個候選）
+1338	stdout	0	find_windows url-exact 沒命中 DUMP
+1339	stdout	0	find_windows app DUMP
+1340	stdout	2	find_windows 未知類型 DUMP
+1341	stdout	0	find_windows url-exact org DUMP_SLASH
+1342	stdout	0	find_windows url-contains chat DUMP_DRIFTED
+1343	stdout	0	find_windows title-regex 保護組 DUMP_DRIFTED
+1344	stdout	0	find_windows title-regex 備援 DUMP_DRIFTED
+1345	stdout	0	find_windows url-contains chat DUMP_SLASH
+1346	stdout	0	find_windows title-regex 不存在 DUMP
+1347	stdout	0	find_windows title-regex 轉義過的 a.b DUMP_META
+1348	stdout	0	find_windows title-regex 未轉義的 a.b DUMP_META
+1349	stdout	0	find_windows title-regex [a]
+1350	stdout	0	find_windows title-regex [a.b]
+1351	stdout	0	find_windows title-regex [a\.b]
+1352	stdout	0	find_windows title-regex [^a]
+1353	stdout	0	find_windows title-regex [a$]
+1354	stdout	0	find_windows title-regex [^a$]
+1355	stdout	0	find_windows title-regex [^$]
+1356	stdout	0	find_windows title-regex [$a]
+1357	stdout	0	find_windows title-regex [a$$]
+1358	stdout	0	find_windows title-regex [$]
+1359	stdout	0	find_windows title-regex [^]
+1360	stdout	0	find_windows title-regex [a|b]
+1361	stdout	0	find_windows title-regex [(a|b)c]
+1362	stdout	0	find_windows title-regex [a*]
+1363	stdout	0	find_windows title-regex [a+]
+1364	stdout	0	find_windows title-regex [a?]
+1365	stdout	0	find_windows title-regex [a{2}]
+1366	stdout	0	find_windows title-regex [a{2,}]
+1367	stdout	0	find_windows title-regex [a{1,3}]
+1368	stdout	0	find_windows title-regex [a{,2}]
+1369	stdout	0	find_windows title-regex [a{]
+1370	stdout	0	find_windows title-regex [}]
+1371	stdout	0	find_windows title-regex [{]
+1372	stdout	2	find_windows title-regex [{2]
+1373	stdout	2	find_windows title-regex [a{2,1}]
+1374	stdout	0	find_windows title-regex [[abc]]
+1375	stdout	0	find_windows title-regex [[^abc]]
+1376	stdout	0	find_windows title-regex [[a-c]]
+1377	stdout	0	find_windows title-regex [[]a]]
+1378	stdout	0	find_windows title-regex [[a-]]
+1379	stdout	0	find_windows title-regex [[-a]]
+1380	stdout	0	find_windows title-regex [[[:digit:]]+]
+1381	stdout	0	find_windows title-regex [[[:alpha:]]]
+1382	stdout	0	find_windows title-regex [[[:foo:]]]
+1383	stdout	0	find_windows title-regex [[[:foo:]a]]
+1384	stdout	0	find_windows title-regex [[^[:foo:]]]
+1385	stdout	2	find_windows title-regex [[]
+1386	stdout	2	find_windows title-regex [[a]
+1387	stdout	2	find_windows title-regex [[]]
+1388	stdout	2	find_windows title-regex [[^]]
+1389	stdout	0	find_windows title-regex [[\t]]
+1390	stdout	0	find_windows title-regex [[\]]]
+1391	stdout	0	find_windows title-regex [\d]
+1392	stdout	0	find_windows title-regex [\b]
+1393	stdout	0	find_windows title-regex [\t]
+1394	stdout	0	find_windows title-regex [\\]
+1395	stdout	0	find_windows title-regex [\/]
+1396	stdout	0	find_windows title-regex [\101]
+1397	stdout	0	find_windows title-regex [\8]
+1398	stdout	0	find_windows title-regex [\q]
+1399	stdout	0	find_windows title-regex [\+]
+1400	stdout	0	find_windows title-regex [\.]
+1401	stdout	0	find_windows title-regex [\$]
+1402	stdout	0	find_windows title-regex [\]
+1403	stdout	0	find_windows title-regex [a\]
+1404	stdout	0	find_windows title-regex [\0]
+1405	stdout	0	find_windows title-regex [a\0b]
+1406	stdout	0	find_windows title-regex [\0a]
+1407	stdout	2	find_windows title-regex [(]
+1408	stdout	0	find_windows title-regex [)]
+1409	stdout	0	find_windows title-regex [a)]
+1410	stdout	2	find_windows title-regex [(a]
+1411	stdout	0	find_windows title-regex [()]
+1412	stdout	0	find_windows title-regex [(())]
+1413	stdout	2	find_windows title-regex [(|a)]
+1414	stdout	2	find_windows title-regex [(a|)]
+1415	stdout	2	find_windows title-regex [(|)]
+1416	stdout	2	find_windows title-regex [*]
+1417	stdout	2	find_windows title-regex [+]
+1418	stdout	2	find_windows title-regex [?]
+1419	stdout	2	find_windows title-regex [*a]
+1420	stdout	0	find_windows title-regex [a**]
+1421	stdout	0	find_windows title-regex [^*]
+1422	stdout	0	find_windows title-regex [$*]
+1423	stdout	2	find_windows title-regex [^^a]
+1424	stdout	2	find_windows title-regex [a^b]
+1425	stdout	2	find_windows title-regex [(a)^b]
+1426	stdout	0	find_windows title-regex [a|^b]
+1427	stdout	0	find_windows title-regex [a$|b]
+1428	stdout	2	find_windows title-regex [(?:a)]
+1429	stdout	2	find_windows title-regex [(?=a)]
+1430	stdout	0	find_windows title-regex [a*?]
+1431	stdout	0	find_windows title-regex [(a)(b)]
+1432	stdout	0	find_windows title-regex [.]
+1433	stdout	0	find_windows title-regex [.*]
+1434	stdout	0	find_windows title-regex [.+]
+1435	stdout	0	find_windows title-regex [^.$]
+1436	stdout	0	find_windows title-regex [^...$]
+1437	stdout	0	find_windows title-regex [\<a]
+1438	stdout	0	find_windows title-regex [(ab)+]
+1439	stdout	0	find_windows title-regex [[0-9]{3}]
+1440	stdout	0	find_windows title-regex []
+1441	stdout	0	find_windows title-regex [Chat$]
+1442	stdout	0	find_windows title-regex [^DP]
+1443	stdout	0	find_windows title-regex [專案乙組]
+1444	stdout	0	find_windows title-regex [[終工]]
+1445	stdout	0	find_windows title-regex [[^終]]
+1446	stdout	0	find_windows url-exact [1] vs [1]
+1447	stdout	0	find_windows url-exact [1] vs [1.0]
+1448	stdout	0	find_windows url-exact [1] vs [16]
+1449	stdout	0	find_windows url-exact [1] vs [1000]
+1450	stdout	0	find_windows url-exact [1] vs []
+1451	stdout	0	find_windows url-exact [1] vs [Infinity]
+1452	stdout	0	find_windows url-exact [1] vs [NaN]
+1453	stdout	0	find_windows url-exact [1] vs [0]
+1454	stdout	0	find_windows url-exact [1] vs [abc]
+1455	stdout	0	find_windows url-exact [1] vs [1e-400]
+1456	stdout	0	find_windows url-exact [1.0] vs [1]
+1457	stdout	0	find_windows url-exact [1.0] vs [1.0]
+1458	stdout	0	find_windows url-exact [1.0] vs [16]
+1459	stdout	0	find_windows url-exact [1.0] vs [1000]
+1460	stdout	0	find_windows url-exact [1.0] vs []
+1461	stdout	0	find_windows url-exact [1.0] vs [Infinity]
+1462	stdout	0	find_windows url-exact [1.0] vs [NaN]
+1463	stdout	0	find_windows url-exact [1.0] vs [0]
+1464	stdout	0	find_windows url-exact [1.0] vs [abc]
+1465	stdout	0	find_windows url-exact [1.0] vs [1e-400]
+1466	stdout	0	find_windows url-exact [01] vs [1]
+1467	stdout	0	find_windows url-exact [01] vs [1.0]
+1468	stdout	0	find_windows url-exact [01] vs [16]
+1469	stdout	0	find_windows url-exact [01] vs [1000]
+1470	stdout	0	find_windows url-exact [01] vs []
+1471	stdout	0	find_windows url-exact [01] vs [Infinity]
+1472	stdout	0	find_windows url-exact [01] vs [NaN]
+1473	stdout	0	find_windows url-exact [01] vs [0]
+1474	stdout	0	find_windows url-exact [01] vs [abc]
+1475	stdout	0	find_windows url-exact [01] vs [1e-400]
+1476	stdout	0	find_windows url-exact [+1] vs [1]
+1477	stdout	0	find_windows url-exact [+1] vs [1.0]
+1478	stdout	0	find_windows url-exact [+1] vs [16]
+1479	stdout	0	find_windows url-exact [+1] vs [1000]
+1480	stdout	0	find_windows url-exact [+1] vs []
+1481	stdout	0	find_windows url-exact [+1] vs [Infinity]
+1482	stdout	0	find_windows url-exact [+1] vs [NaN]
+1483	stdout	0	find_windows url-exact [+1] vs [0]
+1484	stdout	0	find_windows url-exact [+1] vs [abc]
+1485	stdout	0	find_windows url-exact [+1] vs [1e-400]
+1486	stdout	0	find_windows url-exact [-1] vs [1]
+1487	stdout	0	find_windows url-exact [-1] vs [1.0]
+1488	stdout	0	find_windows url-exact [-1] vs [16]
+1489	stdout	0	find_windows url-exact [-1] vs [1000]
+1490	stdout	0	find_windows url-exact [-1] vs []
+1491	stdout	0	find_windows url-exact [-1] vs [Infinity]
+1492	stdout	0	find_windows url-exact [-1] vs [NaN]
+1493	stdout	0	find_windows url-exact [-1] vs [0]
+1494	stdout	0	find_windows url-exact [-1] vs [abc]
+1495	stdout	0	find_windows url-exact [-1] vs [1e-400]
+1496	stdout	0	find_windows url-exact [0x10] vs [1]
+1497	stdout	0	find_windows url-exact [0x10] vs [1.0]
+1498	stdout	0	find_windows url-exact [0x10] vs [16]
+1499	stdout	0	find_windows url-exact [0x10] vs [1000]
+1500	stdout	0	find_windows url-exact [0x10] vs []
+1501	stdout	0	find_windows url-exact [0x10] vs [Infinity]
+1502	stdout	0	find_windows url-exact [0x10] vs [NaN]
+1503	stdout	0	find_windows url-exact [0x10] vs [0]
+1504	stdout	0	find_windows url-exact [0x10] vs [abc]
+1505	stdout	0	find_windows url-exact [0x10] vs [1e-400]
+1506	stdout	0	find_windows url-exact [0X10] vs [1]
+1507	stdout	0	find_windows url-exact [0X10] vs [1.0]
+1508	stdout	0	find_windows url-exact [0X10] vs [16]
+1509	stdout	0	find_windows url-exact [0X10] vs [1000]
+1510	stdout	0	find_windows url-exact [0X10] vs []
+1511	stdout	0	find_windows url-exact [0X10] vs [Infinity]
+1512	stdout	0	find_windows url-exact [0X10] vs [NaN]
+1513	stdout	0	find_windows url-exact [0X10] vs [0]
+1514	stdout	0	find_windows url-exact [0X10] vs [abc]
+1515	stdout	0	find_windows url-exact [0X10] vs [1e-400]
+1516	stdout	0	find_windows url-exact [16] vs [1]
+1517	stdout	0	find_windows url-exact [16] vs [1.0]
+1518	stdout	0	find_windows url-exact [16] vs [16]
+1519	stdout	0	find_windows url-exact [16] vs [1000]
+1520	stdout	0	find_windows url-exact [16] vs []
+1521	stdout	0	find_windows url-exact [16] vs [Infinity]
+1522	stdout	0	find_windows url-exact [16] vs [NaN]
+1523	stdout	0	find_windows url-exact [16] vs [0]
+1524	stdout	0	find_windows url-exact [16] vs [abc]
+1525	stdout	0	find_windows url-exact [16] vs [1e-400]
+1526	stdout	0	find_windows url-exact [1e3] vs [1]
+1527	stdout	0	find_windows url-exact [1e3] vs [1.0]
+1528	stdout	0	find_windows url-exact [1e3] vs [16]
+1529	stdout	0	find_windows url-exact [1e3] vs [1000]
+1530	stdout	0	find_windows url-exact [1e3] vs []
+1531	stdout	0	find_windows url-exact [1e3] vs [Infinity]
+1532	stdout	0	find_windows url-exact [1e3] vs [NaN]
+1533	stdout	0	find_windows url-exact [1e3] vs [0]
+1534	stdout	0	find_windows url-exact [1e3] vs [abc]
+1535	stdout	0	find_windows url-exact [1e3] vs [1e-400]
+1536	stdout	0	find_windows url-exact [1000] vs [1]
+1537	stdout	0	find_windows url-exact [1000] vs [1.0]
+1538	stdout	0	find_windows url-exact [1000] vs [16]
+1539	stdout	0	find_windows url-exact [1000] vs [1000]
+1540	stdout	0	find_windows url-exact [1000] vs []
+1541	stdout	0	find_windows url-exact [1000] vs [Infinity]
+1542	stdout	0	find_windows url-exact [1000] vs [NaN]
+1543	stdout	0	find_windows url-exact [1000] vs [0]
+1544	stdout	0	find_windows url-exact [1000] vs [abc]
+1545	stdout	0	find_windows url-exact [1000] vs [1e-400]
+1546	stdout	0	find_windows url-exact [ 1] vs [1]
+1547	stdout	0	find_windows url-exact [ 1] vs [1.0]
+1548	stdout	0	find_windows url-exact [ 1] vs [16]
+1549	stdout	0	find_windows url-exact [ 1] vs [1000]
+1550	stdout	0	find_windows url-exact [ 1] vs []
+1551	stdout	0	find_windows url-exact [ 1] vs [Infinity]
+1552	stdout	0	find_windows url-exact [ 1] vs [NaN]
+1553	stdout	0	find_windows url-exact [ 1] vs [0]
+1554	stdout	0	find_windows url-exact [ 1] vs [abc]
+1555	stdout	0	find_windows url-exact [ 1] vs [1e-400]
+1556	stdout	0	find_windows url-exact [1 ] vs [1]
+1557	stdout	0	find_windows url-exact [1 ] vs [1.0]
+1558	stdout	0	find_windows url-exact [1 ] vs [16]
+1559	stdout	0	find_windows url-exact [1 ] vs [1000]
+1560	stdout	0	find_windows url-exact [1 ] vs []
+1561	stdout	0	find_windows url-exact [1 ] vs [Infinity]
+1562	stdout	0	find_windows url-exact [1 ] vs [NaN]
+1563	stdout	0	find_windows url-exact [1 ] vs [0]
+1564	stdout	0	find_windows url-exact [1 ] vs [abc]
+1565	stdout	0	find_windows url-exact [1 ] vs [1e-400]
+1566	stdout	0	find_windows url-exact [] vs [1]
+1567	stdout	0	find_windows url-exact [] vs [1.0]
+1568	stdout	0	find_windows url-exact [] vs [16]
+1569	stdout	0	find_windows url-exact [] vs [1000]
+1570	stdout	0	find_windows url-exact [] vs []
+1571	stdout	0	find_windows url-exact [] vs [Infinity]
+1572	stdout	0	find_windows url-exact [] vs [NaN]
+1573	stdout	0	find_windows url-exact [] vs [0]
+1574	stdout	0	find_windows url-exact [] vs [abc]
+1575	stdout	0	find_windows url-exact [] vs [1e-400]
+1576	stdout	0	find_windows url-exact [inf] vs [1]
+1577	stdout	0	find_windows url-exact [inf] vs [1.0]
+1578	stdout	0	find_windows url-exact [inf] vs [16]
+1579	stdout	0	find_windows url-exact [inf] vs [1000]
+1580	stdout	0	find_windows url-exact [inf] vs []
+1581	stdout	0	find_windows url-exact [inf] vs [Infinity]
+1582	stdout	0	find_windows url-exact [inf] vs [NaN]
+1583	stdout	0	find_windows url-exact [inf] vs [0]
+1584	stdout	0	find_windows url-exact [inf] vs [abc]
+1585	stdout	0	find_windows url-exact [inf] vs [1e-400]
+1586	stdout	0	find_windows url-exact [Infinity] vs [1]
+1587	stdout	0	find_windows url-exact [Infinity] vs [1.0]
+1588	stdout	0	find_windows url-exact [Infinity] vs [16]
+1589	stdout	0	find_windows url-exact [Infinity] vs [1000]
+1590	stdout	0	find_windows url-exact [Infinity] vs []
+1591	stdout	0	find_windows url-exact [Infinity] vs [Infinity]
+1592	stdout	0	find_windows url-exact [Infinity] vs [NaN]
+1593	stdout	0	find_windows url-exact [Infinity] vs [0]
+1594	stdout	0	find_windows url-exact [Infinity] vs [abc]
+1595	stdout	0	find_windows url-exact [Infinity] vs [1e-400]
+1596	stdout	0	find_windows url-exact [-inf] vs [1]
+1597	stdout	0	find_windows url-exact [-inf] vs [1.0]
+1598	stdout	0	find_windows url-exact [-inf] vs [16]
+1599	stdout	0	find_windows url-exact [-inf] vs [1000]
+1600	stdout	0	find_windows url-exact [-inf] vs []
+1601	stdout	0	find_windows url-exact [-inf] vs [Infinity]
+1602	stdout	0	find_windows url-exact [-inf] vs [NaN]
+1603	stdout	0	find_windows url-exact [-inf] vs [0]
+1604	stdout	0	find_windows url-exact [-inf] vs [abc]
+1605	stdout	0	find_windows url-exact [-inf] vs [1e-400]
+1606	stdout	0	find_windows url-exact [-Infinity] vs [1]
+1607	stdout	0	find_windows url-exact [-Infinity] vs [1.0]
+1608	stdout	0	find_windows url-exact [-Infinity] vs [16]
+1609	stdout	0	find_windows url-exact [-Infinity] vs [1000]
+1610	stdout	0	find_windows url-exact [-Infinity] vs []
+1611	stdout	0	find_windows url-exact [-Infinity] vs [Infinity]
+1612	stdout	0	find_windows url-exact [-Infinity] vs [NaN]
+1613	stdout	0	find_windows url-exact [-Infinity] vs [0]
+1614	stdout	0	find_windows url-exact [-Infinity] vs [abc]
+1615	stdout	0	find_windows url-exact [-Infinity] vs [1e-400]
+1616	stdout	0	find_windows url-exact [nan] vs [1]
+1617	stdout	0	find_windows url-exact [nan] vs [1.0]
+1618	stdout	0	find_windows url-exact [nan] vs [16]
+1619	stdout	0	find_windows url-exact [nan] vs [1000]
+1620	stdout	0	find_windows url-exact [nan] vs []
+1621	stdout	0	find_windows url-exact [nan] vs [Infinity]
+1622	stdout	0	find_windows url-exact [nan] vs [NaN]
+1623	stdout	0	find_windows url-exact [nan] vs [0]
+1624	stdout	0	find_windows url-exact [nan] vs [abc]
+1625	stdout	0	find_windows url-exact [nan] vs [1e-400]
+1626	stdout	0	find_windows url-exact [NaN] vs [1]
+1627	stdout	0	find_windows url-exact [NaN] vs [1.0]
+1628	stdout	0	find_windows url-exact [NaN] vs [16]
+1629	stdout	0	find_windows url-exact [NaN] vs [1000]
+1630	stdout	0	find_windows url-exact [NaN] vs []
+1631	stdout	0	find_windows url-exact [NaN] vs [Infinity]
+1632	stdout	0	find_windows url-exact [NaN] vs [NaN]
+1633	stdout	0	find_windows url-exact [NaN] vs [0]
+1634	stdout	0	find_windows url-exact [NaN] vs [abc]
+1635	stdout	0	find_windows url-exact [NaN] vs [1e-400]
+1636	stdout	0	find_windows url-exact [nan(x)] vs [1]
+1637	stdout	0	find_windows url-exact [nan(x)] vs [1.0]
+1638	stdout	0	find_windows url-exact [nan(x)] vs [16]
+1639	stdout	0	find_windows url-exact [nan(x)] vs [1000]
+1640	stdout	0	find_windows url-exact [nan(x)] vs []
+1641	stdout	0	find_windows url-exact [nan(x)] vs [Infinity]
+1642	stdout	0	find_windows url-exact [nan(x)] vs [NaN]
+1643	stdout	0	find_windows url-exact [nan(x)] vs [0]
+1644	stdout	0	find_windows url-exact [nan(x)] vs [abc]
+1645	stdout	0	find_windows url-exact [nan(x)] vs [1e-400]
+1646	stdout	0	find_windows url-exact [1e400] vs [1]
+1647	stdout	0	find_windows url-exact [1e400] vs [1.0]
+1648	stdout	0	find_windows url-exact [1e400] vs [16]
+1649	stdout	0	find_windows url-exact [1e400] vs [1000]
+1650	stdout	0	find_windows url-exact [1e400] vs []
+1651	stdout	0	find_windows url-exact [1e400] vs [Infinity]
+1652	stdout	0	find_windows url-exact [1e400] vs [NaN]
+1653	stdout	0	find_windows url-exact [1e400] vs [0]
+1654	stdout	0	find_windows url-exact [1e400] vs [abc]
+1655	stdout	0	find_windows url-exact [1e400] vs [1e-400]
+1656	stdout	0	find_windows url-exact [2e400] vs [1]
+1657	stdout	0	find_windows url-exact [2e400] vs [1.0]
+1658	stdout	0	find_windows url-exact [2e400] vs [16]
+1659	stdout	0	find_windows url-exact [2e400] vs [1000]
+1660	stdout	0	find_windows url-exact [2e400] vs []
+1661	stdout	0	find_windows url-exact [2e400] vs [Infinity]
+1662	stdout	0	find_windows url-exact [2e400] vs [NaN]
+1663	stdout	0	find_windows url-exact [2e400] vs [0]
+1664	stdout	0	find_windows url-exact [2e400] vs [abc]
+1665	stdout	0	find_windows url-exact [2e400] vs [1e-400]
+1666	stdout	0	find_windows url-exact [1e-400] vs [1]
+1667	stdout	0	find_windows url-exact [1e-400] vs [1.0]
+1668	stdout	0	find_windows url-exact [1e-400] vs [16]
+1669	stdout	0	find_windows url-exact [1e-400] vs [1000]
+1670	stdout	0	find_windows url-exact [1e-400] vs []
+1671	stdout	0	find_windows url-exact [1e-400] vs [Infinity]
+1672	stdout	0	find_windows url-exact [1e-400] vs [NaN]
+1673	stdout	0	find_windows url-exact [1e-400] vs [0]
+1674	stdout	0	find_windows url-exact [1e-400] vs [abc]
+1675	stdout	0	find_windows url-exact [1e-400] vs [1e-400]
+1676	stdout	0	find_windows url-exact [.5] vs [1]
+1677	stdout	0	find_windows url-exact [.5] vs [1.0]
+1678	stdout	0	find_windows url-exact [.5] vs [16]
+1679	stdout	0	find_windows url-exact [.5] vs [1000]
+1680	stdout	0	find_windows url-exact [.5] vs []
+1681	stdout	0	find_windows url-exact [.5] vs [Infinity]
+1682	stdout	0	find_windows url-exact [.5] vs [NaN]
+1683	stdout	0	find_windows url-exact [.5] vs [0]
+1684	stdout	0	find_windows url-exact [.5] vs [abc]
+1685	stdout	0	find_windows url-exact [.5] vs [1e-400]
+1686	stdout	0	find_windows url-exact [0.5] vs [1]
+1687	stdout	0	find_windows url-exact [0.5] vs [1.0]
+1688	stdout	0	find_windows url-exact [0.5] vs [16]
+1689	stdout	0	find_windows url-exact [0.5] vs [1000]
+1690	stdout	0	find_windows url-exact [0.5] vs []
+1691	stdout	0	find_windows url-exact [0.5] vs [Infinity]
+1692	stdout	0	find_windows url-exact [0.5] vs [NaN]
+1693	stdout	0	find_windows url-exact [0.5] vs [0]
+1694	stdout	0	find_windows url-exact [0.5] vs [abc]
+1695	stdout	0	find_windows url-exact [0.5] vs [1e-400]
+1696	stdout	0	find_windows url-exact [5.] vs [1]
+1697	stdout	0	find_windows url-exact [5.] vs [1.0]
+1698	stdout	0	find_windows url-exact [5.] vs [16]
+1699	stdout	0	find_windows url-exact [5.] vs [1000]
+1700	stdout	0	find_windows url-exact [5.] vs []
+1701	stdout	0	find_windows url-exact [5.] vs [Infinity]
+1702	stdout	0	find_windows url-exact [5.] vs [NaN]
+1703	stdout	0	find_windows url-exact [5.] vs [0]
+1704	stdout	0	find_windows url-exact [5.] vs [abc]
+1705	stdout	0	find_windows url-exact [5.] vs [1e-400]
+1706	stdout	0	find_windows url-exact [007] vs [1]
+1707	stdout	0	find_windows url-exact [007] vs [1.0]
+1708	stdout	0	find_windows url-exact [007] vs [16]
+1709	stdout	0	find_windows url-exact [007] vs [1000]
+1710	stdout	0	find_windows url-exact [007] vs []
+1711	stdout	0	find_windows url-exact [007] vs [Infinity]
+1712	stdout	0	find_windows url-exact [007] vs [NaN]
+1713	stdout	0	find_windows url-exact [007] vs [0]
+1714	stdout	0	find_windows url-exact [007] vs [abc]
+1715	stdout	0	find_windows url-exact [007] vs [1e-400]
+1716	stdout	0	find_windows url-exact [-0] vs [1]
+1717	stdout	0	find_windows url-exact [-0] vs [1.0]
+1718	stdout	0	find_windows url-exact [-0] vs [16]
+1719	stdout	0	find_windows url-exact [-0] vs [1000]
+1720	stdout	0	find_windows url-exact [-0] vs []
+1721	stdout	0	find_windows url-exact [-0] vs [Infinity]
+1722	stdout	0	find_windows url-exact [-0] vs [NaN]
+1723	stdout	0	find_windows url-exact [-0] vs [0]
+1724	stdout	0	find_windows url-exact [-0] vs [abc]
+1725	stdout	0	find_windows url-exact [-0] vs [1e-400]
+1726	stdout	0	find_windows url-exact [0] vs [1]
+1727	stdout	0	find_windows url-exact [0] vs [1.0]
+1728	stdout	0	find_windows url-exact [0] vs [16]
+1729	stdout	0	find_windows url-exact [0] vs [1000]
+1730	stdout	0	find_windows url-exact [0] vs []
+1731	stdout	0	find_windows url-exact [0] vs [Infinity]
+1732	stdout	0	find_windows url-exact [0] vs [NaN]
+1733	stdout	0	find_windows url-exact [0] vs [0]
+1734	stdout	0	find_windows url-exact [0] vs [abc]
+1735	stdout	0	find_windows url-exact [0] vs [1e-400]
+1736	stdout	0	find_windows url-exact [1x] vs [1]
+1737	stdout	0	find_windows url-exact [1x] vs [1.0]
+1738	stdout	0	find_windows url-exact [1x] vs [16]
+1739	stdout	0	find_windows url-exact [1x] vs [1000]
+1740	stdout	0	find_windows url-exact [1x] vs []
+1741	stdout	0	find_windows url-exact [1x] vs [Infinity]
+1742	stdout	0	find_windows url-exact [1x] vs [NaN]
+1743	stdout	0	find_windows url-exact [1x] vs [0]
+1744	stdout	0	find_windows url-exact [1x] vs [abc]
+1745	stdout	0	find_windows url-exact [1x] vs [1e-400]
+1746	stdout	0	find_windows url-exact [abc] vs [1]
+1747	stdout	0	find_windows url-exact [abc] vs [1.0]
+1748	stdout	0	find_windows url-exact [abc] vs [16]
+1749	stdout	0	find_windows url-exact [abc] vs [1000]
+1750	stdout	0	find_windows url-exact [abc] vs []
+1751	stdout	0	find_windows url-exact [abc] vs [Infinity]
+1752	stdout	0	find_windows url-exact [abc] vs [NaN]
+1753	stdout	0	find_windows url-exact [abc] vs [0]
+1754	stdout	0	find_windows url-exact [abc] vs [abc]
+1755	stdout	0	find_windows url-exact [abc] vs [1e-400]
+1756	stdout	0	find_windows url-exact [1.0e0] vs [1]
+1757	stdout	0	find_windows url-exact [1.0e0] vs [1.0]
+1758	stdout	0	find_windows url-exact [1.0e0] vs [16]
+1759	stdout	0	find_windows url-exact [1.0e0] vs [1000]
+1760	stdout	0	find_windows url-exact [1.0e0] vs []
+1761	stdout	0	find_windows url-exact [1.0e0] vs [Infinity]
+1762	stdout	0	find_windows url-exact [1.0e0] vs [NaN]
+1763	stdout	0	find_windows url-exact [1.0e0] vs [0]
+1764	stdout	0	find_windows url-exact [1.0e0] vs [abc]
+1765	stdout	0	find_windows url-exact [1.0e0] vs [1e-400]
+1766	stdout	0	find_windows url-exact [0x1p4] vs [1]
+1767	stdout	0	find_windows url-exact [0x1p4] vs [1.0]
+1768	stdout	0	find_windows url-exact [0x1p4] vs [16]
+1769	stdout	0	find_windows url-exact [0x1p4] vs [1000]
+1770	stdout	0	find_windows url-exact [0x1p4] vs []
+1771	stdout	0	find_windows url-exact [0x1p4] vs [Infinity]
+1772	stdout	0	find_windows url-exact [0x1p4] vs [NaN]
+1773	stdout	0	find_windows url-exact [0x1p4] vs [0]
+1774	stdout	0	find_windows url-exact [0x1p4] vs [abc]
+1775	stdout	0	find_windows url-exact [0x1p4] vs [1e-400]
+1776	stdout	0	find_windows url-exact [5e] vs [1]
+1777	stdout	0	find_windows url-exact [5e] vs [1.0]
+1778	stdout	0	find_windows url-exact [5e] vs [16]
+1779	stdout	0	find_windows url-exact [5e] vs [1000]
+1780	stdout	0	find_windows url-exact [5e] vs []
+1781	stdout	0	find_windows url-exact [5e] vs [Infinity]
+1782	stdout	0	find_windows url-exact [5e] vs [NaN]
+1783	stdout	0	find_windows url-exact [5e] vs [0]
+1784	stdout	0	find_windows url-exact [5e] vs [abc]
+1785	stdout	0	find_windows url-exact [5e] vs [1e-400]
+1786	stdout	0	find_windows url-exact [1_0] vs [1]
+1787	stdout	0	find_windows url-exact [1_0] vs [1.0]
+1788	stdout	0	find_windows url-exact [1_0] vs [16]
+1789	stdout	0	find_windows url-exact [1_0] vs [1000]
+1790	stdout	0	find_windows url-exact [1_0] vs []
+1791	stdout	0	find_windows url-exact [1_0] vs [Infinity]
+1792	stdout	0	find_windows url-exact [1_0] vs [NaN]
+1793	stdout	0	find_windows url-exact [1_0] vs [0]
+1794	stdout	0	find_windows url-exact [1_0] vs [abc]
+1795	stdout	0	find_windows url-exact [1_0] vs [1e-400]
+1796	stdout	0	find_windows url-exact 跳脫 [a\tb]
+1797	stdout	0	find_windows url-contains 跳脫 [a\tb]
+1798	stdout	0	find_windows url-exact 跳脫 [a\\b]
+1799	stdout	0	find_windows url-contains 跳脫 [a\\b]
+1800	stdout	0	find_windows url-exact 跳脫 [a\qb]
+1801	stdout	0	find_windows url-contains 跳脫 [a\qb]
+1802	stdout	0	find_windows url-exact 跳脫 [a\101b]
+1803	stdout	0	find_windows url-contains 跳脫 [a\101b]
+1804	stdout	0	find_windows url-exact 跳脫 [ab\]
+1805	stdout	0	find_windows url-contains 跳脫 [ab\]
+1806	stdout	0	find_windows url-exact 跳脫 [a\0b]
+1807	stdout	0	find_windows url-contains 跳脫 [a\0b]
+1808	stdout	0	find_windows url-exact 跳脫 [/]
+1809	stdout	0	find_windows url-contains 跳脫 [/]
+1810	stdout	0	find_windows url-exact 跳脫 []
+1811	stdout	0	find_windows url-contains 跳脫 []
+1812	stdout	0	find_windows url-exact 畸形-空字串（空值）
+1813	stdout	0	find_windows url-exact 畸形-空字串（x）
+1814	stdout	0	find_windows url-contains 畸形-空字串（空值）
+1815	stdout	0	find_windows url-contains 畸形-空字串（x）
+1816	stdout	0	find_windows title-regex 畸形-空字串（空值）
+1817	stdout	0	find_windows title-regex 畸形-空字串（x）
+1818	stdout	0	find_windows app 畸形-空字串
+1819	stdout	2	find_windows 未知類型 畸形-空字串
+1820	stdout	0	find_windows url-exact 畸形-只有一欄（空值）
+1821	stdout	0	find_windows url-exact 畸形-只有一欄（x）
+1822	stdout	0	find_windows url-contains 畸形-只有一欄（空值）
+1823	stdout	0	find_windows url-contains 畸形-只有一欄（x）
+1824	stdout	0	find_windows title-regex 畸形-只有一欄（空值）
+1825	stdout	0	find_windows title-regex 畸形-只有一欄（x）
+1826	stdout	0	find_windows app 畸形-只有一欄
+1827	stdout	2	find_windows 未知類型 畸形-只有一欄
+1828	stdout	0	find_windows url-exact 畸形-中間有空行（空值）
+1829	stdout	0	find_windows url-exact 畸形-中間有空行（x）
+1830	stdout	0	find_windows url-contains 畸形-中間有空行（空值）
+1831	stdout	0	find_windows url-contains 畸形-中間有空行（x）
+1832	stdout	0	find_windows title-regex 畸形-中間有空行（空值）
+1833	stdout	0	find_windows title-regex 畸形-中間有空行（x）
+1834	stdout	0	find_windows app 畸形-中間有空行
+1835	stdout	2	find_windows 未知類型 畸形-中間有空行
+1836	stdout	0	find_windows url-exact 畸形-排序與空id（空值）
+1837	stdout	0	find_windows url-exact 畸形-排序與空id（x）
+1838	stdout	0	find_windows url-contains 畸形-排序與空id（空值）
+1839	stdout	0	find_windows url-contains 畸形-排序與空id（x）
+1840	stdout	0	find_windows title-regex 畸形-排序與空id（空值）
+1841	stdout	0	find_windows title-regex 畸形-排序與空id（x）
+1842	stdout	0	find_windows app 畸形-排序與空id
+1843	stdout	2	find_windows 未知類型 畸形-排序與空id
+1844	stdout	0	find_windows url-exact 畸形-重複id（空值）
+1845	stdout	0	find_windows url-exact 畸形-重複id（x）
+1846	stdout	0	find_windows url-contains 畸形-重複id（空值）
+1847	stdout	0	find_windows url-contains 畸形-重複id（x）
+1848	stdout	0	find_windows title-regex 畸形-重複id（空值）
+1849	stdout	0	find_windows title-regex 畸形-重複id（x）
+1850	stdout	0	find_windows app 畸形-重複id
+1851	stdout	2	find_windows 未知類型 畸形-重複id
+1852	stdout	0	find_windows url-exact 畸形-結尾斜線（空值）
+1853	stdout	0	find_windows url-exact 畸形-結尾斜線（x）
+1854	stdout	0	find_windows url-contains 畸形-結尾斜線（空值）
+1855	stdout	0	find_windows url-contains 畸形-結尾斜線（x）
+1856	stdout	0	find_windows title-regex 畸形-結尾斜線（空值）
+1857	stdout	0	find_windows title-regex 畸形-結尾斜線（x）
+1858	stdout	0	find_windows app 畸形-結尾斜線
+1859	stdout	2	find_windows 未知類型 畸形-結尾斜線
+1860	stdout	0	find_windows url-exact 畸形-欄位不足（空值）
+1861	stdout	0	find_windows url-exact 畸形-欄位不足（x）
+1862	stdout	0	find_windows url-contains 畸形-欄位不足（空值）
+1863	stdout	0	find_windows url-contains 畸形-欄位不足（x）
+1864	stdout	0	find_windows title-regex 畸形-欄位不足（空值）
+1865	stdout	0	find_windows title-regex 畸形-欄位不足（x）
+1866	stdout	0	find_windows app 畸形-欄位不足
+1867	stdout	2	find_windows 未知類型 畸形-欄位不足
+1868	stdout	0	find_windows url-exact 畸形-欄位過多（空值）
+1869	stdout	0	find_windows url-exact 畸形-欄位過多（x）
+1870	stdout	0	find_windows url-contains 畸形-欄位過多（空值）
+1871	stdout	0	find_windows url-contains 畸形-欄位過多（x）
+1872	stdout	0	find_windows title-regex 畸形-欄位過多（空值）
+1873	stdout	0	find_windows title-regex 畸形-欄位過多（x）
+1874	stdout	0	find_windows app 畸形-欄位過多
+1875	stdout	2	find_windows 未知類型 畸形-欄位過多
+1876	stderr	2	find_windows stderr 未知類型
+1877	stderr	2	find_windows stderr 未知類型（空字串）
+1878	stderr	2	find_windows stderr 未知類型（帶 TAB）
+1879	stderr	0	find_windows stderr 合法類型不印東西
+1880	stdout	0	current_tab_url 191 DUMP4
+1881	stdout	0	current_tab_url 192 DUMP4
+1882	stdout	0	current_tab_url 999 DUMP4
+1883	stdout	0	current_tab_url [191] 兩個當前分頁
+1884	stdout	0	current_tab_url [192] 兩個當前分頁
+1885	stdout	0	current_tab_url [] 兩個當前分頁
+1886	stdout	0	current_tab_url [191.0] 兩個當前分頁
+1887	stdout	0	current_tab_url [+191] 兩個當前分頁
+1888	stdout	0	current_tab_url [0x10] 兩個當前分頁
+1889	stdout	0	current_tab_url [abc] 兩個當前分頁
+1890	stdout	0	current_tab_url [a\tb] 兩個當前分頁
+1891	stdout	0	current_tab_url [191] 旗標不是純1
+1892	stdout	0	current_tab_url [192] 旗標不是純1
+1893	stdout	0	current_tab_url [] 旗標不是純1
+1894	stdout	0	current_tab_url [191.0] 旗標不是純1
+1895	stdout	0	current_tab_url [+191] 旗標不是純1
+1896	stdout	0	current_tab_url [0x10] 旗標不是純1
+1897	stdout	0	current_tab_url [abc] 旗標不是純1
+1898	stdout	0	current_tab_url [a\tb] 旗標不是純1
+1899	stdout	0	current_tab_url [191] id帶小數
+1900	stdout	0	current_tab_url [192] id帶小數
+1901	stdout	0	current_tab_url [] id帶小數
+1902	stdout	0	current_tab_url [191.0] id帶小數
+1903	stdout	0	current_tab_url [+191] id帶小數
+1904	stdout	0	current_tab_url [0x10] id帶小數
+1905	stdout	0	current_tab_url [abc] id帶小數
+1906	stdout	0	current_tab_url [a\tb] id帶小數
+1907	stdout	0	current_tab_url [191] id帶前導空白
+1908	stdout	0	current_tab_url [192] id帶前導空白
+1909	stdout	0	current_tab_url [] id帶前導空白
+1910	stdout	0	current_tab_url [191.0] id帶前導空白
+1911	stdout	0	current_tab_url [+191] id帶前導空白
+1912	stdout	0	current_tab_url [0x10] id帶前導空白
+1913	stdout	0	current_tab_url [abc] id帶前導空白
+1914	stdout	0	current_tab_url [a\tb] id帶前導空白
+1915	stdout	0	current_tab_url [191] 欄位不足
+1916	stdout	0	current_tab_url [192] 欄位不足
+1917	stdout	0	current_tab_url [] 欄位不足
+1918	stdout	0	current_tab_url [191.0] 欄位不足
+1919	stdout	0	current_tab_url [+191] 欄位不足
+1920	stdout	0	current_tab_url [0x10] 欄位不足
+1921	stdout	0	current_tab_url [abc] 欄位不足
+1922	stdout	0	current_tab_url [a\tb] 欄位不足
+1923	stdout	0	current_tab_url [191] 欄位過多
+1924	stdout	0	current_tab_url [192] 欄位過多
+1925	stdout	0	current_tab_url [] 欄位過多
+1926	stdout	0	current_tab_url [191.0] 欄位過多
+1927	stdout	0	current_tab_url [+191] 欄位過多
+1928	stdout	0	current_tab_url [0x10] 欄位過多
+1929	stdout	0	current_tab_url [abc] 欄位過多
+1930	stdout	0	current_tab_url [a\tb] 欄位過多
+1931	stdout	0	current_tab_url [191] 空字串
+1932	stdout	0	current_tab_url [192] 空字串
+1933	stdout	0	current_tab_url [] 空字串
+1934	stdout	0	current_tab_url [191.0] 空字串
+1935	stdout	0	current_tab_url [+191] 空字串
+1936	stdout	0	current_tab_url [0x10] 空字串
+1937	stdout	0	current_tab_url [abc] 空字串
+1938	stdout	0	current_tab_url [a\tb] 空字串
+1939	stdout	0	current_tab_url [191] 只有一欄
+1940	stdout	0	current_tab_url [192] 只有一欄
+1941	stdout	0	current_tab_url [] 只有一欄
+1942	stdout	0	current_tab_url [191.0] 只有一欄
+1943	stdout	0	current_tab_url [+191] 只有一欄
+1944	stdout	0	current_tab_url [0x10] 只有一欄
+1945	stdout	0	current_tab_url [abc] 只有一欄
+1946	stdout	0	current_tab_url [a\tb] 只有一欄
+1947	stdout	0	current_tab_url [191] 開頭空行
+1948	stdout	0	current_tab_url [192] 開頭空行
+1949	stdout	0	current_tab_url [] 開頭空行
+1950	stdout	0	current_tab_url [191.0] 開頭空行
+1951	stdout	0	current_tab_url [+191] 開頭空行
+1952	stdout	0	current_tab_url [0x10] 開頭空行
+1953	stdout	0	current_tab_url [abc] 開頭空行
+1954	stdout	0	current_tab_url [a\tb] 開頭空行
+1955	stdout	0	id_for_label 終端機 IDMAP
+1956	stdout	0	id_for_label 工作瀏覽 IDMAP
+1957	stdout	0	id_for_label Chat IDMAP
+1958	stdout	1	id_for_label 沒這個 IDMAP
+1959	stdout	0	id_for_label [A] 重複key
+1960	stdout	1	id_for_label [] 重複key
+1961	stdout	1	id_for_label [a b] 重複key
+1962	stdout	1	id_for_label [ A] 重複key
+1963	stdout	1	id_for_label [終] 重複key
+1964	stdout	1	id_for_label [工] 重複key
+1965	stdout	1	id_for_label [終端機] 重複key
+1966	stdout	1	id_for_label [a\tb] 重複key
+1967	stdout	0	id_for_label [A] 行首TAB
+1968	stdout	1	id_for_label [] 行首TAB
+1969	stdout	1	id_for_label [a b] 行首TAB
+1970	stdout	1	id_for_label [ A] 行首TAB
+1971	stdout	1	id_for_label [終] 行首TAB
+1972	stdout	1	id_for_label [工] 行首TAB
+1973	stdout	1	id_for_label [終端機] 行首TAB
+1974	stdout	1	id_for_label [a\tb] 行首TAB
+1975	stdout	0	id_for_label [A] 連續TAB
+1976	stdout	1	id_for_label [] 連續TAB
+1977	stdout	1	id_for_label [a b] 連續TAB
+1978	stdout	1	id_for_label [ A] 連續TAB
+1979	stdout	1	id_for_label [終] 連續TAB
+1980	stdout	1	id_for_label [工] 連續TAB
+1981	stdout	1	id_for_label [終端機] 連續TAB
+1982	stdout	1	id_for_label [a\tb] 連續TAB
+1983	stdout	0	id_for_label [A] 三欄
+1984	stdout	1	id_for_label [] 三欄
+1985	stdout	1	id_for_label [a b] 三欄
+1986	stdout	1	id_for_label [ A] 三欄
+1987	stdout	1	id_for_label [終] 三欄
+1988	stdout	1	id_for_label [工] 三欄
+1989	stdout	1	id_for_label [終端機] 三欄
+1990	stdout	1	id_for_label [a\tb] 三欄
+1991	stdout	0	id_for_label [A] 結尾TAB
+1992	stdout	1	id_for_label [] 結尾TAB
+1993	stdout	1	id_for_label [a b] 結尾TAB
+1994	stdout	1	id_for_label [ A] 結尾TAB
+1995	stdout	1	id_for_label [終] 結尾TAB
+1996	stdout	1	id_for_label [工] 結尾TAB
+1997	stdout	1	id_for_label [終端機] 結尾TAB
+1998	stdout	1	id_for_label [a\tb] 結尾TAB
+1999	stdout	0	id_for_label [A] 沒有TAB
+2000	stdout	1	id_for_label [] 沒有TAB
+2001	stdout	1	id_for_label [a b] 沒有TAB
+2002	stdout	1	id_for_label [ A] 沒有TAB
+2003	stdout	1	id_for_label [終] 沒有TAB
+2004	stdout	1	id_for_label [工] 沒有TAB
+2005	stdout	1	id_for_label [終端機] 沒有TAB
+2006	stdout	1	id_for_label [a\tb] 沒有TAB
+2007	stdout	1	id_for_label [A] 整行都是TAB
+2008	stdout	0	id_for_label [] 整行都是TAB
+2009	stdout	1	id_for_label [a b] 整行都是TAB
+2010	stdout	1	id_for_label [ A] 整行都是TAB
+2011	stdout	1	id_for_label [終] 整行都是TAB
+2012	stdout	1	id_for_label [工] 整行都是TAB
+2013	stdout	1	id_for_label [終端機] 整行都是TAB
+2014	stdout	1	id_for_label [a\tb] 整行都是TAB
+2015	stdout	1	id_for_label [A] 空字串
+2016	stdout	0	id_for_label [] 空字串
+2017	stdout	1	id_for_label [a b] 空字串
+2018	stdout	1	id_for_label [ A] 空字串
+2019	stdout	1	id_for_label [終] 空字串
+2020	stdout	1	id_for_label [工] 空字串
+2021	stdout	1	id_for_label [終端機] 空字串
+2022	stdout	1	id_for_label [a\tb] 空字串
+2023	stdout	0	id_for_label [A] 開頭空行
+2024	stdout	0	id_for_label [] 開頭空行
+2025	stdout	1	id_for_label [a b] 開頭空行
+2026	stdout	1	id_for_label [ A] 開頭空行
+2027	stdout	1	id_for_label [終] 開頭空行
+2028	stdout	1	id_for_label [工] 開頭空行
+2029	stdout	1	id_for_label [終端機] 開頭空行
+2030	stdout	1	id_for_label [a\tb] 開頭空行
+2031	stdout	1	id_for_label [A] 帶空白的key
+2032	stdout	1	id_for_label [] 帶空白的key
+2033	stdout	0	id_for_label [a b] 帶空白的key
+2034	stdout	0	id_for_label [ A] 帶空白的key
+2035	stdout	1	id_for_label [終] 帶空白的key
+2036	stdout	1	id_for_label [工] 帶空白的key
+2037	stdout	1	id_for_label [終端機] 帶空白的key
+2038	stdout	1	id_for_label [a\tb] 帶空白的key
+2039	stdout	1	id_for_label [A] 兩個中文key
+2040	stdout	1	id_for_label [] 兩個中文key
+2041	stdout	1	id_for_label [a b] 兩個中文key
+2042	stdout	1	id_for_label [ A] 兩個中文key
+2043	stdout	0	id_for_label [終] 兩個中文key
+2044	stdout	0	id_for_label [工] 兩個中文key
+2045	stdout	1	id_for_label [終端機] 兩個中文key
+2046	stdout	1	id_for_label [a\tb] 兩個中文key
+2047	stdout	0	escape_ere 0x20
+2048	stdout	0	escape_ere 0x21
+2049	stdout	0	escape_ere 0x22
+2050	stdout	0	escape_ere 0x23
+2051	stdout	0	escape_ere 0x24
+2052	stdout	0	escape_ere 0x25
+2053	stdout	0	escape_ere 0x26
+2054	stdout	0	escape_ere 0x27
+2055	stdout	0	escape_ere 0x28
+2056	stdout	0	escape_ere 0x29
+2057	stdout	0	escape_ere 0x2a
+2058	stdout	0	escape_ere 0x2b
+2059	stdout	0	escape_ere 0x2c
+2060	stdout	0	escape_ere 0x2d
+2061	stdout	0	escape_ere 0x2e
+2062	stdout	0	escape_ere 0x2f
+2063	stdout	0	escape_ere 0x30
+2064	stdout	0	escape_ere 0x31
+2065	stdout	0	escape_ere 0x32
+2066	stdout	0	escape_ere 0x33
+2067	stdout	0	escape_ere 0x34
+2068	stdout	0	escape_ere 0x35
+2069	stdout	0	escape_ere 0x36
+2070	stdout	0	escape_ere 0x37
+2071	stdout	0	escape_ere 0x38
+2072	stdout	0	escape_ere 0x39
+2073	stdout	0	escape_ere 0x3a
+2074	stdout	0	escape_ere 0x3b
+2075	stdout	0	escape_ere 0x3c
+2076	stdout	0	escape_ere 0x3d
+2077	stdout	0	escape_ere 0x3e
+2078	stdout	0	escape_ere 0x3f
+2079	stdout	0	escape_ere 0x40
+2080	stdout	0	escape_ere 0x41
+2081	stdout	0	escape_ere 0x42
+2082	stdout	0	escape_ere 0x43
+2083	stdout	0	escape_ere 0x44
+2084	stdout	0	escape_ere 0x45
+2085	stdout	0	escape_ere 0x46
+2086	stdout	0	escape_ere 0x47
+2087	stdout	0	escape_ere 0x48
+2088	stdout	0	escape_ere 0x49
+2089	stdout	0	escape_ere 0x4a
+2090	stdout	0	escape_ere 0x4b
+2091	stdout	0	escape_ere 0x4c
+2092	stdout	0	escape_ere 0x4d
+2093	stdout	0	escape_ere 0x4e
+2094	stdout	0	escape_ere 0x4f
+2095	stdout	0	escape_ere 0x50
+2096	stdout	0	escape_ere 0x51
+2097	stdout	0	escape_ere 0x52
+2098	stdout	0	escape_ere 0x53
+2099	stdout	0	escape_ere 0x54
+2100	stdout	0	escape_ere 0x55
+2101	stdout	0	escape_ere 0x56
+2102	stdout	0	escape_ere 0x57
+2103	stdout	0	escape_ere 0x58
+2104	stdout	0	escape_ere 0x59
+2105	stdout	0	escape_ere 0x5a
+2106	stdout	0	escape_ere 0x5b
+2107	stdout	0	escape_ere 0x5c
+2108	stdout	0	escape_ere 0x5d
+2109	stdout	0	escape_ere 0x5e
+2110	stdout	0	escape_ere 0x5f
+2111	stdout	0	escape_ere 0x60
+2112	stdout	0	escape_ere 0x61
+2113	stdout	0	escape_ere 0x62
+2114	stdout	0	escape_ere 0x63
+2115	stdout	0	escape_ere 0x64
+2116	stdout	0	escape_ere 0x65
+2117	stdout	0	escape_ere 0x66
+2118	stdout	0	escape_ere 0x67
+2119	stdout	0	escape_ere 0x68
+2120	stdout	0	escape_ere 0x69
+2121	stdout	0	escape_ere 0x6a
+2122	stdout	0	escape_ere 0x6b
+2123	stdout	0	escape_ere 0x6c
+2124	stdout	0	escape_ere 0x6d
+2125	stdout	0	escape_ere 0x6e
+2126	stdout	0	escape_ere 0x6f
+2127	stdout	0	escape_ere 0x70
+2128	stdout	0	escape_ere 0x71
+2129	stdout	0	escape_ere 0x72
+2130	stdout	0	escape_ere 0x73
+2131	stdout	0	escape_ere 0x74
+2132	stdout	0	escape_ere 0x75
+2133	stdout	0	escape_ere 0x76
+2134	stdout	0	escape_ere 0x77
+2135	stdout	0	escape_ere 0x78
+2136	stdout	0	escape_ere 0x79
+2137	stdout	0	escape_ere 0x7a
+2138	stdout	0	escape_ere 0x7b
+2139	stdout	0	escape_ere 0x7c
+2140	stdout	0	escape_ere 0x7d
+2141	stdout	0	escape_ere 0x7e
+2142	stdout	0	escape_ere ctrl 0x01
+2143	stdout	0	escape_ere ctrl 0x09
+2144	stdout	0	escape_ere ctrl 0x0a
+2145	stdout	0	escape_ere ctrl 0x0d
+2146	stdout	0	escape_ere ctrl 0x1b
+2147	stdout	0	escape_ere ctrl 0x1f
+2148	stdout	0	escape_ere ctrl 0x7f
+2149	stdout	0	escape_ere 空字串
+2150	stdout	0	escape_ere 全部元字元
+2151	stdout	0	escape_ere 兩個反斜線
+2152	stdout	0	escape_ere 反斜線接元字元
+2153	stdout	0	escape_ere 反斜線接左括號
+2154	stdout	0	escape_ere 已轉義過一次
+2155	stdout	0	escape_ere 測試語料 1
+2156	stdout	0	escape_ere 測試語料 2
+2157	stdout	0	escape_ere 測試語料 3
+2158	stdout	0	escape_ere 測試語料 4
+2159	stdout	0	escape_ere 多行
+2160	stdout	0	escape_ere 中文
+2161	stdout	0	escape_ere NFC
+2162	stdout	0	escape_ere NFD
+2163	stdout	0	往返 [a.b]
+2164	stdout	0	往返 [a*b]
+2165	stdout	0	往返 [a+b]
+2166	stdout	0	往返 [a?b]
+2167	stdout	0	往返 [a(b)c]
+2168	stdout	0	往返 [a[x]b]
+2169	stdout	0	往返 [a|b]
+2170	stdout	0	往返 [a{2}b]
+2171	stdout	0	往返 [a^b$c]
+2172	stdout	0	往返 [a\b]
+2173	stdout	0	rule 有 url many=[0]
+2174	stdout	0	rule 無 url many=[0]
+2175	stdout	0	rule 有 url many=[1]
+2176	stdout	0	rule 無 url many=[1]
+2177	stdout	0	rule 有 url many=[01]
+2178	stdout	0	rule 無 url many=[01]
+2179	stdout	0	rule 有 url many=[true]
+2180	stdout	0	rule 無 url many=[true]
+2181	stdout	0	rule 有 url many=[]
+2182	stdout	0	rule 無 url many=[]
+2183	stdout	0	rule 有 url many=[ 1]
+2184	stdout	0	rule 無 url many=[ 1]
+2185	stdout	0	rule 測試語料 1
+2186	stdout	0	rule 測試語料 2
+2187	stdout	0	rule 測試語料 3
+2188	stdout	0	rule 空 url 是空白字元
+2189	stdout	0	rule 全空
+2190	stdout	0	rule 空標題
+2191	stdout	0	rule 標題帶引號與反斜線
+2192	stdout	0	rule 標題帶 TAB
+2193	stdout	0	rule 標題帶換行
+2194	stdout	0	rule 標題全是元字元
+2195	stdout	0	rule 標題中文
+2196	stdout	0	rule label 帶引號
+2197	stdout	0	rule url 帶引號
+2198	stdout	0	rule app 帶反斜線
+2199	stdout	0	state_get STATE_DUP [location]
+2200	stdout	0	state_get STATE_DUP [profile.home]
+2201	stdout	0	state_get STATE_DUP [profile.office]
+2202	stdout	0	state_get STATE_DUP [unknown.key]
+2203	stdout	0	state_get STATE_DUP []
+2204	stdout	0	state_get STATE_DUP [nosuch]
+2205	stdout	0	state_get STATE_DUP [註解要被忽略]
+2206	stdout	0	state_get 空內容
+2207	stdout	0	state_get 只有註解
+2208	stdout	0	state_get 最後一筆是空
+2209	stdout	0	state_get key 帶空白
+2210	stdout	0	state_get 值帶等號
+2211	stdout	0	state_get CRLF
+2212	stdout	0	state_get 沒有等號
+2213	stdout	0	state_get 空 key 的行
+2214	stdout	0	state_get NFC 找 NFD
+2215	stdout	0	state_get NFC 找 NFC
+2216	stdout	0	state_set STATE_DUP 覆寫
+2217	stdout	1	state_set STATE_DUP 刪除
+2218	stdout	0	state_set 從空內容建立
+2219	stdout	0	state_set STATE_DUP 新 key
+2220	stdout	1	state_set STATE_DUP 刪未知
+2221	stdout	0	state_set 插入序 [z=1,a=2,m=3,b=4]
+2222	stdout	0	state_set 插入序 [a=2,b=4,m=3,z=1]
+2223	stdout	0	state_set 插入序 [m=3,z=1,b=4,a=2]
+2224	stdout	0	state_set 插入序 [b=4,m=3,a=2,z=1]
+2225	stdout	0	state_set 整行排序 b/b2
+2226	stdout	0	state_set 整行排序 profile
+2227	stdout	0	state_set 位元組定序
+2228	stdout	0	state_set 數字型 key
+2229	stdout	0	state_set 沒有等號的行
+2230	stdout	0	state_set 註解與空行
+2231	stdout	0	state_set key 兩側空白
+2232	stdout	0	state_set 空的 key
+2233	stdout	0	state_set 值帶等號
+2234	stdout	0	state_set 值帶換行
+2235	stdout	0	state_set 外層不去重
+2236	stdout	0	state_set 重複 key 收斂
+2237	stdout	0	state_set CRLF
+2238	stdout	1	state_set 空內容空值
+2239	stdout	1	state_set 覆寫成空
+2240	stdout	0	state_set NFC 內容 NFD key
+2241	stdout	0	state_set NFC 內容 NFC key
+2242	stdout	0	state_set 中文值
+2243	stdout	0	state_set 值帶空白
+2244	stdout	0	斷言補完 001 state_get
+2245	stdout	0	斷言補完 002 state_get
+2246	stdout	0	斷言補完 003 state_get
+2247	stdout	0	斷言補完 004 profile_names_in
+2248	stdout	0	斷言補完 005 state_get
+2249	stdout	0	斷言補完 006 state_get
+2250	stdout	0	斷言補完 007 state_get
+2251	stdout	0	斷言補完 008 location_desc
+2252	stdout	0	斷言補完 009 escape_ere
+2253	stdout	0	斷言補完 010 trim_ratios
+2254	stdout	0	斷言補完 011 trim_ratios
+2255	stderr	0	斷言補完 012 validate_layout
+2256	stderr	0	斷言補完 013 validate_layout
+2257	stdout	0	斷言補完 014 escape_ere

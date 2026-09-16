@@ -1,0 +1,38 @@
+{
+  "office": {
+    "desc": "A+B",
+    "displays": {
+      "main": "AAAA-MAIN",
+      "second": "AAAA-CHAT"
+    },
+    "exile": [
+      "main"
+    ],
+    "windows": [],
+    "profiles": {
+      "開發": {
+        "trees": {
+          "main": {
+            "window": "A"
+          }
+        }
+      }
+    }
+  },
+  "home": {
+    "desc": "C+D",
+    "displays": {
+      "main": "BBBB-MAIN",
+      "second": "BBBB-CHAT"
+    },
+    "exile": [
+      "main"
+    ],
+    "windows": [],
+    "profiles": {
+      "開發": {
+        "trees": {}
+      }
+    }
+  }
+}

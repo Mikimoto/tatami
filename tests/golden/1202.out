@@ -1,0 +1,17 @@
+{
+  "h": {
+    "windows": [
+      {
+        "label": "Z"
+      }
+    ],
+    "profiles": {
+      "P": {
+        "windows": {
+          "k": 1
+        },
+        "trees": {}
+      }
+    }
+  }
+}

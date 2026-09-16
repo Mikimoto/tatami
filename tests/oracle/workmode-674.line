@@ -1,0 +1,1 @@
+        '"  \($l)  id=\(.id) display=\(.display) space=\(.space) \(.frame.w|floor)x\(.frame.h|floor) @\(.frame.x|floor),\(.frame.y|floor)"'

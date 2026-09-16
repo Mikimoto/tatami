@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+#MISE description="Check the build and run environment (swift / jq / fzf / symlink)"
+#
+# 為什麼需要這支：mise.toml 的 [tools] 是空的（理由寫在那裡），所以沒有任何東西擋
+# 版本漂移。這支就是那個擋板——它只報告，不安裝。
+#
+# 任一項 MISS 就回非零，不做「warning」這一級。jq 大版本跳動會**靜默改變**
+# tests/swift_checks.sh 那個 oracle 的意思，那不是警告等級的事。
+#
+# repo 根從腳本自己的路徑算，不用 cwd：mise 目前確實從 config root 跑 task
+# （實測過），但那是它的預設而不是這支腳本的前提——被別人用別的方式呼叫時，
+# 靠 $0 仍然算得對。
+set -uo pipefail
+
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)
+LINK="${HOME}/.local/bin/tatami"
+BIN="${ROOT}/app/.build/debug/tatami"
+FAILED=0
+
+ok()   { printf '  ok   %s\n' "$1"; }
+miss() { printf '  MISS %s\n' "$1"; FAILED=1; }
+
+printf 'tatami doctor（%s）\n' "${ROOT}"
+
+# --- swift ---
+if command -v swift >/dev/null 2>&1; then
+  ok "swift $(swift --version 2>&1 | grep -oE 'Swift version [0-9.]+' | head -1 | awk '{print $3}')"
+else
+  miss "找不到 swift（裝 Xcode 或 Command Line Tools）"
+fi
+
+# --- jq ---
+# tests/swift_checks.sh 拿 `jq .` 當 JSONWriter 的對照組，而那個合約是「逐位元組
+# 相同」，含 jq 1.8 特有的數字字面值保留（2.50 不會變 2.5）。大版本一跳，「正確」
+# 的定義就換了人，而且不會有任何東西紅——所以這裡算 MISS 不算 warning。
+JQ_VER=$(jq --version 2>/dev/null | sed 's/^jq-//')
+case "${JQ_VER}" in
+  1.8*) ok "jq ${JQ_VER}" ;;
+  "")   miss "找不到 jq（brew install jq）" ;;
+  *)    miss "jq ${JQ_VER}，但 tests/swift_checks.sh 的對照組是 1.8.x" ;;
+esac
+
+# --- fzf ---
+# 只有 --switch 的互動選單用得到，但仍算 MISS：這是 doctor 不是 test。
+if command -v fzf >/dev/null 2>&1; then
+  ok "fzf $(fzf --version | awk '{print $1}')（--switch 的選單）"
+else
+  miss "找不到 fzf（brew install fzf）；--switch 會退回要自己打 地點/profile"
+fi
+
+# --- symlink ---
+# 指到**別的 checkout** 比斷鏈更危險：--save 會覆寫那一份 layout.json，而使用者
+# 以為自己在改這一份。所以三種壞法分開講。
+if [ ! -e "${LINK}" ] && [ ! -L "${LINK}" ]; then
+  miss "${LINK} 不存在（跑 mise run install）"
+elif [ ! -x "${LINK}" ]; then
+  miss "${LINK} 斷鏈，指向 $(readlink "${LINK}" 2>/dev/null)（跑 mise run install）"
+elif [ "$(readlink "${LINK}")" != "${BIN}" ]; then
+  miss "${LINK} 指向 $(readlink "${LINK}")，不是這個 repo 的 ${BIN}"
+else
+  ok "${LINK} → ${BIN}"
+fi
+
+if [ "${FAILED}" = 0 ]; then
+  printf '全部通過\n'
+else
+  printf '有問題，見上\n'
+fi
+exit "${FAILED}"

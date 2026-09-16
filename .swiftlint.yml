@@ -1,0 +1,48 @@
+# 預設規則集幾乎全開，也不另外打開 opt_in_rules。停用的每一條都在下面說明理由，
+# 而且理由一律是「這條規則在這個 repo 沒有正確的適用點」，不是「數字太難看」。
+#
+# 調參數（`identifier_name` 的 min_length、`file_length` 的 warning）一律不做：
+# 那會讓數字消失而程式碼一個字都沒變。留著，`mise run lint` 就會一直報並回非零。
+included:
+  - app/Sources
+  - app/Tests
+
+# 一、兩條純排版——**排版歸 swiftformat 管**。這不是「規則不方便所以關掉」，
+# 是劃職責界線：兩支工具重疊的部分交給其中一支，才不會互相拆台。
+#
+# 為什麼非停不可（實測 2026-08-17）：這兩條與 swiftformat 的預設**方向相反**，
+# 留著會讓 fmt 變成穩定的來回循環——
+#   兩者都跑預設                        → swiftformat 想改 46 檔／swiftlint 293，四輪不動
+#   trailing_comma: mandatory_comma     → 仍不收斂，opening_brace 接著擋
+#   停用這兩條                          → 一輪收斂，swiftformat clean／swiftlint 294
+#
+# 二、`optional_data_string_conversion` 要求把 `String(decoding: data, as: UTF8.self)`
+# 換成 failable 的 `String(bytes:encoding:)`。**那是改行為，不是改風格**，而且這個
+# repo 的 35 個站點沒有一個該改（2026-08-17 逐處看過）。實測差別：
+#
+#     [0x41, 0xFF, 0x42]  String(decoding:)       → "A\u{FFFD}B"   永不失敗
+#                         String(bytes:encoding:) → nil            整個轉換失敗
+#     合法輸入（正控制）  兩者一致
+#
+# 35 個站點分成兩類，兩類都不該換：
+#
+#   * 17 處的位元組來自某個 Swift String 自己的 `.utf8` view，而切點全是 ASCII
+#     （0x09 TAB、0x0A、0x20、0x3D `=`、0x3A `:`）——UTF-8 的續接位元組一律 ≥ 0x80，
+#     所以 ASCII 位置永遠不在多位元組序列中間，切出來的片段必然合法。換成 failable
+#     等於加一條**永遠走不到**的 nil 分支，而處理它只有 `!`（改成 crash）或 `??` ""
+#     （改成靜默吃掉）兩種寫法，兩種都比 U+FFFD 差。
+#     StateFile、ProfileResolution、WindowMatching、WindowRules、JSONParser、
+#     WindowRulesTests、JSONEnvelope、EventRenderers 屬於這類（後兩者的位元組是
+#     JSONSerialization 自己的輸出）。
+#
+#   * 18 處讀的是外界的原始位元組（yabai／osascript／fzf 的 stdout、/dev/tty、
+#     檔案內容、stdin，以及測試裡讀子行程輸出的 helper）。bash 在這些位置**不會失敗**
+#     ——`$(...)` 與 `cat` 原樣帶著壞位元組往下走。回 nil 是憑空多一個 bash 沒有的
+#     失敗路徑，而這個 repo 的合約是與 bash 逐位元組相同。
+#
+# 語料在這裡幫不上忙：4515 個語料檔只有 2 個含不合法 UTF-8，所以「語料綠了」不能
+# 當成這 35 處判斷正確的證據。上面的理由是結構性的，不是靠測試撐著的。
+disabled_rules:
+  - trailing_comma
+  - opening_brace
+  - optional_data_string_conversion

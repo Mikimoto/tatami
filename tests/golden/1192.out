@@ -1,0 +1,73 @@
+{
+  "windows": [
+    {
+      "label": "S1",
+      "match": [
+        "app",
+        "S1A"
+      ]
+    },
+    {
+      "label": "S2",
+      "match": [
+        "url-contains",
+        "s2.example.com"
+      ],
+      "fallback": [
+        "title-regex",
+        "丙|丁"
+      ]
+    }
+  ],
+  "home": {
+    "desc": "C+D",
+    "displays": {
+      "main": "BBBB-MAIN"
+    },
+    "exile": [
+      "main"
+    ],
+    "windows": [
+      {
+        "label": "L1",
+        "match": [
+          "app",
+          "L1A"
+        ]
+      },
+      {
+        "label": "Z",
+        "match": [
+          "app",
+          "ZZ"
+        ]
+      }
+    ],
+    "default": "開發",
+    "profiles": {
+      "開發": {
+        "trees": {
+          "main": {
+            "window": "A"
+          }
+        }
+      },
+      "會議": {
+        "windows": [
+          {
+            "label": "M",
+            "match": [
+              "app",
+              "MM"
+            ]
+          }
+        ],
+        "trees": {
+          "main": {
+            "window": "M"
+          }
+        }
+      }
+    }
+  }
+}

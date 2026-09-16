@@ -1,0 +1,14 @@
+.DS_Store
+
+# 開發筆記。實體檔在 ~/Developer/tatami-private，這裡是一條 symlink——
+# 那份是這個專案的實測紀錄，不適合放在一個給人下載的專案首頁。
+CLAUDE.md
+
+# SwiftPM 的建置產物
+app/.build/
+
+# Scripts/release.sh 的產物（dmg、staging bundle）
+build/
+
+# 設計討論與實作計畫，留在本機
+docs/superpowers/

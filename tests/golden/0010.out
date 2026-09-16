@@ -1,0 +1,2 @@
+! layout.json 有問題：
+    home 的 profile 不能叫 auto，那是 --switch 的保留字

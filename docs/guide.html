@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tatami 使用說明</title>
+<style>
+  :root {
+    --bg: #fbfbf9;
+    --fg: #1c1c1a;
+    --muted: #6b6b64;
+    --line: #e0e0d8;
+    --code-bg: #f2f2ec;
+    --accent: #8a5a2b;
+    --warn-bg: #fdf6e8;
+    --warn-line: #e0c48a;
+    --win-a: #cfe0ee;
+    --win-b: #d8e8d4;
+    --win-c: #f0dcc8;
+    --win-d: #e6d8ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17171a;
+      --fg: #e6e6e2;
+      --muted: #9a9a92;
+      --line: #33333a;
+      --code-bg: #212127;
+      --accent: #d3a06a;
+      --warn-bg: #2a2418;
+      --warn-line: #6b5a34;
+      --win-a: #2f4560;
+      --win-b: #33502f;
+      --win-c: #5e4630;
+      --win-d: #4a3a58;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto; padding: 3rem 1.5rem 6rem; max-width: 52rem;
+    background: var(--bg); color: var(--fg);
+    font: 16px/1.75 -apple-system, "PingFang TC", "Noto Sans TC", sans-serif;
+    text-wrap: pretty;
+  }
+  h1 { font-size: 1.9rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+  h2 {
+    font-size: 1.35rem; margin: 3.5rem 0 1rem; padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+  }
+  h3 { font-size: 1.05rem; margin: 2.2rem 0 .6rem; }
+  h4 { font-size: .95rem; margin: 1.6rem 0 .4rem; color: var(--muted); }
+  p, li { margin: .6rem 0; }
+  code, pre {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: .875em;
+  }
+  code { background: var(--code-bg); padding: .12em .38em; border-radius: 3px; }
+  pre {
+    background: var(--code-bg); padding: 1rem 1.1rem; border-radius: 6px;
+    overflow-x: auto; line-height: 1.6; border: 1px solid var(--line);
+  }
+  pre code { background: none; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .92rem; }
+  th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--muted); font-size: .82rem; letter-spacing: .04em; }
+  kbd {
+    display: inline-block; padding: .1em .45em; border: 1px solid var(--line);
+    border-bottom-width: 2px; border-radius: 4px; background: var(--code-bg);
+    font-family: ui-monospace, Menlo, monospace; font-size: .8em; white-space: nowrap;
+  }
+  .lede { color: var(--muted); margin: 0 0 2rem; }
+  .note {
+    background: var(--warn-bg); border: 1px solid var(--warn-line);
+    border-radius: 6px; padding: .9rem 1.1rem; margin: 1.2rem 0;
+  }
+  .note strong:first-child { color: var(--accent); }
+  .note p:first-child { margin-top: 0; }
+  .note p:last-child { margin-bottom: 0; }
+  a { color: var(--accent); }
+
+  /* 版面示意圖 */
+  .shapes { display: grid; gap: 1.6rem; margin: 1.4rem 0; }
+  @media (min-width: 40rem) { .shapes { grid-template-columns: 1fr 1fr; } }
+  .shape figcaption { font-size: .85rem; color: var(--muted); margin-bottom: .45rem; }
+  .screen {
+    display: grid; gap: 4px; padding: 4px; height: 116px;
+    border: 1px solid var(--line); border-radius: 5px; background: var(--code-bg);
+  }
+  .screen div {
+    display: grid; place-items: center; border-radius: 3px;
+    font-size: .74rem; color: var(--fg); opacity: .95;
+  }
+  .a { background: var(--win-a); } .b { background: var(--win-b); }
+  .c { background: var(--win-c); } .d { background: var(--win-d); }
+  .s-lr   { grid-template-columns: 1fr 1fr; }
+  .s-tb   { grid-template-rows: 1fr 1fr; }
+  .s-l    { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+  .s-l .a { grid-row: 1 / 3; }
+  .s-quad { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+  .s-34   { grid-template-columns: 1fr 3fr; }
+  .shape pre { margin: .5rem 0 0; font-size: .78rem; padding: .7rem .8rem; }
+
+  .toc { columns: 2; column-gap: 2rem; font-size: .93rem; margin: 1.5rem 0 0; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc ul { margin: 0; padding-left: 1.1rem; }
+  .toc li { break-inside: avoid; margin: .25rem 0; }
+  footer { margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+           color: var(--muted); font-size: .85rem; }
+</style>
+<body>
+
+<h1>tatami 使用說明</h1>
+<p class="lede">
+  macOS 的視窗管理工具：每個 space 一份版面、格線面板、⌥ ＋ 拖曳吸附，45 條可改的快捷鍵，
+  全部住在一個選單列 app 裡。
+</p>
+
+<nav class="toc">
+  <ul>
+    <li><a href="#install">安裝</a></li>
+    <li><a href="#first">第一次使用</a></li>
+    <li><a href="#config">設定檔在哪</a></li>
+    <li><a href="#model">地點、profile、space</a></li>
+    <li><a href="#rules">視窗怎麼被認出來</a></li>
+    <li><a href="#shapes">版面形狀範例</a></li>
+    <li><a href="#grid">格線面板</a></li>
+    <li><a href="#drag">⌥ ＋ 拖曳</a></li>
+    <li><a href="#keys">快捷鍵總表</a></li>
+    <li><a href="#editor">圖形編輯器</a></li>
+    <li><a href="#cli">常用命令</a></li>
+    <li><a href="#trouble">疑難排解</a></li>
+  </ul>
+</nav>
+
+<h2 id="install">安裝</h2>
+
+<pre><code>brew tap mikimoto/tatami
+brew install --cask tatami</code></pre>
+
+<p>
+  這會裝好 <code>/Applications/Tatami.app</code>，並在 PATH 上放一個 <code>tatami</code>。
+  兩者是<strong>同一個執行檔</strong>——CLI 與選單列 app 永遠同版本，不會有一邊比較舊的問題。
+</p>
+
+<p>需要 macOS 14（Sonoma）以上。</p>
+
+<h3>授權</h3>
+
+<p>
+  tatami 要移動別的 app 的視窗，所以需要「輔助使用」權限。第一次開啟時系統會跳出對話框，
+  或者你自己去開：
+</p>
+
+<pre><code>系統設定 → 隱私權與安全性 → 輔助使用 → 打開 Tatami</code></pre>
+
+<div class="note">
+  <p><strong>撥開開關之後要把 app 關掉再開一次。</strong></p>
+  <p>
+    macOS 的權限系統不會套用到<em>已經在跑</em>的行程。撥開之後不重開的話，
+    快捷鍵按下去沒反應、視窗也不會動——而畫面上看起來權限明明已經給了。
+  </p>
+</div>
+
+<p>
+  tatami 不需要「輸入監控」，也不需要關閉 SIP。它沒有沙盒——一個沙盒化的 app
+  拿不到操作別人視窗的權限。
+</p>
+
+<h2 id="first">第一次使用</h2>
+
+<p>裝完之後照這個順序走一次：</p>
+
+<ol>
+  <li>開啟 <code>Tatami.app</code>，撥開「輔助使用」，<strong>重開一次</strong>。</li>
+  <li>選單列會出現圖示。點開它 → <strong>登入時自動啟動</strong>（不打開的話，
+      快捷鍵只在你手動開著它的時候有效）。</li>
+  <li>把視窗排成你想要的樣子。</li>
+  <li>選單列 → <strong>把目前排版存進 ▸</strong> → 挑一個 profile（或打一個新名字）。</li>
+  <li>之後切到那個 space，按 <kbd>⌃⌥⌘W</kbd> 就排回去。</li>
+</ol>
+
+<p>
+  第 3、4 步是這個工具的核心：<strong>你不需要手寫設定檔</strong>。
+  把畫面排好、存起來，它會自己反推出版面樹與視窗規則。
+</p>
+
+<h2 id="config">設定檔在哪</h2>
+
+<pre><code>~/.config/tatami/
+├── layout.json      版面：地點、profile、每個 space 的樹、視窗規則
+├── hotkeys.json     快捷鍵、格線設定、滑鼠拖曳、float 清單
+└── .tatami-state    記住的地點與 profile、學到的頂端 inset</code></pre>
+
+<p>
+  三個檔<strong>都是選配的</strong>。<code>hotkeys.json</code> 不存在就用內建的 45 條；
+  <code>.tatami-state</code> 由程式自己維護，不必手改。
+</p>
+
+<p>
+  <code>layout.json</code> 的範本在 repo 的
+  <a href="https://github.com/Mikimoto/tatami/blob/dev/examples/layout.json"><code>examples/layout.json</code></a>。
+  改完可以驗一下：
+</p>
+
+<pre><code>tatami validate</code></pre>
+
+<p>
+  它讀 <code>~/.config/tatami/layout.json</code>，有問題就逐條指出來（哪個地點、哪個
+  profile、哪一棵樹）。從管線餵給它也可以：<code>tatami validate &lt; 別的檔.json</code>。
+</p>
+
+<h2 id="model">地點、profile、space</h2>
+
+<p>設定是三層的，每一層回答一個不同的問題：</p>
+
+<table>
+  <tr><th>層</th><th>回答什麼</th><th>誰決定</th></tr>
+  <tr>
+    <td><strong>地點</strong><br><code>home</code> / <code>office</code></td>
+    <td>我現在在哪？接了哪幾台螢幕？</td>
+    <td><strong>自動偵測</strong>，比對螢幕 UUID</td>
+  </tr>
+  <tr>
+    <td><strong>profile</strong><br><code>開發</code> / <code>會議</code></td>
+    <td>我現在在做什麼？</td>
+    <td><strong>你指定</strong>（選單列或 <code>--switch</code>）</td>
+  </tr>
+  <tr>
+    <td><strong>space</strong></td>
+    <td>這個桌面要長什麼樣？</td>
+    <td>每個 space 各一棵樹，靠 space UUID 索引</td>
+  </tr>
+</table>
+
+<p>
+  所以同一個 profile 在 <code>home</code> 與 <code>office</code> 可以有完全不同的版面——
+  螢幕不一樣，版面本來就該不一樣。
+</p>
+
+<h3>螢幕角色</h3>
+
+<p>
+  地點底下的 <code>displays</code> 把「角色名」對到螢幕 UUID：
+</p>
+
+<pre><code>"office": {
+  "desc": "公司",
+  "displays": {
+    "main":   "11111111-1111-4111-8111-111111111111",
+    "second": "22222222-2222-4222-8222-222222222222"
+  },
+  ...
+}</code></pre>
+
+<p>
+  角色名是你自己取的（<code>main</code> 必須存在）。用角色而不是直接用 UUID，
+  是因為版面樹要講「主螢幕左半」而不是「那台特定的 BenQ 的左半」。
+</p>
+
+<p>要查目前接了哪些螢幕與它們的 UUID：</p>
+
+<pre><code>tatami ws displays</code></pre>
+
+<h3>每個 space 一份版面</h3>
+
+<p>
+  profile 底下的 <code>spaceTrees</code> 是<strong>角色 → { space UUID → 一棵樹 }</strong>：
+</p>
+
+<pre><code>"profiles": {
+  "開發": {
+    "trees": {},
+    "spaceTrees": {
+      "main": {
+        "AAAAAAAA-0001-0000-0000-000000000001": {
+          "axis": "vertical",
+          "children": [ {"window": "編輯器"}, {"window": "終端機"} ]
+        }
+      }
+    }
+  }
+}</code></pre>
+
+<div class="note">
+  <p><strong><code>trees</code> 這個鍵不能刪，即使它是空的。</strong></p>
+  <p>
+    驗證會要求它存在。它是舊格式的殘留，現在沒有任何套版路徑會讀它——實際在用的是
+    <code>spaceTrees</code>。
+  </p>
+</div>
+
+<p>
+  space UUID 撐得過重開機，所以拿它當索引是安全的。
+  要查：<code>tatami ws spaces</code>。不過實務上你不必手打——
+  <strong>用選單列存檔，它會自己填。</strong>
+</p>
+
+<h3>不在樹裡的視窗，一概不碰</h3>
+
+<p>
+  這是 tatami 與傳統 tiling 工具最大的差別：<strong>預設什麼都不管</strong>。
+  只有寫進某棵樹的視窗才會被移動，其餘的照你擺的位置放著。
+</p>
+
+<p>
+  所以不需要維護一份「例外清單」。要加入管理就把它畫進樹裡，要退出就從樹裡拿掉。
+</p>
+
+<h2 id="rules">視窗怎麼被認出來</h2>
+
+<p>
+  樹的葉子寫的是「標籤」，標籤對到哪個視窗由 <code>windows</code> 陣列的規則決定：
+</p>
+
+<pre><code>"windows": [
+  { "label": "編輯器", "match": ["app", "Zed"] },
+  { "label": "終端機", "match": ["app", "Ghostty"] },
+  { "label": "文件",   "match": ["url-contains", "docs.example.com"],
+                       "launch": "Safari" }
+]</code></pre>
+
+<table>
+  <tr><th>match 類型</th><th>比對什麼</th></tr>
+  <tr><td><code>app</code></td><td>app 名稱，精確比對</td></tr>
+  <tr><td><code>url-exact</code></td><td>Safari 分頁網址，完全相同</td></tr>
+  <tr><td><code>url-contains</code></td><td>Safari 分頁網址，包含這段</td></tr>
+  <tr><td><code>title-regex</code></td><td>Safari 分頁標題，ERE 正規表示式</td></tr>
+</table>
+
+<div class="note">
+  <p><strong>後三種只看得到 Safari 的分頁。</strong></p>
+  <p>
+    它們讀的是 Safari 的分頁清單，所以 <code>title-regex</code> 配的是<em>分頁</em>標題，
+    不是視窗標題；別的瀏覽器的視窗這三種都認不到。
+  </p>
+  <p>
+    另外它們需要一次 Safari 分頁查詢（約兩秒），所以 tatami 只在「這一輪要套的樹真的
+    用到這類規則」時才付這個錢。
+  </p>
+</div>
+
+<h3><code>launch</code>：要開哪個 app</h3>
+
+<p>
+  <code>app</code> 類的規則自己就講了要開什麼。網址與標題類的沒有——
+  一個 <code>url-contains</code> 規則要的視窗可能屬於任何瀏覽器，設定檔一個字都沒說。
+  <code>launch</code> 就是那句沒說的話，只有 <code>tatami --space --launch</code> 會用到它。
+</p>
+
+<h3>三層規則</h3>
+
+<p>
+  <code>windows</code> 可以出現在三個地方，優先序是<strong>共用層 → 地點層 → profile 層</strong>：
+</p>
+
+<ul>
+  <li><strong>共用層</strong>（最外層）與<strong>地點層</strong>是<em>疊加</em>的。</li>
+  <li><strong>profile 層</strong>不一樣——它一旦存在就<em>整組取代</em>前兩層。</li>
+</ul>
+
+<p>
+  規則是<strong>先到先得</strong>：同一個視窗被多條規則配到時，排在前面的那條贏。
+</p>
+
+<h2 id="shapes">版面形狀範例</h2>
+
+<p>三種以上的視窗就往下疊。<code>axis</code> 只有 <code>vertical</code>（左右切）與
+<code>horizontal</code>（上下切）兩個值。</p>
+
+<div class="shapes">
+
+  <figure class="shape">
+    <figcaption>左右各半</figcaption>
+    <div class="screen s-lr"><div class="a">A</div><div class="b">B</div></div>
+<pre><code>{ "axis": "vertical",
+  "children": [ {"window":"A"},
+                {"window":"B"} ] }</code></pre>
+  </figure>
+
+  <figure class="shape">
+    <figcaption>上下各半</figcaption>
+    <div class="screen s-tb"><div class="a">A</div><div class="b">B</div></div>
+<pre><code>{ "axis": "horizontal",
+  "children": [ {"window":"A"},
+                {"window":"B"} ] }</code></pre>
+  </figure>
+
+  <figure class="shape">
+    <figcaption>左半 + 右邊上下</figcaption>
+    <div class="screen s-l"><div class="a">A</div><div class="b">B</div><div class="c">C</div></div>
+<pre><code>{ "axis": "vertical",
+  "children": [
+    {"window":"A"},
+    { "axis": "horizontal",
+      "children": [ {"window":"B"},
+                    {"window":"C"} ] } ] }</code></pre>
+  </figure>
+
+  <figure class="shape">
+    <figcaption>田字四格</figcaption>
+    <div class="screen s-quad"><div class="a">A</div><div class="b">B</div><div class="c">C</div><div class="d">D</div></div>
+<pre><code>{ "axis": "vertical",
+  "children": [
+    { "axis": "horizontal",
+      "children": [ {"window":"A"},
+                    {"window":"C"} ] },
+    { "axis": "horizontal",
+      "children": [ {"window":"B"},
+                    {"window":"D"} ] } ] }</code></pre>
+  </figure>
+
+  <figure class="shape">
+    <figcaption>左邊 1/4、右邊 3/4</figcaption>
+    <div class="screen s-34"><div class="b">B</div><div class="a">A</div></div>
+<pre><code>{ "axis": "vertical",
+  "children": [ {"window":"B", "ratio": 0.25},
+                {"window":"A"} ] }</code></pre>
+  </figure>
+
+</div>
+
+<div class="note">
+  <p><strong><code>ratio</code> 只能掛在葉子上。</strong></p>
+  <p>
+    它是「這個節點佔父節點的比例」，而程式只會讀<em>第一個</em> child 的那一個。
+    所以 <code>(A｜B) / (C｜D)</code> 這種外層的分割線存不住比例——
+    圖形編輯器會把那條線畫成不可拖曳，並在提示裡說明原因。
+  </p>
+</div>
+
+<h2 id="grid">格線面板</h2>
+
+<p>
+  按 <kbd>⌃⌥⌘G</kbd>，焦點視窗所在的那台螢幕正中央會浮出一塊縮圖面板。
+  在上面拖一個矩形，放開，那個視窗就排到螢幕上對應的位置。
+</p>
+
+<p>拖曳的時候真螢幕上會同步亮出目標區域，所以放開之前就看得到結果。</p>
+
+<p>
+  <kbd>esc</kbd>、原地按下放開（同一格）、或點面板以外的地方，都是取消。
+</p>
+
+<h3>兩個模式</h3>
+
+<p>面板右上角有三顆小按鈕：</p>
+
+<table>
+  <tr><th>按鈕</th><th>做什麼</th></tr>
+  <tr><td><strong>記</strong></td>
+      <td>一個開關。<strong>先按它再拖</strong>，放開時不套用，而是把那塊位置存進位置庫。</td></tr>
+  <tr><td><strong>格</strong></td><td>切回拖曳模式。</td></tr>
+  <tr><td><strong>庫</strong></td>
+      <td>切到位置庫：一面縮圖牆，每一格是存過的位置。<strong>點一下就套用，面板不關</strong>，
+          所以可以對同一個視窗連續試不同位置。每格右上角的 <code>×</code> 刪掉它。</td></tr>
+</table>
+
+<h3>格數與間距</h3>
+
+<p>
+  預設 <strong>6 欄 × 4 列、間距 8</strong>，而且是<strong>每台螢幕各一份</strong>——
+  27 吋跟筆電內建螢幕本來就該切得不一樣。在 <code>tatami edit</code> 的「格線」那一頁改。
+</p>
+
+<p>臨時想用別的格數，旗標蓋得過設定：</p>
+
+<pre><code>tatami grid --columns 3 --rows 2</code></pre>
+
+<p>
+  位置庫裡的每一格<strong>自帶格數</strong>，所以你把螢幕改成 8×5 之後，
+  一個存成「左半」的位置還是左半。
+</p>
+
+<h2 id="drag">⌥ ＋ 拖曳</h2>
+
+<table>
+  <tr><th>動作</th><th>效果</th></tr>
+  <tr><td><kbd>⌥</kbd> ＋ 左鍵拖曳</td><td>搬動視窗</td></tr>
+  <tr><td><kbd>⌥</kbd> ＋ 右鍵拖曳</td><td>縮放（抓住哪一個象限就動哪一角，對角釘住）</td></tr>
+</table>
+
+<p>
+  拖的時候畫面上會浮出吸附區，游標所在那一區整塊變色，放開就吸進去。分三層：
+</p>
+
+<ul>
+  <li><strong>邊緣帶</strong>（較短邊的 15%）：兩軸都在帶內＝角落，田字四分之一；
+      只有一軸＝上下左右半邊。</li>
+  <li><strong>中間</strong>：這個 space 的版面樹的葉子。沒有樹的話就是整片。</li>
+  <li><strong>正中央</strong>（20% × 20%）：整片畫布。</li>
+</ul>
+
+<p>
+  吸附只擺位置，<strong>不寫進設定</strong>。縮放不吸附。
+  修飾鍵可以改（<code>fn</code> / <code>cmd</code> / <code>ctrl</code> / <code>shift</code>），
+  在 <code>tatami edit</code> 的「快捷鍵」頁最底下。
+</p>
+
+<div class="note">
+  <p><strong>預設是 ⌥ 而不是 fn，這是實測換來的。</strong></p>
+  <p>
+    在某些外接鍵盤上（例如有自己驅動程式的 Logitech），<code>fn</code> 由鍵盤韌體處理、
+    根本不會送到 macOS——三個獨立的 API 讀到的修飾鍵狀態全是 0。
+    如果你把修飾鍵改成 <code>fn</code> 之後完全沒反應，就是這個原因，換一顆即可。
+  </p>
+</div>
+
+<h2 id="keys">快捷鍵總表</h2>
+
+<p>
+  內建 45 條。全部可以在 <code>tatami edit</code> 的「快捷鍵」那一頁改。
+</p>
+
+<h3>版面</h3>
+<table>
+  <tr><th>按鍵</th><th>動作</th></tr>
+  <tr><td><kbd>⌃⌥⌘W</kbd></td><td>把目前可見的 space 排成設定好的版面</td></tr>
+  <tr><td><kbd>⌃⌥⌘G</kbd></td><td>開格線面板</td></tr>
+  <tr><td><kbd>⌥⌘\</kbd></td><td>均分這個 space 的視窗</td></tr>
+  <tr><td><kbd>⌥⌘G</kbd></td><td>切換間距</td></tr>
+  <tr><td><kbd>⌥⌘R</kbd> / <kbd>⇧⌥⌘R</kbd></td><td>旋轉版面（逆時針 / 順時針）</td></tr>
+</table>
+
+<h3>焦點與交換</h3>
+<table>
+  <tr><th>按鍵</th><th>動作</th></tr>
+  <tr><td><kbd>⌥⌘←→↑↓</kbd></td><td>把焦點移到那個方向的鄰居</td></tr>
+  <tr><td><kbd>⌃⌥⌘←→↑↓</kbd></td><td>與那個方向的鄰居交換位置</td></tr>
+  <tr><td><kbd>⇧⌥⌘←</kbd> / <kbd>⇧⌥⌘→</kbd></td><td>把視窗疊到左 / 右邊鄰居上</td></tr>
+  <tr><td><kbd>⇧⌥⌘↑</kbd> / <kbd>⇧⌥⌘↓</kbd></td><td>在疊起來的那群裡切換焦點</td></tr>
+</table>
+
+<h3>擺位</h3>
+<table>
+  <tr><th>按鍵</th><th>動作</th></tr>
+  <tr><td><kbd>⌥⌘home</kbd> / <kbd>⌥⌘end</kbd></td><td>左上 / 右下四分之一</td></tr>
+  <tr><td><kbd>⌥⌘pageup</kbd> / <kbd>⌥⌘pagedown</kbd></td><td>右上 / 左下四分之一</td></tr>
+  <tr><td><kbd>⌥⌘space</kbd></td>
+      <td>填滿畫布。<strong>再按一次還原</strong>成填滿之前的大小——
+          這不是 macOS 那個會開新桌面的全螢幕模式。</td></tr>
+  <tr><td><kbd>⌃⌥⌘space</kbd></td>
+      <td>縮到畫布的 3/4，四周留邊（<code>grid:12:12:1:1:9:9</code>）</td></tr>
+  <tr><td><kbd>⌃⌥⌘home</kbd> / <kbd>⌃⌥⌘end</kbd></td><td>變窄 / 變寬 20pt</td></tr>
+  <tr><td><kbd>⌃⌥⌘pageup</kbd> / <kbd>⌃⌥⌘pagedown</kbd></td><td>變矮 / 變高 20pt</td></tr>
+  <tr><td><kbd>⌥⌘backspace</kbd></td><td>關閉視窗</td></tr>
+</table>
+
+<h3>切換 space 與螢幕</h3>
+<table>
+  <tr><th>按鍵</th><th>動作</th></tr>
+  <tr><td><kbd>⌃⌘←</kbd> / <kbd>⌃⌘→</kbd></td><td>上一個 / 下一個 space</td></tr>
+  <tr><td><kbd>⌃⌘1</kbd>…<kbd>⌃⌘9</kbd></td><td>直接跳到第 N 個 space</td></tr>
+  <tr><td><kbd>⌃⌥←</kbd> / <kbd>⌃⌥→</kbd></td><td>上一台 / 下一台螢幕</td></tr>
+  <tr><td><kbd>⌃⌥1</kbd>…<kbd>⌃⌥3</kbd></td><td>直接跳到第 N 台螢幕</td></tr>
+</table>
+
+<div class="note">
+  <p><strong>快捷鍵只在 <code>Tatami.app</code> 跑著的時候有效。</strong></p>
+  <p>
+    註冊掛在行程上，行程結束註冊就沒了。所以「登入時自動啟動」從方便變成必要。
+  </p>
+  <p>
+    而且<strong>改完設定要把選單列結束再開一次</strong>——沒有做熱重載。
+  </p>
+</div>
+
+<h3>自己寫一條</h3>
+
+<p>
+  動作欄可以填 <code>shell:</code> 加一條命令，它會交給 <code>/bin/sh -c</code>。
+  這是給「跟視窗管理無關，但我想綁一顆鍵」的東西用的逃生門。
+</p>
+
+<p>
+  至少要含 <kbd>⌘</kbd> / <kbd>⌃</kbd> / <kbd>⌥</kbd> 其中一個（<kbd>⇧</kbd> 不算）。
+  原因很實際：註冊過的組合會被系統吃掉、不再往下傳，所以一個裸的 <code>w</code>
+  會讓你在每個 app 裡打字都變成重排視窗，而且沒辦法從那個 app 裡救回來。
+</p>
+
+<h2 id="editor">圖形編輯器</h2>
+
+<pre><code>tatami edit</code></pre>
+
+<p>側欄分頁：</p>
+
+<table>
+  <tr><th>頁</th><th>編什麼</th><th>存到</th></tr>
+  <tr><td>版面</td><td>拖放編輯每個 space 的樹、規則表格、地點與 profile</td><td><code>layout.json</code></td></tr>
+  <tr><td>快捷鍵</td><td>45 條綁定、float 清單、滑鼠拖曳設定</td><td><code>hotkeys.json</code></td></tr>
+  <tr><td>格線</td><td>每台螢幕的格數與間距、位置庫的改名與刪除</td><td><code>hotkeys.json</code></td></tr>
+</table>
+
+<p>
+  <kbd>⌘S</kbd> 存檔，<kbd>⌘Z</kbd> 復原，<kbd>⌘R</kbd> 立刻把目前可見的 space 套成你編的樣子
+  （<strong>要先存檔</strong>——套版是從磁碟讀的，它不知道你記憶體裡有什麼）。
+</p>
+
+<p>存檔前有三道閘門：</p>
+
+<ol>
+  <li><strong>驗證</strong>——與 <code>tatami validate</code> 同一支。</li>
+  <li><strong>外部變更比對</strong>——載入時記下原文，寫之前重讀一次。
+      這個檔常被手改，也會被 <code>--save</code> 與格線面板寫。</li>
+  <li><strong>原子寫</strong>——寫暫存檔再換上去，中途斷電不會留下半個檔。</li>
+</ol>
+
+<h2 id="cli">常用命令</h2>
+
+<table>
+  <tr><th>命令</th><th>做什麼</th></tr>
+  <tr><td><code>tatami --space</code></td>
+      <td>把目前<em>可見</em>的 space 排成設定好的版面</td></tr>
+  <tr><td><code>tatami --space --all</code></td>
+      <td>排<em>每一個</em>有版面的 space，不只看得見的那個</td></tr>
+  <tr><td><code>tatami --space --launch</code></td>
+      <td>同上，並把樹裡引用到、而沒在跑的 app 開起來</td></tr>
+  <tr><td><code>tatami --probe</code></td>
+      <td>只辨識不動視窗：印出哪個視窗被認成哪個標籤</td></tr>
+  <tr><td><code>tatami --save [profile]</code></td>
+      <td>把目前的排版存起來（終端機會逐一問視窗名稱）</td></tr>
+  <tr><td><code>tatami --save --all</code></td>
+      <td>存<em>每一個</em>有視窗的 space</td></tr>
+  <tr><td><code>tatami --switch</code></td>
+      <td>互動式切換地點 / profile</td></tr>
+  <tr><td><code>tatami validate</code></td>
+      <td>檢查設定是否合法</td></tr>
+  <tr><td><code>tatami edit</code></td><td>圖形編輯器</td></tr>
+  <tr><td><code>tatami grid</code></td><td>格線面板</td></tr>
+  <tr><td><code>tatami ws displays</code> / <code>ws spaces</code> / <code>ws windows</code></td>
+      <td>列出螢幕 / space / 視窗，印 JSON</td></tr>
+</table>
+
+<div class="note">
+  <p><strong>拔插螢幕之後用 <code>--all</code>。</strong></p>
+  <p>
+    macOS 會在拔插之後重排哪個 space 在哪台螢幕、哪個可見。
+    此時 <code>--space</code> 只排「你正在看的那一個」，而你要找的視窗很可能在旁邊
+    某個不可見的 space 上——那就是「跑了卻什麼都沒動」的成因。
+    <code>--space --all</code> 排的是每一棵有樹的 space。
+  </p>
+</div>
+
+<h2 id="trouble">疑難排解</h2>
+
+<h3>按了快捷鍵什麼都沒發生</h3>
+<ol>
+  <li><code>Tatami.app</code> 在跑嗎？（選單列有沒有圖示）</li>
+  <li>「輔助使用」撥開了嗎？撥開<em>之後</em>有沒有重開 app？</li>
+  <li>那個組合被別的 app 佔走了嗎？選單列的 log 會說「另有 N 組被系統或別的 app 佔走」。</li>
+  <li>剛改完 <code>hotkeys.json</code>？要結束選單列再開一次。</li>
+</ol>
+
+<h3>切過去那個 space，版面沒有套用</h3>
+<ul>
+  <li>那個 space 有畫過版面嗎？<code>tatami --probe</code> 會說「這個 space 還沒有版面，跳過」。</li>
+  <li>「切換 space 自動重排」的開關打開了嗎？（選單列，<strong>預設是關的</strong>）</li>
+  <li>樹裡的 app 沒在跑的話，那一格會靜默空著。用 <code>--space --launch</code> 開它們。</li>
+</ul>
+
+<h3>視窗排好了，但尺寸不對</h3>
+<p>
+  app 可以拒絕你給的尺寸（很多 app 有自己的最小寬高）。tatami 會回報
+  <code>frameRejected</code> 並印出它實際拿到的數字——那不是 bug，是那個 app 的下限。
+</p>
+
+<h3>頂端空一條，怎麼排都在</h3>
+<p>
+  每台螢幕的選單列高度沒有任何 API 吐得出來，所以 tatami 是<strong>自己學</strong>的，
+  學到的值寫在 <code>.tatami-state</code> 的 <code>topinset.&lt;螢幕 UUID&gt;</code>。
+  學錯了（例如在某次異常的排版中取樣到）就把那一行刪掉，讓它重新學。
+</p>
+
+<h3><code>tatami validate</code> 說舊格式</h3>
+<p>
+  2026-08-30 之前 <code>spaceTrees</code> 是用「space 名字」索引的，現在改用 space UUID。
+  驗證會擋下舊格式並說明要改成什麼——不擋的話它會靜默失效（查表只認 UUID），
+  設定看起來寫好了而功能就是不動。
+</p>
+
+<h3>設定不見了</h3>
+<p>
+  設定住在 <code>~/.config/tatami/</code>，與程式完全分開。
+  <code>brew uninstall --cask tatami</code> 不會碰它；只有
+  <code>brew uninstall --zap --cask tatami</code> 才會連設定一起刪。
+</p>
+
+<footer>
+  <p>
+    tatami · <a href="https://github.com/Mikimoto/tatami">github.com/Mikimoto/tatami</a>
+  </p>
+</footer>
+
+</body>
+</html>

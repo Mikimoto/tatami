@@ -1,0 +1,47 @@
+cmd - f3
+ctrl + alt + cmd - w
+ctrl + alt + cmd - g
+ctrl + alt + cmd - r
+alt + cmd - backspace
+alt + cmd - 0x2A
+alt + cmd - space
+alt + cmd - left
+alt + cmd - right
+alt + cmd - up
+alt + cmd - down
+alt + cmd - home
+alt + cmd - end
+alt + cmd - pagedown
+alt + cmd - pageup
+alt + cmd - g
+alt + cmd - r
+shift + alt + cmd - r
+ctrl + alt + cmd - space
+shift + alt + cmd - left
+shift + alt + cmd - right
+shift + alt + cmd - up
+shift + alt + cmd - down
+ctrl + alt + cmd - left
+ctrl + alt + cmd - right
+ctrl + alt + cmd - up
+ctrl + alt + cmd - down
+ctrl + alt + cmd - home
+ctrl + alt + cmd - end
+ctrl + alt + cmd - pageup
+ctrl + alt + cmd - pagedown
+ctrl + alt - left
+ctrl + alt - right
+ctrl + cmd - left
+ctrl + cmd - right
+ctrl + cmd - 1
+ctrl + cmd - 2
+ctrl + cmd - 3
+ctrl + cmd - 4
+ctrl + cmd - 5
+ctrl + cmd - 6
+ctrl + cmd - 7
+ctrl + cmd - 8
+ctrl + cmd - 9
+ctrl + alt - 1
+ctrl + alt - 2
+ctrl + alt - 3

@@ -1,0 +1,3 @@
+S1	app	S1A	-	-
+S2	url-contains	s2.example.com	title-regex	丙|丁
+L1	app	L1A	-	-

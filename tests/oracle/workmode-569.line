@@ -1,0 +1,1 @@
+    printf '  ! 狀態檔的 location 寫著「%s」，不在 layout.json 裡，忽略後改用自動偵測\n' "${l}" >&2

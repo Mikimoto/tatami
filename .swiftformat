@@ -1,0 +1,6 @@
+# 不指定版本的話 swiftformat 會停用一部分規則並印一句 warning。
+--swiftversion 6.0
+
+# 掃描範圍固定在 Sources 與 Tests。.build 底下有產生出來的 .swift，掃進去會讓
+# 「還剩幾個」這個數字失去意義（所有基準都是在 Sources＋Tests 上量的）。
+--exclude app/.build

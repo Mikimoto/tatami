@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#MISE description="swiftformat --lint and swiftlint; prints how many are left"
+#
+# 有剩餘項就回非零，這是刻意的：它是重構的進度計，回零就沒有東西在推動它。
+# 也因此它**不進** `mise run test`——test 必須綠才有意義，混在一起就分不出
+# 「行為壞了」與「還沒重構完」。
+#
+# 兩支工具的掃描範圍都由設定檔決定（.swiftformat 的 --exclude、.swiftlint.yml 的
+# included），不在這裡再寫一次路徑：寫兩份就會漂移，而漂移的那一刻數字就不可比了。
+set -uo pipefail
+
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/../.." && pwd)
+cd "${ROOT}" || exit 1
+FAILED=0
+
+printf '== swiftformat ==\n'
+FMT_OUT=$(mktemp -t wm-lint-fmt-XXXXXX)
+if swiftformat --lint app/Sources app/Tests >"${FMT_OUT}" 2>&1; then
+  printf '  clean\n'
+else
+  # 「N/M files require formatting」那行是它自己算的，比我數 error: 可靠。
+  SUMMARY=$(grep -oE '[0-9]+/[0-9]+ files require formatting' "${FMT_OUT}" | tail -1)
+  printf '  %s（跑 mise run fmt）\n' "${SUMMARY:-有需要重排的檔案，見下}"
+  [ -z "${SUMMARY}" ] && sed 's/^/    /' "${FMT_OUT}"
+  FAILED=1
+fi
+rm -f "${FMT_OUT}"
+
+printf '== swiftlint ==\n'
+LINT_OUT=$(mktemp -t wm-lint-lint-XXXXXX)
+swiftlint lint --quiet >"${LINT_OUT}" 2>/dev/null
+N=$(grep -c ':' "${LINT_OUT}" || true)
+if [ "${N}" = 0 ]; then
+  printf '  clean\n'
+else
+  printf '  還剩 %s 個\n' "${N}"
+  grep -oE '\([a-z_]+\)$' "${LINT_OUT}" | sort | uniq -c | sort -rn | sed 's/^/    /'
+  FAILED=1
+fi
+rm -f "${LINT_OUT}"
+
+exit "${FAILED}"
