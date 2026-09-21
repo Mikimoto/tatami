@@ -1,3 +1,6 @@
+// `CGDisplayCreateUUIDFromDisplayID` 住在 ColorSync 不是 CoreGraphics，兩個都要。
+import ColorSync
+import CoreGraphics
 import Foundation
 import WorkmodeAdapters
 import WorkmodeCore
@@ -68,8 +71,8 @@ func runWindowServer(_ parts: [String], json: Bool) -> Never {
     // 所以用 count 與索引，與 `main.swift` 的 `app-running` 那列同一個寫法。
     switch words.first {
     // 螢幕清單。加它的理由是 ⌥ 拖曳的吸附區靠 `frame` 判斷「游標在哪一台上」，
-    // 而那個 frame 是**可視區**（扣掉選單列與 Dock），與 `yabai -m query --displays`
-    // 印的整片螢幕不同——查不出來的話那個判斷只能用猜的。
+    // 而那個 frame 的頂端是原始頂端、底端扣掉 Dock（見 `LayoutCanvas.displayFrame`），
+    // 與 `yabai -m query --displays` 印的整片螢幕不同——查不出來的話那個判斷只能用猜的。
     case "displays" where words.count == 1:
         show(.displays)
     case "spaces" where words.count == 1:
@@ -205,6 +208,7 @@ func runWindowServerSmoke() -> Never {
     let client: WindowServerClient
     do { client = try WindowServerClient() } catch { print("FAIL 建 client：\(error)"); exit(1) }
 
+    check("螢幕 frame 的頂端是原始頂端") { try smokeDisplayTops(client) }
     check("spaces") { try smokeSpaces(client) }
     check("windows") { try smokeWindows(client) }
     check("視窗形狀過得了 ManagedWindow") { try smokeManagedShape(client) }
@@ -232,6 +236,41 @@ func runWindowServerSmoke() -> Never {
 
     print(failures == 0 ? "--- smoke passed ---" : "--- \(failures) 項失敗 ---")
     exit(failures == 0 ? 0 : 1)
+}
+
+/// 每台螢幕的 `frame.y`，必須等於 `CGDisplayBounds` 的頂端。
+///
+/// **獨立的 oracle**：`CGDisplayBounds` 走 CoreGraphics，我們那半走 AppKit 的
+/// `NSScreen`。2026-09-21 之前那半用的是 `visibleFrame` 的頂端，而 AppKit 只在選單列
+/// 當下所在那台螢幕上扣掉它——於是那台的畫布被 `TopInset` 又扣一次，症狀是「排滿的
+/// 視窗上下各空一條」。合成規則有單元測試（`LayoutCanvasTests`），**接線只有這裡驗
+/// 得到**，而且它永遠有鑑別力：主螢幕的可視區頂端與原始頂端必定差一段選單列。
+private func smokeDisplayTops(_ client: WindowServerClient) throws -> String {
+    guard case let .array(displays) = try client.query(.displays) else {
+        throw WsFailure.shape("query(.displays) 不是陣列")
+    }
+    var ids = [CGDirectDisplayID](repeating: 0, count: 32)
+    var found: UInt32 = 0
+    // 空清單不算通過：那與「每一台都對不上」的外觀相同（兩者都跑不到下面的比對）。
+    guard CGGetActiveDisplayList(UInt32(ids.count), &ids, &found) == .success, found > 0,
+          !displays.isEmpty
+    else { throw WsFailure.shape("CoreGraphics 或我們這半一台螢幕都沒回，證明不了任何事") }
+    var tops: [String: Double] = [:]
+    for id in ids.prefix(Int(found)) {
+        guard let reference = CGDisplayCreateUUIDFromDisplayID(id) else { continue }
+        tops[CFUUIDCreateString(nil, reference.takeRetainedValue()) as String] = CGDisplayBounds(id).origin.y
+    }
+    for display in displays {
+        guard let uuid = member(display, "uuid").map(rawText),
+              let ours = member(member(display, "frame"), "y").map(rawText).flatMap(Double.init)
+        else { throw WsFailure.shape("display 少了 uuid 或 frame.y：\(rawText(display))") }
+        guard let raw = tops[uuid] else { throw WsFailure.shape("CoreGraphics 不認得 \(uuid)") }
+        guard abs(ours - raw) <= 1 else {
+            throw WsFailure.shape("\(uuid) 的頂端是 \(ours)、CGDisplayBounds 說 \(raw)"
+                + "——選單列被 visibleFrame 先扣走了，TopInset 會再扣一次")
+        }
+    }
+    return "\(displays.count) 台全對得上 CGDisplayBounds"
 }
 
 private func smokeSpaces(_ client: WindowServerClient) throws -> String {

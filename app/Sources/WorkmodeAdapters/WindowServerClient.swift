@@ -11,8 +11,8 @@ import WorkmodeDomain
 /// `index/uuid/display/is-visible`、windows 的 `id/pid/app/title/frame/space/display/is-minimized`。
 /// `tatami ws spaces|windows` 印的就是這份，所以能直接與 `yabai -m query` diff。
 ///
-/// **`frame` 是可視區**（扣掉選單列與 Dock），yabai 印的是整個螢幕。`TreeRects` 拿它
-/// 當畫布，這樣使用者 padding 為 0 的設定不必再算選單列。差異寫在 `ws spaces` 的說明。
+/// **`frame` 的頂端是螢幕原始頂端、底端扣掉 Dock**（選單列歸 `TopInset` 學，理由在
+/// `LayoutCanvas.displayFrame`），yabai 印的是整個螢幕。`TreeRects` 拿它當畫布。
 ///
 /// **必須在 main thread 呼叫**（`NSScreen` 是 `@MainActor`；CLI 的 `main.swift` 是）。
 /// `MainActor.assumeIsolated` 猜錯是當場 crash 不是靜默錯值，`EditCommand.swift:62` 同一個取捨。
@@ -375,19 +375,24 @@ public struct WindowServerClient: YabaiClient, WindowServer {
         return Rect(originX: originX, originY: originY, width: width, height: height)
     }
 
-    /// uuid → 可視區（CG 座標）。NSScreen 是左下原點，要翻：CG 的 y ＝ 主螢幕高 − NS 的 maxY。
+    /// uuid → 畫布來源（CG 座標）。NSScreen 是左下原點，要翻：CG 的 y ＝ 主螢幕高 − NS 的 maxY。
+    ///
+    /// 兩個 frame 都要，怎麼合見 `LayoutCanvas.displayFrame`——**頂端不可以用可視區的**。
     private func visibleFrames() -> [String: Rect] {
         MainActor.assumeIsolated {
             guard let primaryHeight = NSScreen.screens.first?.frame.height else { return [:] }
+            let toCG = { (rect: NSRect) in
+                Rect(originX: rect.origin.x, originY: primaryHeight - rect.maxY,
+                     width: rect.width, height: rect.height)
+            }
             var out: [String: Rect] = [:]
             for screen in NSScreen.screens {
                 let key = NSDeviceDescriptionKey("NSScreenNumber")
                 guard let number = screen.deviceDescription[key] as? CGDirectDisplayID,
                       let reference = CGDisplayCreateUUIDFromDisplayID(number) else { continue }
                 let uuid = CFUUIDCreateString(nil, reference.takeRetainedValue()) as String
-                let visible = screen.visibleFrame
-                out[uuid] = Rect(originX: visible.origin.x, originY: primaryHeight - visible.maxY,
-                                 width: visible.width, height: visible.height)
+                out[uuid] = LayoutCanvas.displayFrame(raw: toCG(screen.frame),
+                                                      visible: toCG(screen.visibleFrame))
             }
             return out
         }
