@@ -1,3 +1,5 @@
+import Darwin
+import Foundation
 import Testing
 import WorkmodeAdapters
 
@@ -42,20 +44,40 @@ import WorkmodeAdapters
 
 // MARK: - 執行檔路徑
 
-/// spawn 子行程用的執行檔路徑是 `mise run install` 建的那個 symlink，**絕對路徑**。
+/// spawn 出去的必須**就是正在跑的這個執行檔**。
 ///
-/// 不是裸命令名：呼叫端（`HotkeyCommand.swift:72`、`MenuActions.swift:121`）跑在
-/// `Tatami.app` 裡，而那個 app 是 login item、由 launchd 起，`PATH` 可能只剩
-/// `/usr/bin:/bin:/usr/sbin:/sbin`——裸名在那裡**安靜失敗**。
-/// 也不是 `Bundle.main.executablePath`——在 .app 裡那會指到 bundle 內的複製品。
+/// 這條是 2026-09-21 那個缺陷的迴歸守衛。0.1.0 把它寫死成
+/// `~/.local/bin/tatami`（`mise run install` 建的開發用 symlink），而用 Homebrew
+/// 裝的人那個檔不存在——選單列的「格線」與「編輯設定」、以及 ⌃⌥⌘G 三個入口
+/// 對他們全部無效，且 `try? process.run()` 讓它連 log 都不留。
 ///
-/// 這段 doc 2026-09-15 改過：原文說的是「寫進 `yabairc` 的路徑」與「`skhdrc:164`
-/// 同一個理由」，兩者都已退役（見 `TatamiPaths` 那一側的同一段）。
+/// **當時有一條測試守著這個值，而它把缺陷寫成了期望值**（斷言
+/// `hasSuffix("/.local/bin/tatami")`）——一條釘住寫死路徑的測試，在那個路徑錯掉
+/// 時只會更用力地保護它。
 ///
-/// 同樣是 verifier 抓到的無測試項：改成裸名 `"tatami"`，918 條全綠。
-@Test func theInstalledExecutableIsAnAbsolutePath() {
-    let executable = TatamiPaths.installedExecutable
+/// **這一條的第一版也是假守衛**：它斷言「那個檔存在且可執行」，而修這個缺陷的
+/// 人（為了讓自己的機器先能用）剛好把那條 symlink 建了回來，於是把實作退回
+/// 0.1.0 那行**測試照樣綠**。實測 0 個 issue。教訓是「檔案存在」這個量在開發者
+/// 的機器上幾乎恆真，它分不出「正確的路徑」與「碰巧也存在的另一條路徑」。
+///
+/// 所以 oracle 換成 `proc_pidpath`——**與 `Bundle` 無關的第二個來源**，直接問
+/// 核心「這個 pid 的執行檔是哪個」。兩者 resolve symlink 之後必須相同。
+/// 實測三種情境（裸執行檔、bundle 內、經 symlink 叫 bundle 內那份）resolve 後
+/// 都一致，而第三種正是 cask 的形狀：`Bundle` 回 symlink、`proc_pidpath` 回本體。
+///
+/// 仍然斷言絕對路徑：這個 app 由 launchd 起，`PATH` 可能只剩
+/// `/usr/bin:/bin:/usr/sbin:/sbin`，裸命令名在那裡安靜失敗。
+@Test func theSpawnTargetIsTheExecutableWeAreRunning() throws {
+    let executable = try #require(TatamiPaths.runningExecutable,
+                                  "拿不到自己的執行檔路徑，三個 spawn 入口都會死")
     #expect(executable.hasPrefix("/"), "不是絕對路徑，launchd 起的 Tatami.app 會安靜失敗")
-    #expect(executable.hasSuffix("/.local/bin/tatami"))
-    #expect(!executable.contains(".build"), "指到 build 產物了，重新 build 就失效")
+
+    var buffer = [CChar](repeating: 0, count: 4096)
+    let written = proc_pidpath(getpid(), &buffer, UInt32(buffer.count))
+    try #require(written > 0, "proc_pidpath 問不到自己的執行檔，這條 oracle 失效")
+    let fromKernel = String(cString: buffer)
+
+    let resolve = { URL(fileURLWithPath: $0).resolvingSymlinksInPath().path }
+    #expect(resolve(executable) == resolve(fromKernel),
+            "spawn 的是 \(executable)，而正在跑的是 \(fromKernel)，指到別的地方就是 0.1.0 那個缺陷")
 }

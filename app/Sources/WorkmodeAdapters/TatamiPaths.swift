@@ -39,23 +39,41 @@ public struct TatamiPaths: Sendable {
         directory + "/hotkeys.json"
     }
 
-    /// `mise run install` 建的那個 symlink。
+    /// **正在跑的那個執行檔自己。**
     ///
-    /// **絕對路徑，不是裸命令名**：消費端是 `HotkeyCommand.swift:72` 與
-    /// `MenuActions.swift:121`——它們從 `Tatami.app` spawn 這支當子行程，而那個 app
-    /// 是 login item、由 launchd 起，`PATH` 可能只剩
-    /// `/usr/bin:/bin:/usr/sbin:/sbin`。裸名在那個環境**安靜失敗**。
+    /// 消費端是 `HotkeyCommand.swift` 與 `MenuActions.swift`——它們 spawn 一個新的
+    /// `tatami <子命令>`（`grid`／`edit`）。spawn 自己保證了「父子是同一個版本」，
+    /// 而那正是 cask 的 `binary` stanza 對使用者的承諾：一個產物、一個版本。
     ///
-    /// 不是 `Bundle.main.executablePath`：那在 `Tatami.app` 裡會指到 bundle 內那份
-    /// 複製品（`mise run app` 封進去的），而使用者期待的是 `mise run install`
-    /// 保持最新的那一份。
+    /// **2026-09-21 從寫死的 `~/.local/bin/tatami` 改成這樣，因為前者對每一個
+    /// 用 Homebrew 裝的人都是死的。** 那條 symlink 是 `mise run install` 建的開發
+    /// 用入口；cask 把 CLI 連到 `/opt/homebrew/bin/tatami`，全新安裝的人 `~/.local`
+    /// 底下什麼都沒有。選單列的「格線」與「編輯設定」、以及 ⌃⌥⌘G，三個入口在
+    /// 0.1.0 對他們**全部無效且無聲**。
     ///
-    /// 這段 doc 2026-09-15 改過。原文寫「寫進 `yabairc` 的東西要撐得過重新 build」
-    /// 與「`skhdrc:164` 用的也是這個路徑」——**兩句都已成假**：寫 `yabairc` 那半
-    /// 隨 signal 開關退役（`675aa18`），而 `skhd/skhdrc` 現在零條生效綁定、
-    /// 第 164 行只是一個 `#`。守衛本身仍然需要，換的是理由。
-    public static var installedExecutable: String {
-        NSHomeDirectory() + "/.local/bin/tatami"
+    /// 舊 doc 反對用 `Bundle.main.executablePath` 的理由是「在 .app 裡它指到 bundle
+    /// 內的複製品，而使用者期待 `mise run install` 保持最新的那一份」。那是開發
+    /// 便利的論點，而它換來的是**選單列與它 spawn 的子行程可能是兩個版本**——
+    /// 混版比舊版糟。要讓 bundle 跟上就跑 `mise run app`。
+    ///
+    /// 三種情境實測（2026-09-21，各用一個自編的 probe 執行檔）：
+    ///
+    /// | 怎麼叫的 | `executablePath` |
+    /// |---|---|
+    /// | 裸執行檔 | 它自己的路徑 |
+    /// | bundle 內直接叫 | `…/Probe.app/Contents/MacOS/Probe` |
+    /// | 經 symlink 叫 bundle 內那份 | **symlink 自己的路徑** |
+    ///
+    /// 第三種是 cask 的形狀（`/opt/homebrew/bin/tatami`），回傳值仍是可 spawn 的
+    /// 有效路徑，所以三種都成立。**都是絕對路徑**，而那是硬需求：這個 app 由
+    /// launchd 起，`PATH` 可能只剩 `/usr/bin:/bin:/usr/sbin:/sbin`，裸命令名在那裡
+    /// 安靜失敗。
+    ///
+    /// **回 Optional 而不是退回一個猜的路徑**：猜錯正是這個缺陷的成因。拿不到就
+    /// 讓呼叫端說出來（`MenuActions.spawn`）。實務上 Foundation 對任何執行檔都
+    /// 給得出這個值，那條 nil 路徑沒有已知的觸發輸入。
+    public static var runningExecutable: String? {
+        Bundle.main.executablePath
     }
 
     public init(directory: String) {

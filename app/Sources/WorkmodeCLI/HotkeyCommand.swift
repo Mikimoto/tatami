@@ -67,11 +67,11 @@ enum HotkeyRuntime {
         ).run(want: "", mode: .apply, scope: all ? .all : .visible)
     }
 
+    /// ⌃⌥⌘G 走這裡。與選單列那兩個入口共用 `MenuActions.spawn`——三個入口在
+    /// 0.1.0 都因為同一條寫死的路徑而無聲失效，分成兩份程式碼正是它們會一起壞、
+    /// 卻只修得到一半的原因。
     private static func spawnGrid() {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: TatamiPaths.installedExecutable)
-        process.arguments = ["grid"]
-        try? process.run()
+        SpawnTatami.run(["grid"])
     }
 }
 

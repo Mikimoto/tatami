@@ -111,16 +111,10 @@ enum MenuActions {
         return wasOn ? "切換 space 自動重排：已關閉" : "切換 space 自動重排：已開啟"
     }
 
-    /// 開一個新的 `tatami <args>`。
-    ///
-    /// 絕對路徑而不是裸命令名：這個行程由 yabai 起，`PATH` 可能只剩
-    /// `/usr/bin:/bin:/usr/sbin:/sbin`（`skhdrc` 與 `yabairc` 的 signal 同一條理由）。
-    /// 不等它結束、也不看它的 exit code：它自己會把話印到自己的 stderr。
+    /// 開一個新的 `tatami <args>`。實作與失敗回報在 `SpawnTatami`——⌃⌥⌘G 走
+    /// 同一份，見那個檔的 doc。
     static func spawn(_ arguments: [String]) {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: TatamiPaths.installedExecutable)
-        process.arguments = arguments
-        try? process.run()
+        SpawnTatami.run(arguments)
     }
 
     /// 那個 profile 現在存了幾個 space 的樹。
