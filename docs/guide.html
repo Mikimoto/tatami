@@ -680,6 +680,17 @@ brew install --cask tatami</code></pre>
   學到的值寫在 <code>.tatami-state</code> 的 <code>topinset.&lt;螢幕 UUID&gt;</code>。
   學錯了（例如在某次異常的排版中取樣到）就把那一行刪掉，讓它重新學。
 </p>
+<p>
+  <strong>0.1.1 以前這一條會扣兩次</strong>：畫布的頂端取自 <code>NSScreen.visibleFrame</code>，
+  而 AppKit 只在選單列當下所在的那台螢幕上扣掉它，學到的值又扣一次。主螢幕一換
+  （關筆電蓋、拔插螢幕、改排列）排滿的樹就上下各空一條。0.1.2 起頂端一律取自螢幕的
+  原始 frame，選單列只剩自動校準這一個來源。
+</p>
+<p>
+  升級之後，<strong>還沒學過的螢幕第一次排版會各印一句</strong>
+  <code>沒有接受指定的位置</code>——那一列被 macOS 往下推，而 tatami 正是靠這個學。
+  第二次就精確了，訊息也會消失。
+</p>
 
 <h3><code>tatami validate</code> 說舊格式</h3>
 <p>
